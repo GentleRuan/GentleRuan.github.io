@@ -18,7 +18,7 @@
   <meta name="description" content="Recorded living tips, Record life bit by bit, Record life">
 <meta property="og:type" content="website">
 <meta property="og:title" content="GentleRuan">
-<meta property="og:url" content="http://GentleRuan.github.io/page/5/index.html">
+<meta property="og:url" content="http://GentleRuan.github.io/page/6/index.html">
 <meta property="og:site_name" content="GentleRuan">
 <meta property="og:description" content="Recorded living tips, Record life bit by bit, Record life">
 <meta name="twitter:card" content="summary">
@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-JavaScript 面向对象之继承" class="post-JavaScript 面向对象之继承 post type-post status-publish format-standard hentry">
+    <article id="post-JavaScript 对象初识" class="post-JavaScript 对象初识 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,34 +74,72 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/06/01/JavaScript 面向对象之继承/">JavaScript 面向对象之继承</a>
+      <a class="article-title" href="/2016/05/25/JavaScript 对象初识/">JavaScript 对象初识</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/06/01/JavaScript 面向对象之继承/" data-id="cj53k4zjg0004q8u0qr2aotxy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/05/25/JavaScript 对象初识/" data-id="cj53mwp7e000008u0d64beg5f" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p><a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 是一门非常灵活的语言，对于同一个问题的解决，往往有多种方法来实现。</p>
-<p>继承是面向对象特性之一，它实现了代码的复用性与可维护性，可缩短开发周期，降低开发成本。继承易于维护管理，它避免了在一般类和特殊类之间共同特征的重复描述。</p>
-<p>比如学生（一般类）具有学号、姓名、年龄、性别的特征，小学生、大学生（特殊类）都是学生，也都具备学生的特征，这时，我们就可以让小学生、大学生继承自学生，重用在学生描述部分的信息。</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/06/01/JavaScript 面向对象之继承/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
+        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>在 JavaScript 中，数据类型分为：number、string、boolean、undefined、null、object，其中 number、string、boolean、undefined、null 也称为基本数据类型，而 object 称为引用数据类型。</p>
+<p>之所以 object 和其它数据类型不同，是因为对象是一种复合值，它将若干值以 key-value 键值对的形式聚合在一起。我们可以将对象看作是一系列无序的数据集合，通过 key 关键字可以访问到其关联的 value 值。</p>
+<h2 id="2-对象创建"><a href="#2-对象创建" class="headerlink" title="2. 对象创建"></a>2. 对象创建</h2><p>对象创建有三种方式：对象直接量方式、new 调用构造函数方式与 Object.create() 方式。</p>
+<h3 id="2-1-对象直接量"><a href="#2-1-对象直接量" class="headerlink" title="2.1 对象直接量"></a>2.1 对象直接量</h3><p>直接量也称为字面量，对象直接量由若干 key-value 键值对组成映射表，key 与 value 间使用冒号（:）分隔，键值对间会用逗号（,）分隔，将所有 key-value 键值对包裹在花括号（{}）之间：</p>
+<pre><code>var student = {
+    name : &quot;张三&quot;,
+    age : 18,
+    sex : &quot;男&quot;
+};
+</code></pre><p>对象的所有键名都是字符串，所以在 JavaScript 中，键名可使用引号（单引号、双引号均可），也可不使用引号，不使用引号会自动转为字符串。上边的对象也等价于：</p>
+<pre><code>var student = {
+    &quot;name&quot; : &quot;张三&quot;,
+    &quot;age&quot; : 18,
+    &quot;sex&quot; : &quot;男&quot;
+};
+</code></pre><p>对象的所有键值对也叫做属性，键名就是属性名，键值就是属性值。键值可以是任意数据类型，即键值也可以是函数（function），当键值为函数时，我们通常就将这个属性称为“方法”。</p>
+<pre><code>var student = {
+    name : &quot;张三&quot;,
+    age : 18,
+    sex : &quot;男&quot;,
+    show : function(){
+        console.log(&quot;这是一个学生对象...&quot;);
+    }
+};
+</code></pre><p>ES5 标准中，允许对象直接量最后一个属性后有一个逗号，但如果是旧版本的浏览器，不支持 ES5 标准，则会提示错误。</p>
+<h3 id="2-2-new-构造函数"><a href="#2-2-new-构造函数" class="headerlink" title="2.2 new 构造函数"></a>2.2 new 构造函数</h3><p>我们可以像创建数组对象、日期时间对象一样，通过 new 调用构造函数来创建普通的对象：</p>
+<pre><code>var student = new Object();
+</code></pre><p>对象创建后，通过点运算符或索引方式为对象添加属性：</p>
+<pre><code>student.name = &quot;张三&quot;;
+student[&quot;age&quot;] = 18;
+</code></pre><p>通过 new Object() 创建的一个空对象，也可直接写成：new Object 省略小括号的编写。</p>
+<p>也可以在 new 创建对象时传递参数，如果传递参数是一个对象，则直接返回参数对象：</p>
+<pre><code>var obj = {name:&quot;张三&quot;, age:18};
+var stu = new Object(obj);
+console.log(obj === stu); // true
+</code></pre><p>如果传递参数是基本类型的值，则返回包装对象：</p>
+<pre><code>var obj1 = new Object(1.3); // Number {}
+var obj2 = new Object(&quot;test&quot;); // String {0: &quot;t&quot;, 1: &quot;e&quot;, 2: &quot;s&quot;, 3: &quot;t&quot;, length: 4}
+var obj3 = new Object(true); // Boolean {}
+var obj4 = new Object(undefined); // {}
+var obj5 = new Object(null); // {}
+</code></pre><p>注意，传递 undefined 与 null 会返回空对象。</p>
+<p>当以非构造函数形式被调用时，Object 等同于 new Object()，即我们通常使用 Object() 来实现数据类型的转换，将其它类型转换为对象类型：</p>
+<pre><code>var obj1 = Object(1);
+var obj2 = Object(true);
+</code></pre><h3 id="2-3-Object-create"><a href="#2-3-Object-create" class="headerlink" title="2.3 Object.create()"></a>2.3 Object.create()</h3>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/06/01/JavaScript 面向对象之继承/">
-    <time datetime="2016-05-31T16:00:00.000Z" class="entry-date">
-        2016-06-01
+    <a href="/2016/05/25/JavaScript 对象初识/">
+    <time datetime="2016-05-24T16:00:00.000Z" class="entry-date">
+        2016-05-25
     </time>
 </a>
     
@@ -118,7 +156,7 @@
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
       </nav>
     </nav>
   
