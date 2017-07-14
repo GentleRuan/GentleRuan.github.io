@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="Recorded living tips, Record life bit by bit, Record life" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>GentleRuan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Recorded living tips, Record life bit by bit, Record life">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GentleRuan">
+<meta property="og:url" content="http://GentleRuan.github.io/page/3/index.html">
+<meta property="og:site_name" content="GentleRuan">
+<meta property="og:description" content="Recorded living tips, Record life bit by bit, Record life">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GentleRuan">
+<meta name="twitter:description" content="Recorded living tips, Record life bit by bit, Record life">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="GentleRuan" rel="home">GentleRuan</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">One day a little progress</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-JavaScript 闭包" class="post-JavaScript 闭包 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2017/07/14/JavaScript 闭包/">JavaScript 闭包</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/07/14/JavaScript 闭包/" data-id="cj53k4zjd0003q8u0d7sy7d3a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>博客分类： JS</p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>闭包（closures），在 MDN 解释为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Closures are <span class="built_in">functions</span> that refer to independent (free) variables (variables that are used locally, but defined <span class="keyword">in</span> an enclosing scope). In other words, these <span class="built_in">functions</span> ‘remember’ the environment <span class="keyword">in</span> <span class="built_in">which</span> they were created.</div></pre></td></tr></table></figure>
+<p>闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。</p>
+<p>闭包是 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 语言的一个特色，当然也是它的一大难点，很多高级应用都要依靠闭包实现，或者我们平常编码过程中，也在有意无意间使用到闭包。</p>
+<h2 id="2-作用域链"><a href="#2-作用域链" class="headerlink" title="2. 作用域链"></a>2. 作用域链</h2><p>在理解闭包，首先就要理解 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 中的作用域链。</p>
+<p>在 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 中有两种作用域：全局作用域和函数作用域（在 ES6 中引入了块级作用域）。</p>
+<p>在函数中定义的变量只能在本函数体中使用到，在函数外部不能直接调用函数体内部定义的变量，但函数中可以调用到全局作用域中定义的变量。</p>
+<p>如果函数中有内嵌函数的定义，则在内嵌函数中可以访问到外部函数中定义的变量，也可访问到全局作用域中的变量，但在外部函数中不能访问内嵌函数中定义的变量。这样，就形成了作用域链，即内嵌函数可调用父级或祖先级函数中定义的变量，但父级函数不能调用子级或后代函数中定义的变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">outer</span></span>()&#123;</div><div class="line">	var outVar = 10;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">inner</span></span>()&#123;</div><div class="line">		var inVar = 20;</div><div class="line">		console.log(<span class="string">"inner 中调用外部函数变量 outVar = "</span> + outVar);</div><div class="line">	&#125;</div><div class="line">	inner();</div><div class="line">	console.log(<span class="string">"outer 中调用内嵌函数变量 inVar = "</span> + inVar);</div><div class="line">&#125;</div><div class="line">outer();</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">inner 中调用外部函数变量 outVar = 10</div><div class="line">ReferenceError: Can<span class="string">'t find variable: inVar</span></div></pre></td></tr></table></figure>
+<p>在 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 中，变量的作用域是由它在源代码中所处位置决定的，并且嵌套的函数可以访问到其外层作用域中声明的变量。</p>
+<h2 id="3-闭包"><a href="#3-闭包" class="headerlink" title="3. 闭包"></a>3. 闭包</h2><p>如果有这样一种需求，我们需要在外部使用到函数内的变量，但正常情况下，通过直接调用的方式是不能访问到的，这就需要变通的方法了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">outer</span></span>() &#123;</div><div class="line">	var i = 1;</div><div class="line">	var inner = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> ++i;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="built_in">return</span> inner;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var result = outer();</div><div class="line"></div><div class="line">console.log(<span class="string">"第一次调用："</span> + result());</div><div class="line">console.log(<span class="string">"第二次调用："</span> + result());</div><div class="line">console.log(<span class="string">"第三次调用："</span> + result());</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">第一次调用：2</div><div class="line">第二次调用：3</div><div class="line">第三次调用：4</div></pre></td></tr></table></figure>
+<p>上例中，我们要使用到 outer 函数内部的变量 i，每次打印是在原有数值基础上自增 1。因在函数外部不能直接通过变量名对其进行访问，而嵌套在内部的 inner 函数则能够访问到外部函数变量 i，所以返回了内部函数的引用 inner，这样，当 outer 函数调用结束后，放置在 result 中的实际为内嵌函数的引用，这样就可以继续使用到在 outer 函数内部定义的变量 i 了。这就是闭包。</p>
+<p>以前常用到的定时器，相信大家写过类似的代码片段：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">fn</span></span>()&#123;</div><div class="line">	var i = 0;</div><div class="line">	var timer = setInterval(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		console.log(i++);</div><div class="line">		<span class="keyword">if</span>(i &gt; 10)</div><div class="line">			clearInterval(timer);</div><div class="line">	&#125;, 50);</div><div class="line">&#125;</div><div class="line"></div><div class="line">fn();</div></pre></td></tr></table></figure>
+<p>fn 函数调用结束后，按理说在 fn 函数内部的局部变量 i、timer 作用域该结束了，但 setInterval()函数的异步执行过程中，仍然可以使用到这两个变量的值。这也是典型的闭包使用情况。</p>
+<h2 id="4-一个故事"><a href="#4-一个故事" class="headerlink" title="4. 一个故事"></a>4. 一个故事</h2><p>来解释闭包可以有哪些适用场景前，我喜欢下面这个例子解释。</p>
+<p>很久很久以前：</p>
+<p>有一位公主……</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">princess</span></span>() &#123;</div></pre></td></tr></table></figure>
+<p>她住在一个充满冒险的奇妙世界里，遇到了她的白马王子。白马王子带着她骑着独角兽开始周游世界，与巨龙战斗，巧遇会说话的动物，还有很多其他的不可思议的新奇事物。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  var adventures = [];</div><div class="line"></div><div class="line">  <span class="keyword">function</span> <span class="function"><span class="title">princeCharming</span></span>() &#123; /* ... */ &#125;</div><div class="line"></div><div class="line">  var unicorn = &#123; /* ... */ &#125;,</div><div class="line">  	dragons = [ /* ... */ ],</div><div class="line">squirrel = <span class="string">"Hello!"</span>;</div></pre></td></tr></table></figure>
+<p>但她不得不回到自己乏味的王国里，例行去见那些成年人。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">return</span> &#123;</div></pre></td></tr></table></figure>
+<p>她会经常给大人分享她最近作为公主时的充满奇幻的冒险经历。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">		sayStory: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">			<span class="built_in">return</span> adventures[adventures.length - 1];</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但在大人的眼里，公主仅仅只是一个小女孩儿……</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var littleGirl = princess();</div></pre></td></tr></table></figure>
+<p>……在讲着一些神奇的、充满幻想的故事。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">littleGirl.sayStory();</div></pre></td></tr></table></figure>
+<p>即便所有大人都知道他们眼前的小女孩是真的公主，但是他们绝不相信有巨龙或独角兽，因为他们自己从来没有见到过。大人们说它们只存在于小女孩的想象之中。</p>
+<p>但是我们却知道小女孩述说的是事实……</p>
+<h2 id="5-闭包适用场景"><a href="#5-闭包适用场景" class="headerlink" title="5. 闭包适用场景"></a>5. 闭包适用场景</h2><p>通常闭包有如下两种适用场景：</p>
+<p>· 在内存中维持变量，如缓存数据<br>· 保护函数体内变量的安全，如为对象设置私有属性</p>
+<h3 id="5-1-缓存数据"><a href="#5-1-缓存数据" class="headerlink" title="5.1 缓存数据"></a>5.1 缓存数据</h3><p>一个比较常用到的例子就是，利用循环为元素绑定事件。</p>
+<p>让每个 div 元素被点击时，都能正确弹出当前被点击的 div 的索引：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt; div-1 &lt;/div&gt;</div><div class="line">&lt;div&gt; div-2 &lt;/div&gt;</div><div class="line">&lt;div&gt; div-3 &lt;/div&gt;</div><div class="line">&lt;div&gt; div-4 &lt;/div&gt;</div><div class="line">&lt;div&gt; div-5 &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>如果使用如下写法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">handle</span></span>()&#123;</div><div class="line">		var divs = document.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line">		<span class="keyword">for</span> (var i = 0, len = divs.length; i &lt; len; i++)&#123;</div><div class="line">			divs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				alert(<span class="string">"你点击的 div 索引为："</span> + i);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	handle();</div><div class="line">&lt;/script&gt;</div><div class="line">这时，在每个 div 上点击时弹出的结果都是`你点击的 div 索引为：5`。这是因为事件处理是异步的，但事件绑定是同步的，会先执行完循环体的 5 次操作，为每个 div 绑定上 onclick 事件。</div></pre></td></tr></table></figure>
+<p>这个过程中，变量 i 的值一直在递增变化，当所有 div 元素都被遍历后，i 的值自增到 5 退出循环结构。函数 handle 调用结束后，由于在事件响应程序中仍然存在变量 i 的引用，如果释放变量 i 的资源，会导致事件响应程序执行错误，所以为了保证事件响应程序中仍然能正确使用到变量 i，会将变量 i 的值一直保留在内存中，但保留的 i 的值为 5。</p>
+<p>如果要正确输出索引值，可使用闭包修改如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">handle</span></span>()&#123;</div><div class="line">		var divs = document.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line">		<span class="keyword">for</span> (var i = 0, len = divs.length; i &lt; len; i++)&#123;</div><div class="line">			divs[i].onclick = clk(i);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">function</span> clk(index)&#123;</div><div class="line">		<span class="built_in">return</span> <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">			alert(<span class="string">"你点击的 div 索引为："</span> + index);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	handle();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>在为每个 div 绑定事件时，调用 clk() 函数将与 div 关联的变量值 i 传递到 clk() 函数内部使用，因为内部返回了一个内嵌函数的引用，该内嵌函数功能的实现依赖于外部函数中的局部变量 index，所以 index 变量的值会在内存中得以缓存。</p>
+<p>由于每个 div 绑定事件时，都调用了 clk() 函数来实现事件绑定操作，所以与之对应的变量索引 i 的数值也都在内存中得以缓存，只是这个值不是以 i 的名称来缓存。当我们再次测试时，就可以正确打印出所点击 div 的索引了。</p>
+<p>当然以上功能的实现也可以通过自定义属性方式实现：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">handle</span></span>()&#123;</div><div class="line">		var divs = document.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line">		<span class="keyword">for</span> (var i = 0, len = divs.length; i &lt; len; i++)&#123;</div><div class="line">			divs[i].index = i;</div><div class="line">			divs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				alert(<span class="string">"你点击的 div 索引为："</span> + this.index);</div><div class="line">			&#125;;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	handle();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>或是通过 let 命令来实现：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">handle</span></span>()&#123;</div><div class="line">		var divs = document.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="built_in">let</span> i = 0, len = divs.length; i &lt; len; i++)&#123;</div><div class="line">			divs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				alert(<span class="string">"你点击的 div 索引为："</span> + i);</div><div class="line">			&#125;;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	handle();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="5-2-为对象设置私有属性"><a href="#5-2-为对象设置私有属性" class="headerlink" title="5.2 为对象设置私有属性"></a>5.2 为对象设置私有属性</h3><p>如果有一个对象，拥有年龄这样一个属性，我们要限定年龄的取值范围在 18~25 岁之间，以类似 Java 面向对象的方式来实现，可模拟如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">Student</span></span>()&#123;</div><div class="line">		var age = 18;</div><div class="line"></div><div class="line">		this.getAge = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">			<span class="built_in">return</span> age;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		this.setAge = <span class="keyword">function</span>(value) &#123;</div><div class="line">			<span class="keyword">if</span> (value &lt; 18 || value &gt; 25)</div><div class="line">				throw new RangeError(<span class="string">"age must between 18 and 25"</span>);</div><div class="line">			age = value;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	var stu = new Student();</div><div class="line">	console.log(stu.getAge()); // 18</div><div class="line">	stu.setAge(36); // 报错：RangeError</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>age 表示学生的年龄，这样的一个变量如果对于任何人都可以修改值，那么如果给定一个负值，比如 -35，虽然就语法上来说没问题，但就实际逻辑来说，一个人不可能年龄为 -35 岁，所以为了保障这种数据的安全，可以使用闭包来解决。</p>
+<p>对 Student 函数内部的局部变量 age 来说，本应该在 Student() 函数通过 new 调用结束后就释放掉资源，但在对象的 getAge/setAge 方法中仍然有对其的引用，释放资源会导致 getAge/setAge 功能不能正常完成，所以其值会保存在内存中。但要修改 age 年龄值时，由于它的作用域问题，我们没法在 Student 函数外直接通过调用 age 的方式来修改，仅能使用提供的 setAge 方法接口修改 age 值，这就保证了对 age 修改赋值的安全性。</p>
+<h2 id="6-一点误解"><a href="#6-一点误解" class="headerlink" title="6. 一点误解"></a>6. 一点误解</h2><p>以前在查阅资料时，经常见到说不要轻易使用闭包，否则容易造成内存泄漏的说法。</p>
+<p>直到看到这篇文章：<a href="http://www.cnblogs.com/rubylouvre/p/3345294.html" target="_blank" rel="external">《js闭包测试》</a></p>
+<p>闭包里面的变量是我们需要使用到的变量（lives），而内存泄漏通常是指访问不到的变量依然占据内存空间，不能够对其占据的空间再次利用。显然闭包是不属于访问不到的内存空间。</p>
+<p>之所以有这样的说法，大概是因为 IE，特别是 IE6 的 bug 吧。当然这是 IE 浏览器的问题，不是闭包的问题。</p>
+<p>现代浏览器在 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 引擎中大都优化处理了闭包情形下的垃圾回收，所以关于内存泄漏的说法，我们大可不必再理会了。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2017/07/14/JavaScript 闭包/">
+    <time datetime="2017-07-14T02:27:56.462Z" class="entry-date">
+        2017-07-14
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="pagination">
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      </nav>
+    </nav>
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/14/JavaScript 资料大全/">JavaScript 资源大全中文版</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/14/JJavaScript 浏览器兼容问题/">JavaScript 中的一些兼容性问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/14/JavaScript 闭包/">JavaScript 闭包</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/14/JavaScript call()和apply()方法/">JavaScript 中的 call() 和 apply() 方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2017 GentleRuan
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
