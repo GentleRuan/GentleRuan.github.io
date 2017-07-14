@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-JavaScript call()和apply()方法" class="post-JavaScript call()和apply()方法 post type-post status-publish format-standard hentry">
+    <article id="post-JavaScript 面向对象之继承" class="post-JavaScript 面向对象之继承 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,37 +74,35 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/08/11/JavaScript call()和apply()方法/">JavaScript 中的 call() 和 apply() 方法</a>
+      <a class="article-title" href="/2016/06/01/JavaScript 面向对象之继承/">JavaScript 面向对象之继承</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/08/11/JavaScript call()和apply()方法/" data-id="cj53k4zir0000q8u0faa0io52" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/06/01/JavaScript 面向对象之继承/" data-id="cj53k4zjg0004q8u0qr2aotxy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>博客分类： JS</p>
-<h2 id="1、方法定义"><a href="#1、方法定义" class="headerlink" title="1、方法定义"></a>1、方法定义</h2><h3 id="call方法"><a href="#call方法" class="headerlink" title="call方法:"></a>call方法:</h3><p>语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])<br>定义：调用一个对象的一个方法，以另一个对象替换当前对象。<br>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 </p>
-<h3 id="apply方法："><a href="#apply方法：" class="headerlink" title="apply方法："></a>apply方法：</h3><p>语法：apply([thisObj[,argArray]])<br>定义：应用某一对象的一个方法，用另一个对象替换当前对象。<br>说明：<br>如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
-<h2 id="2、常用实例"><a href="#2、常用实例" class="headerlink" title="2、常用实例"></a>2、常用实例</h2><h3 id="a："><a href="#a：" class="headerlink" title="a："></a>a：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(a,b) &#123;  </div><div class="line">    alert(a+b);  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">function</span> sub(a,b) &#123;  </div><div class="line">    alert(a-b);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">add.call(sub,3,1);</div></pre></td></tr></table></figure>
-<p>这个例子中的意思就是用 add 来替换 sub，add.call(sub,3,1) == add(3,1) ，所以运行结果为：alert(4); // 注意：js 中的函数其实是对象，函数名是对 Function 对象的引用。</p>
-<h3 id="b："><a href="#b：" class="headerlink" title="b："></a>b：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Animal</span></span>()&#123;    </div><div class="line">    this.name = <span class="string">"Animal"</span>;    </div><div class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;    </div><div class="line">        alert(this.name);    </div><div class="line">    &#125;    </div><div class="line">&#125;    </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Cat</span></span>()&#123;    </div><div class="line">    this.name = <span class="string">"Cat"</span>;    </div><div class="line">&#125;    </div><div class="line">   </div><div class="line">var animal = new Animal();    </div><div class="line">var cat = new Cat();    </div><div class="line">    </div><div class="line">//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    </div><div class="line">//输入结果为<span class="string">"Cat"</span>    </div><div class="line">animal.showName.call(cat,<span class="string">","</span>);    </div><div class="line">//animal.showName.apply(cat,[]);</div></pre></td></tr></table></figure>
-<p>call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat</p>
-<h3 id="c、实现继承"><a href="#c、实现继承" class="headerlink" title="c、实现继承:"></a>c、实现继承:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> Animal(name)&#123;      </div><div class="line">    this.name = name;      </div><div class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;      </div><div class="line">        alert(this.name);      </div><div class="line">    &#125;      </div><div class="line">&#125;      </div><div class="line">    </div><div class="line"><span class="keyword">function</span> Cat(name)&#123;    </div><div class="line">    Animal.call(this, name);    </div><div class="line">&#125;      </div><div class="line">    </div><div class="line">var cat = new Cat(<span class="string">"Black Cat"</span>);     </div><div class="line">cat.showName();</div></pre></td></tr></table></figure>
-<h3 id="d、多重继承"><a href="#d、多重继承" class="headerlink" title="d、多重继承:"></a>d、多重继承:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class10</span></span>() &#123;  </div><div class="line">    this.showSub = <span class="keyword">function</span>(a,b) &#123;  </div><div class="line">        alert(a-b);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class11</span></span>() &#123;  </div><div class="line">    this.showAdd = <span class="keyword">function</span>(a,b) &#123;  </div><div class="line">        alert(a+b);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class2</span></span>() &#123;  </div><div class="line">    Class10.call(this);  </div><div class="line">    Class11.call(this);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>很简单，使用两个 call 就实现多重继承了<br>当然，js的继承还有其他方法，例如使用原型链，这个不属于本文的范畴，只是在此说明call 的用法。说了call ，当然还有 apply，这两个方法基本上是一个意思，区别在于 call 的第二个参数可以是任意类型，而apply的第二个参数必须是数组，也可以是arguments<br>还有 callee，caller..</p>
-
+        <p>时间：2017-7-13 作者：GentleRuan 阅读：17次</p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p><a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 是一门非常灵活的语言，对于同一个问题的解决，往往有多种方法来实现。</p>
+<p>继承是面向对象特性之一，它实现了代码的复用性与可维护性，可缩短开发周期，降低开发成本。继承易于维护管理，它避免了在一般类和特殊类之间共同特征的重复描述。</p>
+<p>比如学生（一般类）具有学号、姓名、年龄、性别的特征，小学生、大学生（特殊类）都是学生，也都具备学生的特征，这时，我们就可以让小学生、大学生继承自学生，重用在学生描述部分的信息。</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/06/01/JavaScript 面向对象之继承/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/08/11/JavaScript call()和apply()方法/">
-    <time datetime="2016-08-10T16:00:00.000Z" class="entry-date">
-        2016-08-11
+    <a href="/2016/06/01/JavaScript 面向对象之继承/">
+    <time datetime="2016-05-31T16:00:00.000Z" class="entry-date">
+        2016-06-01
     </time>
 </a>
     
@@ -121,7 +119,7 @@
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
       </nav>
     </nav>
   
@@ -147,10 +145,6 @@
       <ul>
         
           <li>
-            <a href="/2017/07/14/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
             <a href="/2017/02/07/JavaScript 浏览器兼容问题/">JavaScript 中的一些兼容性问题</a>
           </li>
         
@@ -164,6 +158,10 @@
         
           <li>
             <a href="/2016/08/11/JavaScript call()和apply()方法/">JavaScript 中的 call() 和 apply() 方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/01/JavaScript 面向对象之继承/">JavaScript 面向对象之继承</a>
           </li>
         
       </ul>
