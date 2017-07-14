@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-JJavaScript 浏览器兼容问题" class="post-JJavaScript 浏览器兼容问题 post type-post status-publish format-standard hentry">
+    <article id="post-hello-world" class="post-hello-world post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,110 +74,35 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2017/07/14/JJavaScript 浏览器兼容问题/">js中的一些兼容性问题</a>
+      <a class="article-title" href="/2017/07/14/hello-world/">Hello World</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/07/14/JJavaScript 浏览器兼容问题/" data-id="cj53fky9800001su06s2s600g" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/07/14/hello-world/" data-id="cj53g8xzb000110u0eeihsle4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="1-获取滚动高度："><a href="#1-获取滚动高度：" class="headerlink" title="1. 获取滚动高度："></a>1. 获取滚动高度：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.documentElement.scrollTop||document.body.scrollTop</div></pre></td></tr></table></figure>
-<h3 id="2-获取样式兼容："><a href="#2-获取样式兼容：" class="headerlink" title="2. 获取样式兼容："></a>2. 获取样式兼容：</h3><pre><code class="bash">window.getComputedStyle(element)[styleName]:支持IE9及以上版本
-</code></pre>
-<p>解决方法：</p>
-<pre><code class="bash"><span class="keyword">function</span> getStyle(dom, styleName){
-
-<span class="built_in">return</span> dom.currentStyle? 
-    dom.currentStyle[styleName] : getComputedStyle(dom)[styleName];
-}
-</code></pre>
-<h3 id="3-事件对象兼容"><a href="#3-事件对象兼容" class="headerlink" title="3. 事件对象兼容"></a>3. 事件对象兼容</h3><p>window.event只能在IE下运行，而不能在Firefox下运行这是因为Firefox的event只能在事件发生的现场使用。</p>
-<p>Firefox必须从源处加入event作参数传递。IE忽略该参数，用window.event来读取该event。</p>
-<p>解决方法：</p>
-<pre><code class="bash">event = event || window.event;
-</code></pre>
-<h3 id="4-event-pageX和event-pageY：获取鼠标相对于整个文档的水平及垂直坐标"><a href="#4-event-pageX和event-pageY：获取鼠标相对于整个文档的水平及垂直坐标" class="headerlink" title="4. event.pageX和event.pageY：获取鼠标相对于整个文档的水平及垂直坐标"></a>4. event.pageX和event.pageY：获取鼠标相对于整个文档的水平及垂直坐标</h3><p>event.pageX和event.pageY，IE9之前的版本不支持</p>
-<p>解决方法：</p>
-<pre><code class="bash">event.clientX+(document.documentElement.scrollLeft||document.body.scrollLeft);
-event.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
-</code></pre>
-<h3 id="5-阻止事件冒泡兼容"><a href="#5-阻止事件冒泡兼容" class="headerlink" title="5. 阻止事件冒泡兼容"></a>5. 阻止事件冒泡兼容</h3><p>stopPropagation()和cancelBubble，前者是方法，是标准的写法，后者是属性，赋值true表示阻止，是IE的写法。</p>
-<p>解决方法：<br>判断stopPropagation是否存在，如果存在则用标准写法否则则用IE的写法，不可反过来判断。</p>
-<pre><code class="bash">event.stopPropagation ? event.stopPropagation() : event.cancelBubble=<span class="literal">true</span>;
-</code></pre>
-<h3 id="6-阻止默认行为兼容"><a href="#6-阻止默认行为兼容" class="headerlink" title="6. 阻止默认行为兼容"></a>6. 阻止默认行为兼容</h3><p>preventDefault()和returnValue()前者标准写法，后者IE写法。 </p>
-<p>解决方法：</p>
-<pre><code class="bash">(常规方法)event.preventDefault?event.preventDefault():event.returnValue=<span class="literal">false</span>;
-或者（非常规方法）直接在事件处理程序中<span class="built_in">return</span> <span class="literal">false</span>;
-</code></pre>
-<h3 id="7-事件监听兼容"><a href="#7-事件监听兼容" class="headerlink" title="7. 事件监听兼容"></a>7. 事件监听兼容</h3><p>标准浏览器的写法addEventListener()和IE的写法attachEvent()。</p>
-<p>解决方法：<br>判断addEventListener是否存在，如果存在则用否则用IE8以下的版本（含IE8）的绑定方法attachEvent，removeEventListener()和detachEvent()也是一样的用法。</p>
-<pre><code class="bash"><span class="keyword">if</span>(document.all){
-    dom.attactEvent(“onclick”, fn);
-} <span class="keyword">else</span> {
-    dom.addEventListener(“click”, fn);
-}
-</code></pre>
-<h3 id="8-根据类名查找元素"><a href="#8-根据类名查找元素" class="headerlink" title="8. 根据类名查找元素"></a>8. 根据类名查找元素</h3><p>document.getElementByClassName：根据类名查找元素，返回集合（IE9及以上版本支持）</p>
-<p>解决方法：</p>
-<pre><code class="bash"><span class="keyword">function</span> getByClassName(className, context) {
-    context = context || document;
-    <span class="keyword">if</span> (document.getElementsByClassName) // 浏览器支持使用 getElementsByClassName
-        <span class="built_in">return</span> context.getElementsByClassName(className);
-
-    /* 不支持使用 getElementsByClassName */
-    // 保存查找到的元素的数组
-    var result = [];
-    // 查找 context 后代的所有元素
-    var allTags = context.getElementsByTagName(<span class="string">"*"</span>);
-    // 遍历所有的元素
-    <span class="keyword">for</span>(var i = 0, len = allTags.length; i &lt; len; i++) {
-        // 获取当前遍历元素使用的所有 class 类名
-        var classNames = allTags[i].className.split(<span class="string">" "</span>);
-        // 遍历当前元素的所有类名，和待查找的类名比较
-        <span class="keyword">for</span> (var j = 0, l = classNames.length; j &lt; l; j++) {
-            <span class="keyword">if</span> (classNames[j] == className) { // 当前所在遍历的元素是要查找出来的其中一个
-                result.push(allTags[i]);
-                <span class="built_in">break</span>;
-            }
-        }
-    }
-    // 返回查找结果
-    <span class="built_in">return</span> result;
-}
-</code></pre>
-<h3 id="9-事件目标对象兼容"><a href="#9-事件目标对象兼容" class="headerlink" title="9. 事件目标对象兼容"></a>9. 事件目标对象兼容</h3><p>IE下,event对象有srcElement属性,但是没有target属性;Firefox下,event对象有target属性,但是没有srcElement属性</p>
-<p>解决方法：</p>
-<pre><code class="bash">var t = event.target || event.srcElement;
-</code></pre>
-<h3 id="10-获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"><a href="#10-获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。" class="headerlink" title="10. 获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"></a>10. 获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。</h3><pre><code class="bash">对于Internet Explorer、Chrome、Firefox、Opera 以及 Safari： 
-    window.innerHeight – 浏览器窗口的内部高度 
-    window.innerWidth – 浏览器窗口的内部宽度 
-
-对于 Internet Explorer 8、7、6、5： 
-    document.documentElement.clientHeight 
-    document.documentElement.clientWidth 
-或者 
-    document.body.clientHeight 
-    document.body.clientWidth 
-
-解决方法：
-    window.innerHeight || document.documentElement.clientHeight
-    window.innerWidth || document.documentElement.clientWidth
-</code></pre>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2017/07/14/JJavaScript 浏览器兼容问题/">
-    <time datetime="2017-07-14T03:27:03.665Z" class="entry-date">
+    <a href="/2017/07/14/hello-world/">
+    <time datetime="2017-07-14T02:06:02.335Z" class="entry-date">
         2017-07-14
     </time>
 </a>
@@ -195,7 +120,7 @@ event.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
       </nav>
     </nav>
   
@@ -225,15 +150,7 @@ event.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
           </li>
         
           <li>
-            <a href="/2017/07/14/JJavaScript 浏览器兼容问题/">js中的一些兼容性问题</a>
-          </li>
-        
-          <li>
             <a href="/2017/07/14/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/14/JavaScript call()和apply()方法/">JavaScript 中的 call() 和 apply() 方法</a>
           </li>
         
       </ul>
