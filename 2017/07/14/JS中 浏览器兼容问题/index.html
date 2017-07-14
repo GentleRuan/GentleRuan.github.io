@@ -15,16 +15,16 @@
   
   <title>js中的一些兼容性问题 | GentleRuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="获取滚动高度：1document.documentElement.scrollTop||document.body.scrollTop 获取样式兼容：window.getComputedStyle(element)[styleName]:支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.currentStyle?">
+  <meta name="description" content="1. 获取滚动高度：1document.documentElement.scrollTop||document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]:支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.currentSty">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中的一些兼容性问题">
 <meta property="og:url" content="http://GentleRuan.github.io/2017/07/14/JS中 浏览器兼容问题/index.html">
 <meta property="og:site_name" content="GentleRuan">
-<meta property="og:description" content="获取滚动高度：1document.documentElement.scrollTop||document.body.scrollTop 获取样式兼容：window.getComputedStyle(element)[styleName]:支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.currentStyle?">
-<meta property="og:updated_time" content="2017-07-14T03:38:26.418Z">
+<meta property="og:description" content="1. 获取滚动高度：1document.documentElement.scrollTop||document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]:支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.currentSty">
+<meta property="og:updated_time" content="2017-07-14T03:42:15.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中的一些兼容性问题">
-<meta name="twitter:description" content="获取滚动高度：1document.documentElement.scrollTop||document.body.scrollTop 获取样式兼容：window.getComputedStyle(element)[styleName]:支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.currentStyle?">
+<meta name="twitter:description" content="1. 获取滚动高度：1document.documentElement.scrollTop||document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]:支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.currentSty">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -86,8 +86,8 @@
 
     <div class="entry-content">
       
-        <h3 id="获取滚动高度："><a href="#获取滚动高度：" class="headerlink" title="获取滚动高度："></a>获取滚动高度：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.documentElement.scrollTop||document.body.scrollTop</div></pre></td></tr></table></figure>
-<h3 id="获取样式兼容："><a href="#获取样式兼容：" class="headerlink" title="获取样式兼容："></a>获取样式兼容：</h3><pre><code class="bash">window.getComputedStyle(element)[styleName]:支持IE9及以上版本
+        <h3 id="1-获取滚动高度："><a href="#1-获取滚动高度：" class="headerlink" title="1. 获取滚动高度："></a>1. 获取滚动高度：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.documentElement.scrollTop||document.body.scrollTop</div></pre></td></tr></table></figure>
+<h3 id="2-获取样式兼容："><a href="#2-获取样式兼容：" class="headerlink" title="2. 获取样式兼容："></a>2. 获取样式兼容：</h3><pre><code class="bash">window.getComputedStyle(element)[styleName]:支持IE9及以上版本
 </code></pre>
 <p>解决方法：</p>
 <pre><code class="bash"><span class="keyword">function</span> getStyle(dom, styleName){
@@ -96,26 +96,26 @@
     dom.currentStyle[styleName] : getComputedStyle(dom)[styleName];
 }
 </code></pre>
-<h3 id="事件对象兼容"><a href="#事件对象兼容" class="headerlink" title="事件对象兼容"></a>事件对象兼容</h3><p>window.event只能在IE下运行，而不能在Firefox下运行这是因为Firefox的event只能在事件发生的现场使用。</p>
+<h3 id="3-事件对象兼容"><a href="#3-事件对象兼容" class="headerlink" title="3. 事件对象兼容"></a>3. 事件对象兼容</h3><p>window.event只能在IE下运行，而不能在Firefox下运行这是因为Firefox的event只能在事件发生的现场使用。</p>
 <p>Firefox必须从源处加入event作参数传递。IE忽略该参数，用window.event来读取该event。</p>
 <p>解决方法：</p>
 <pre><code class="bash">event = event || window.event;
 </code></pre>
-<h3 id="event-pageX和event-pageY：获取鼠标相对于整个文档的水平及垂直坐标"><a href="#event-pageX和event-pageY：获取鼠标相对于整个文档的水平及垂直坐标" class="headerlink" title="event.pageX和event.pageY：获取鼠标相对于整个文档的水平及垂直坐标"></a>event.pageX和event.pageY：获取鼠标相对于整个文档的水平及垂直坐标</h3><p>event.pageX和event.pageY，IE9之前的版本不支持</p>
+<h3 id="4-event-pageX和event-pageY：获取鼠标相对于整个文档的水平及垂直坐标"><a href="#4-event-pageX和event-pageY：获取鼠标相对于整个文档的水平及垂直坐标" class="headerlink" title="4. event.pageX和event.pageY：获取鼠标相对于整个文档的水平及垂直坐标"></a>4. event.pageX和event.pageY：获取鼠标相对于整个文档的水平及垂直坐标</h3><p>event.pageX和event.pageY，IE9之前的版本不支持</p>
 <p>解决方法：</p>
 <pre><code class="bash">event.clientX+(document.documentElement.scrollLeft||document.body.scrollLeft);
 event.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
 </code></pre>
-<h3 id="阻止事件冒泡兼容"><a href="#阻止事件冒泡兼容" class="headerlink" title="阻止事件冒泡兼容"></a>阻止事件冒泡兼容</h3><p>stopPropagation()和cancelBubble，前者是方法，是标准的写法，后者是属性，赋值true表示阻止，是IE的写法。</p>
+<h3 id="5-阻止事件冒泡兼容"><a href="#5-阻止事件冒泡兼容" class="headerlink" title="5. 阻止事件冒泡兼容"></a>5. 阻止事件冒泡兼容</h3><p>stopPropagation()和cancelBubble，前者是方法，是标准的写法，后者是属性，赋值true表示阻止，是IE的写法。</p>
 <p>解决方法：<br>判断stopPropagation是否存在，如果存在则用标准写法否则则用IE的写法，不可反过来判断。</p>
 <pre><code class="bash">event.stopPropagation ? event.stopPropagation() : event.cancelBubble=<span class="literal">true</span>;
 </code></pre>
-<h3 id="阻止默认行为兼容"><a href="#阻止默认行为兼容" class="headerlink" title="阻止默认行为兼容"></a>阻止默认行为兼容</h3><p>preventDefault()和returnValue()前者标准写法，后者IE写法。 </p>
+<h3 id="6-阻止默认行为兼容"><a href="#6-阻止默认行为兼容" class="headerlink" title="6. 阻止默认行为兼容"></a>6. 阻止默认行为兼容</h3><p>preventDefault()和returnValue()前者标准写法，后者IE写法。 </p>
 <p>解决方法：</p>
 <pre><code class="bash">(常规方法)event.preventDefault?event.preventDefault():event.returnValue=<span class="literal">false</span>;
 或者（非常规方法）直接在事件处理程序中<span class="built_in">return</span> <span class="literal">false</span>;
 </code></pre>
-<h3 id="事件监听兼容"><a href="#事件监听兼容" class="headerlink" title="事件监听兼容"></a>事件监听兼容</h3><p>标准浏览器的写法addEventListener()和IE的写法attachEvent()。</p>
+<h3 id="7-事件监听兼容"><a href="#7-事件监听兼容" class="headerlink" title="7. 事件监听兼容"></a>7. 事件监听兼容</h3><p>标准浏览器的写法addEventListener()和IE的写法attachEvent()。</p>
 <p>解决方法：<br>判断addEventListener是否存在，如果存在则用否则用IE8以下的版本（含IE8）的绑定方法attachEvent，removeEventListener()和detachEvent()也是一样的用法。</p>
 <pre><code class="bash"><span class="keyword">if</span>(document.all){
     dom.attactEvent(“onclick”, fn);
@@ -123,7 +123,7 @@ event.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
     dom.addEventListener(“click”, fn);
 }
 </code></pre>
-<h3 id="根据类名查找元素"><a href="#根据类名查找元素" class="headerlink" title="根据类名查找元素"></a>根据类名查找元素</h3><p>document.getElementByClassName：根据类名查找元素，返回集合（IE9及以上版本支持）</p>
+<h3 id="8-根据类名查找元素"><a href="#8-根据类名查找元素" class="headerlink" title="8. 根据类名查找元素"></a>8. 根据类名查找元素</h3><p>document.getElementByClassName：根据类名查找元素，返回集合（IE9及以上版本支持）</p>
 <p>解决方法：</p>
 <pre><code class="bash"><span class="keyword">function</span> getByClassName(className, context) {
     context = context || document;
@@ -151,11 +151,11 @@ event.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
     <span class="built_in">return</span> result;
 }
 </code></pre>
-<h3 id="事件目标对象兼容"><a href="#事件目标对象兼容" class="headerlink" title="事件目标对象兼容"></a>事件目标对象兼容</h3><p>IE下,event对象有srcElement属性,但是没有target属性;Firefox下,event对象有target属性,但是没有srcElement属性</p>
+<h3 id="9-事件目标对象兼容"><a href="#9-事件目标对象兼容" class="headerlink" title="9. 事件目标对象兼容"></a>9. 事件目标对象兼容</h3><p>IE下,event对象有srcElement属性,但是没有target属性;Firefox下,event对象有target属性,但是没有srcElement属性</p>
 <p>解决方法：</p>
 <pre><code class="bash">var t = event.target || event.srcElement;
 </code></pre>
-<h3 id="获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"><a href="#获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。" class="headerlink" title="获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"></a>获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。</h3><pre><code class="bash">对于Internet Explorer、Chrome、Firefox、Opera 以及 Safari： 
+<h3 id="10-获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"><a href="#10-获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。" class="headerlink" title="10. 获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"></a>10. 获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。</h3><pre><code class="bash">对于Internet Explorer、Chrome、Firefox、Opera 以及 Safari： 
     window.innerHeight – 浏览器窗口的内部高度 
     window.innerWidth – 浏览器窗口的内部宽度 
 
