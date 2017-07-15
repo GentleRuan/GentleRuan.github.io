@@ -90,88 +90,11 @@
         <h3 id="1-获取滚动高度："><a href="#1-获取滚动高度：" class="headerlink" title="1. 获取滚动高度："></a>1. 获取滚动高度：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.documentElement.scrollTop || document.body.scrollTop</div></pre></td></tr></table></figure>
 <h3 id="2-获取样式兼容："><a href="#2-获取样式兼容：" class="headerlink" title="2. 获取样式兼容："></a>2. 获取样式兼容：</h3><pre><code class="bash">window.getComputedStyle(element)[styleName]: 支持IE9及以上版本
 </code></pre>
-<p>解决方法：</p>
-<pre><code class="bash"><span class="keyword">function</span> getStyle(dom, styleName){
-
-<span class="built_in">return</span> dom.currentStyle? 
-    dom.currentStyle[styleName] : getComputedStyle(dom)[styleName];
-}
-</code></pre>
-<h3 id="3-事件对象兼容"><a href="#3-事件对象兼容" class="headerlink" title="3. 事件对象兼容"></a>3. 事件对象兼容</h3><p>window.event 只能在IE下运行，而不能在 Firefox 下运行这是因为 Firefox 的 event 只能在事件发生的现场使用。</p>
-<p>Firefox 必须从源处加入 event 作参数传递。IE忽略该参数，用 window.event 来读取该 event。</p>
-<p>解决方法：</p>
-<pre><code class="bash">event = event || window.event;
-</code></pre>
-<h3 id="4-event-pageX-和-event-pageY-：获取鼠标相对于整个文档的水平及垂直坐标"><a href="#4-event-pageX-和-event-pageY-：获取鼠标相对于整个文档的水平及垂直坐标" class="headerlink" title="4. event.pageX 和 event.pageY ：获取鼠标相对于整个文档的水平及垂直坐标"></a>4. event.pageX 和 event.pageY ：获取鼠标相对于整个文档的水平及垂直坐标</h3><p>event.pageX 和 event.pageY ，IE9 之前的版本不支持</p>
-<p>解决方法：</p>
-<pre><code class="bash">event.clientX+(document.documentElement.scrollLeft || document.body.scrollLeft);
-event.clientY+(document.documentElement.scrollTop || document.body.scrollTop);
-</code></pre>
-<h3 id="5-阻止事件冒泡兼容"><a href="#5-阻止事件冒泡兼容" class="headerlink" title="5. 阻止事件冒泡兼容"></a>5. 阻止事件冒泡兼容</h3><p>stopPropagation() 和 cancelBubble，前者是方法，是标准的写法，后者是属性，赋值 true 表示阻止，是 IE 的写法。</p>
-<p>解决方法：<br>判断 stopPropagation 是否存在，如果存在则用标准写法否则则用 IE 的写法，不可反过来判断。</p>
-<pre><code class="bash">event.stopPropagation ? event.stopPropagation() : event.cancelBubble = <span class="literal">true</span>;
-</code></pre>
-<h3 id="6-阻止默认行为兼容"><a href="#6-阻止默认行为兼容" class="headerlink" title="6. 阻止默认行为兼容"></a>6. 阻止默认行为兼容</h3><p>preventDefault() 和 returnValue() 前者标准写法，后者 IE 写法。 </p>
-<p>解决方法：</p>
-<pre><code class="bash">(常规方法)event.preventDefault ? event.preventDefault() : event.returnValue = <span class="literal">false</span>;
-或者（非常规方法）直接在事件处理程序中 <span class="built_in">return</span> <span class="literal">false</span> ;
-</code></pre>
-<h3 id="7-事件监听兼容"><a href="#7-事件监听兼容" class="headerlink" title="7. 事件监听兼容"></a>7. 事件监听兼容</h3><p>标准浏览器的写法 addEventListener() 和 IE 的写法 attachEvent() 。</p>
-<p>解决方法：<br>判断 addEventListener 是否存在，如果存在则用否则用 IE8 以下的版本（含 IE8 ）的绑定方法 attachEvent ，removeEventListener() 和 detachEvent() 也是一样的用法。</p>
-<pre><code class="bash"><span class="keyword">if</span>(document.all){
-    dom.attactEvent(“onclick”, fn);
-} <span class="keyword">else</span> {
-    dom.addEventListener(“click”, fn);
-}
-</code></pre>
-<h3 id="8-根据类名查找元素"><a href="#8-根据类名查找元素" class="headerlink" title="8. 根据类名查找元素"></a>8. 根据类名查找元素</h3><p>document.getElementByClassName：根据类名查找元素，返回集合（ IE9 及以上版本支持）</p>
-<p>解决方法：</p>
-<pre><code class="bash"><span class="keyword">function</span> getByClassName(className, context) {
-    context = context || document;
-    <span class="keyword">if</span> (document.getElementsByClassName) // 浏览器支持使用 getElementsByClassName
-        <span class="built_in">return</span> context.getElementsByClassName(className);
-
-    /* 不支持使用 getElementsByClassName */
-    // 保存查找到的元素的数组
-    var result = [];
-    // 查找 context 后代的所有元素
-    var allTags = context.getElementsByTagName(<span class="string">"*"</span>);
-    // 遍历所有的元素
-    <span class="keyword">for</span>(var i = 0, len = allTags.length; i &lt; len; i++) {
-        // 获取当前遍历元素使用的所有 class 类名
-        var classNames = allTags[i].className.split(<span class="string">" "</span>);
-        // 遍历当前元素的所有类名，和待查找的类名比较
-        <span class="keyword">for</span> (var j = 0, l = classNames.length; j &lt; l; j++) {
-            <span class="keyword">if</span> (classNames[j] == className) { // 当前所在遍历的元素是要查找出来的其中一个
-                result.push(allTags[i]);
-                <span class="built_in">break</span>;
-            }
-        }
-    }
-    // 返回查找结果
-    <span class="built_in">return</span> result;
-}
-</code></pre>
-<h3 id="9-事件目标对象兼容"><a href="#9-事件目标对象兼容" class="headerlink" title="9. 事件目标对象兼容"></a>9. 事件目标对象兼容</h3><p>IE 下, event 对象有 srcElement 属性,但是没有 target 属性; Firefox 下, event 对象有 target 属性,但是没有 srcElement 属性</p>
-<p>解决方法：</p>
-<pre><code class="bash">var t = event.target || event.srcElement;
-</code></pre>
-<h3 id="10-获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"><a href="#10-获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。" class="headerlink" title="10. 获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"></a>10. 获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。</h3><pre><code class="bash">对于 Internet Explorer、Chrome、Firefox、Opera 以及 Safari： 
-    window.innerHeight – 浏览器窗口的内部高度 
-    window.innerWidth – 浏览器窗口的内部宽度 
-
-对于 Internet Explorer 8、7、6、5： 
-    document.documentElement.clientHeight 
-    document.documentElement.clientWidth 
-或者 
-    document.body.clientHeight 
-    document.body.clientWidth 
-
-解决方法：
-    window.innerHeight || document.documentElement.clientHeight
-    window.innerWidth || document.documentElement.clientWidth
-</code></pre>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/02/07/JavaScript 浏览器兼容问题/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
@@ -192,10 +115,206 @@ event.clientY+(document.documentElement.scrollTop || document.body.scrollTop);
 
 
   
+    <article id="post-JavaScript 资料大全" class="post-JavaScript 资料大全 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/11/20/JavaScript 资料大全/">JavaScript 资源大全中文版</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/11/20/JavaScript 资料大全/" data-id="cj53k4zja0002q8u0elwgtac3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>基于 awesome-javascript 列表，我们将对其中的各个资源项进行编译整理。此外还将从其他来源补充好资源。<br>整理后的内容，将收录在<a href="http://hao.jobbole.com/" target="_blank" rel="external">伯乐在线资源频道</a>。可参考已整理的内容：<br><a href="http://hao.jobbole.com/jqwidgets-jquery-html5-ui/" target="_blank" rel="external">《jQWidgets：jQuery HTML5 UI组件框架》</a><br><a href="http://hao.jobbole.com/bootstrap/" target="_blank" rel="external">《Bootstrap：Web前端开发框架》</a><br><a href="http://hao.jobbole.com/yui-compressor/" target="_blank" rel="external">《YUI Compressor：JS/CSS压缩工具》</a></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2>
+        
+          <p class="article-more-link">
+            <a href="/2016/11/20/JavaScript 资料大全/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/11/20/JavaScript 资料大全/">
+    <time datetime="2016-11-19T16:00:00.000Z" class="entry-date">
+        2016-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-JavaScript 闭包" class="post-JavaScript 闭包 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/10/11/JavaScript 闭包/">JavaScript 闭包</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/10/11/JavaScript 闭包/" data-id="cj53k4zjd0003q8u0d7sy7d3a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>闭包（closures），在 MDN 解释为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Closures are <span class="built_in">functions</span> that refer to independent (free) variables (variables that are used locally, but defined <span class="keyword">in</span> an enclosing scope). In other words, these <span class="built_in">functions</span> ‘remember’ the environment <span class="keyword">in</span> <span class="built_in">which</span> they were created.</div></pre></td></tr></table></figure>
+<p>闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。</p>
+<p>闭包是 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 语言的一个特色，当然也是它的一大难点，很多高级应用都要依靠闭包实现，或者我们平常编码过程中，也在有意无意间使用到闭包。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/10/11/JavaScript 闭包/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/10/11/JavaScript 闭包/">
+    <time datetime="2016-10-10T16:00:00.000Z" class="entry-date">
+        2016-10-11
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-JavaScript call()和apply()方法" class="post-JavaScript call()和apply()方法 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/08/11/JavaScript call()和apply()方法/">JavaScript 中的 call() 和 apply() 方法</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/08/11/JavaScript call()和apply()方法/" data-id="cj53k4zir0000q8u0faa0io52" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h2 id="1、方法定义"><a href="#1、方法定义" class="headerlink" title="1、方法定义"></a>1、方法定义</h2><h3 id="call方法"><a href="#call方法" class="headerlink" title="call方法:"></a>call方法:</h3><p>语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])<br>定义：调用一个对象的一个方法，以另一个对象替换当前对象。<br>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 </p>
+<h3 id="apply方法："><a href="#apply方法：" class="headerlink" title="apply方法："></a>apply方法：</h3><p>语法：apply([thisObj[,argArray]])<br>定义：应用某一对象的一个方法，用另一个对象替换当前对象。<br>说明：<br>如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/11/JavaScript call()和apply()方法/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/08/11/JavaScript call()和apply()方法/">
+    <time datetime="2016-08-10T16:00:00.000Z" class="entry-date">
+        2016-08-11
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-JavaScript 面向对象之继承" class="post-JavaScript 面向对象之继承 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/06/01/JavaScript 面向对象之继承/">JavaScript 面向对象之继承</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/06/01/JavaScript 面向对象之继承/" data-id="cj53k4zjg0004q8u0qr2aotxy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p><a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 是一门非常灵活的语言，对于同一个问题的解决，往往有多种方法来实现。</p>
+<p>继承是面向对象特性之一，它实现了代码的复用性与可维护性，可缩短开发周期，降低开发成本。继承易于维护管理，它避免了在一般类和特殊类之间共同特征的重复描述。</p>
+<p>比如学生（一般类）具有学号、姓名、年龄、性别的特征，小学生、大学生（特殊类）都是学生，也都具备学生的特征，这时，我们就可以让小学生、大学生继承自学生，重用在学生描述部分的信息。</p>
+<p><a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 也可使用继承实现代码复用，在很多资料中对 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 的继承细致的分了许多种类与实现的方式，但无外乎两种方式：对象冒充、原型继承。本文介绍这两种实现继承的方式。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/06/01/JavaScript 面向对象之继承/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/06/01/JavaScript 面向对象之继承/">
+    <time datetime="2016-05-31T16:00:00.000Z" class="entry-date">
+        2016-06-01
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
       </nav>
     </nav>
   

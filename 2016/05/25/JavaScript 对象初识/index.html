@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://GentleRuan.github.io/2016/05/25/JavaScript 对象初识/index.html">
 <meta property="og:site_name" content="GentleRuan">
 <meta property="og:description" content="1. 概述在 JavaScript 中，数据类型分为：number、string、boolean、undefined、null、object，其中 number、string、boolean、undefined、null 也称为基本数据类型，而 object 称为引用数据类型。 之所以 object 和其它数据类型不同，是因为对象是一种复合值，它将若干值以 key-value 键值对的形式聚合在一">
-<meta property="og:updated_time" content="2017-07-15T01:00:51.820Z">
+<meta property="og:updated_time" content="2017-07-15T01:56:52.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 对象初识">
 <meta name="twitter:description" content="1. 概述在 JavaScript 中，数据类型分为：number、string、boolean、undefined、null、object，其中 number、string、boolean、undefined、null 也称为基本数据类型，而 object 称为引用数据类型。 之所以 object 和其它数据类型不同，是因为对象是一种复合值，它将若干值以 key-value 键值对的形式聚合在一">
@@ -89,7 +89,8 @@
         <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>在 JavaScript 中，数据类型分为：number、string、boolean、undefined、null、object，其中 number、string、boolean、undefined、null 也称为基本数据类型，而 object 称为引用数据类型。</p>
 <p>之所以 object 和其它数据类型不同，是因为对象是一种复合值，它将若干值以 key-value 键值对的形式聚合在一起。我们可以将对象看作是一系列无序的数据集合，通过 key 关键字可以访问到其关联的 value 值。</p>
 <h2 id="2-对象创建"><a href="#2-对象创建" class="headerlink" title="2. 对象创建"></a>2. 对象创建</h2><p>对象创建有三种方式：对象直接量方式、new 调用构造函数方式与 Object.create() 方式。</p>
-<h3 id="2-1-对象直接量"><a href="#2-1-对象直接量" class="headerlink" title="2.1 对象直接量"></a>2.1 对象直接量</h3><p>直接量也称为字面量，对象直接量由若干 key-value 键值对组成映射表，key 与 value 间使用冒号（:）分隔，键值对间会用逗号（,）分隔，将所有 key-value 键值对包裹在花括号（{}）之间：</p>
+<h3 id="2-1-对象直接量"><a href="#2-1-对象直接量" class="headerlink" title="2.1 对象直接量"></a>2.1 对象直接量</h3><a id="more"></a>
+<p>直接量也称为字面量，对象直接量由若干 key-value 键值对组成映射表，key 与 value 间使用冒号（:）分隔，键值对间会用逗号（,）分隔，将所有 key-value 键值对包裹在花括号（{}）之间：</p>
 <pre><code>var student = {
     name : &quot;张三&quot;,
     age : 18,
