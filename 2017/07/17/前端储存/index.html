@@ -15,15 +15,16 @@
   
   <title>GentleRuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Recorded living tips, Record life bit by bit, Record life">
-<meta property="og:type" content="website">
+  <meta name="description" content="body {   width: 45em;   border: 1px solid #ddd;   outline: 1300px solid #fff;   margin: 16px auto; }  body .markdown-body {   padding: 30px; }  @font-face {   font-family: fontawesome-mini;   src: url">
+<meta property="og:type" content="article">
 <meta property="og:title" content="GentleRuan">
-<meta property="og:url" content="http://GentleRuan.github.io/index.html">
+<meta property="og:url" content="http://GentleRuan.github.io/2017/07/17/前端储存/index.html">
 <meta property="og:site_name" content="GentleRuan">
-<meta property="og:description" content="Recorded living tips, Record life bit by bit, Record life">
+<meta property="og:description" content="body {   width: 45em;   border: 1px solid #ddd;   outline: 1300px solid #fff;   margin: 16px auto; }  body .markdown-body {   padding: 30px; }  @font-face {   font-family: fontawesome-mini;   src: url">
+<meta property="og:updated_time" content="2017-07-17T11:12:00.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GentleRuan">
-<meta name="twitter:description" content="Recorded living tips, Record life bit by bit, Record life">
+<meta name="twitter:description" content="body {   width: 45em;   border: 1px solid #ddd;   outline: 1300px solid #fff;   margin: 16px auto; }  body .markdown-body {   padding: 30px; }  @font-face {   font-family: fontawesome-mini;   src: url">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -64,9 +65,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main">
-  
-    <article id="post-前端储存" class="post-前端储存 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-前端储存" class="post-前端储存 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -1107,11 +1106,170 @@ date: 2017-1-25</p>
 <h2 id="2-sessionstorage"><a name="user-content-2-sessionstorage" href="#2-sessionstorage" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2. 短暂的sessionStorage</h2>
 <p>对象创建有三种方式：对象直接量方式、new 调用构造函数方式与 Object.create() 方式。</p>
 <h3 id="21"><a name="user-content-21" href="#21" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.1 对象直接量</h3>
-        
-          <p class="article-more-link">
-            <a href="/2017/07/17/前端储存/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
+<a id="more"></a>
+
+<p>直接量也称为字面量，对象直接量由若干 key-value 键值对组成映射表，key 与 value 间使用冒号（:）分隔，键值对间会用逗号（,）分隔，将所有 key-value 键值对包裹在花括号（{}）之间：</p>
+<pre><code>var student = {
+    name : "张三",
+    age : 18,
+    sex : "男"
+};
+</code></pre>
+<p>对象的所有键名都是字符串，所以在 JavaScript 中，键名可使用引号（单引号、双引号均可），也可不使用引号，不使用引号会自动转为字符串。上边的对象也等价于：</p>
+<pre><code>var student = {
+    "name" : "张三",
+    "age" : 18,
+    "sex" : "男"
+};
+</code></pre>
+<p>对象的所有键值对也叫做属性，键名就是属性名，键值就是属性值。键值可以是任意数据类型，即键值也可以是函数（function），当键值为函数时，我们通常就将这个属性称为“方法”。</p>
+<pre><code>var student = {
+    name : "张三",
+    age : 18,
+    sex : "男",
+    show : function(){
+        console.log("这是一个学生对象...");
+    }
+};
+</code></pre>
+<p>ES5 标准中，允许对象直接量最后一个属性后有一个逗号，但如果是旧版本的浏览器，不支持 ES5 标准，则会提示错误。</p>
+<h3 id="22-new"><a name="user-content-22-new" href="#22-new" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.2 new 构造函数</h3>
+<p>我们可以像创建数组对象、日期时间对象一样，通过 new 调用构造函数来创建普通的对象：</p>
+<pre><code>var student = new Object();
+</code></pre>
+<p>对象创建后，通过点运算符或索引方式为对象添加属性：</p>
+<pre><code>student.name = "张三";
+student["age"] = 18;
+</code></pre>
+<p>通过 new Object() 创建的一个空对象，也可直接写成：new Object 省略小括号的编写。</p>
+<p>也可以在 new 创建对象时传递参数，如果传递参数是一个对象，则直接返回参数对象：</p>
+<pre><code>var obj = {name:"张三", age:18};
+var stu = new Object(obj);
+console.log(obj === stu); // true
+</code></pre>
+<p>如果传递参数是基本类型的值，则返回包装对象：</p>
+<pre><code>var obj1 = new Object(1.3); // Number {}
+var obj2 = new Object("test"); // String {0: "t", 1: "e", 2: "s", 3: "t", length: 4}
+var obj3 = new Object(true); // Boolean {}
+var obj4 = new Object(undefined); // {}
+var obj5 = new Object(null); // {}
+</code></pre>
+<p>注意，传递 undefined 与 null 会返回空对象。</p>
+<p>当以非构造函数形式被调用时，Object 等同于 new Object()，即我们通常使用 Object() 来实现数据类型的转换，将其它类型转换为对象类型：</p>
+<pre><code>var obj1 = Object(1);
+var obj2 = Object(true);
+</code></pre>
+<h3 id="23-objectcreate"><a name="user-content-23-objectcreate" href="#23-objectcreate" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.3 Object.create()</h3>
+<p>ES5 新特性中定义了名为 Object.create() 的方法，用来创建对象。</p>
+<p>语法：</p>
+<pre><code>Object.create(proto, [ propertiesObject ])
+</code></pre>
+<p>proto 参数是作为新创建对象的原型，propertiesObject 是可选参数，用来对对象的属性进行描述：</p>
+<pre><code>var sexValue;
+var stu = Object.create(Object.prototype, {
+    name : {
+        value: "张三",
+        writable: true,
+        configurable:true,
+        enumerable: true
+    },
+    age : {
+        get : function(){return 18},
+        configurable:true,
+        enumerable: true
+    },
+    sex : {
+        get : function(){return sexValue},
+        set : function(newSexValue){sexValue = newSexValue;},
+        configurable:true,
+        enumerable: false
+    }
+});
+</code></pre>
+<p>有关对象属性描述，可见<a href="">《ES5 新特性》</a>说明。</p>
+<h2 id="3-localstorage"><a name="user-content-3-localstorage" href="#3-localstorage" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3. 简易强大的localStorage</h2>
+<p>delete 命令可用于删除对象属性，返回是否删除成功：</p>
+<pre><code>var obj = {name:"lily", age:18, sex:"female"};
+console.log(Object.keys(obj)); // ["name", "age", "sex"]
+console.log(delete obj.sex); // true
+console.log(Object.keys(obj)); // ["name", "age"]
+console.log(obj.sex); // undefined
+</code></pre>
+<p>注意，删除一个不存在的属性也会返回 true ：</p>
+<pre><code>console.log(delete obj.address); // true
+</code></pre>
+<p>所以不能仅通过返回值的 true 或 false 就判断对象属性存在与不存在，只能保证删除后再次读取该属性值返回 undefined。</p>
+<p>但下边的情况 delete 会返回 false：</p>
+<pre><code>var stu = Object.create(Object.prototype, {
+    name : {
+        value: "张三",
+        writable: true,
+        configurable:false,
+        enumerable: true
+    }
+});
+console.log(delete stu.name); // false
+console.log(stu.name); // 张三
+</code></pre>
+<h2 id="4-websqlindexeddb"><a name="user-content-4-websqlindexeddb" href="#4-websqlindexeddb" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4. websql与indexeddb</h2>
+<p>in 运算符用于检查对象是否包含某个属性（注意：检查的是键名，不是键值），如果包含就返回 true，否则返回 false</p>
+<pre><code>var obj = {name:"lily", age:18, sex:"female"};
+console.log("age" in obj); // true
+console.log("address" in obj); // false
+</code></pre>
+<p>in 运算符的一个问题是，它不能识别对象继承的属性：</p>
+<pre><code>console.log("toString" in obj); // true
+</code></pre>
+<p>toString 方法不是对象 obj 自身的属性，而是继承的属性，如果要判断是否 obj 自身的属性，可以使用hasOwnProperty 方法：</p>
+<pre><code>console.log(obj.hasOwnProperty("toString")); // false
+</code></pre>
+<h2 id="5-for-in"><a name="user-content-5-for-in" href="#5-for-in" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>5. for .. in</h2>
+<p>for…in 循环可用来遍历一个对象的全部属性：</p>
+<pre><code>var obj = {name:"lily", age:18, sex:"female"};
+for (var attr in obj) {
+    console.log(attr, obj[attr]);
+}
+</code></pre>
+<p>打印结果：</p>
+<pre><code>name – "lily"
+age – 18
+sex – "female"
+</code></pre>
+<p>for…in 循环有两个使用注意点：</p>
+<p>· 遍历的是对象所有可遍历（enumerable）的属性，会跳过不可遍历的属性<br>
+· 不仅遍历对象自身的属性，还遍历继承的属性</p>
+<p>示例：</p>
+<pre><code>function Student(name, age){
+    this.name = name;
+    this.age = age;
+}
+
+Student.prototype.show = function(){
+    console.log("学生信息...");
+}
+
+var obj = new Student("lily", 18);
+var stu = Object.create(obj, {
+    address : {
+        value : "成都",
+        enumerable : true
+    },
+    sex : {
+        value : "女"
+    }
+});
+for (var attr in stu) {
+    console.log(attr, stu[attr]);
+}
+</code></pre>
+<p>打印结果：</p>
+<pre><code>address – "成都"
+name – "lily"
+age – 18
+show – function (){
+    console.log("学生信息...");
+}
+</code></pre></article></body></html>
       
     </div><!-- .entry-content -->
 
@@ -1127,216 +1285,20 @@ date: 2017-1-25</p>
 </article>
 
 
-
-
-
-
-  
-    <article id="post-JavaScript 浏览器兼容问题" class="post-JavaScript 浏览器兼容问题 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2017/02/07/JavaScript 浏览器兼容问题/">JavaScript 中的一些兼容性问题</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/02/07/JavaScript 浏览器兼容问题/" data-id="cj53klx4s0000oou0f0ukm5rs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="1-获取滚动高度："><a href="#1-获取滚动高度：" class="headerlink" title="1. 获取滚动高度："></a>1. 获取滚动高度：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.documentElement.scrollTop || document.body.scrollTop</div></pre></td></tr></table></figure>
-<h3 id="2-获取样式兼容："><a href="#2-获取样式兼容：" class="headerlink" title="2. 获取样式兼容："></a>2. 获取样式兼容：</h3><pre><code class="bash">window.getComputedStyle(element)[styleName]: 支持IE9及以上版本
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2017/02/07/JavaScript 浏览器兼容问题/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2017/02/07/JavaScript 浏览器兼容问题/">
-    <time datetime="2017-02-06T16:00:00.000Z" class="entry-date">
-        2017-02-07
-    </time>
-</a>
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
     
     
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-前端储存" class="post-前端储存 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2017/01/25/前端储存/">前端储存</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/01/25/前端储存/" data-id="cj582s65o0001v0u0ebwpzhje" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h2 id="1-cookie"><a href="#1-cookie" class="headerlink" title="1. cookie"></a>1. cookie</h2><h3 id="1-1-是什么？"><a href="#1-1-是什么？" class="headerlink" title="1.1 是什么？"></a>1.1 是什么？</h3><p>cookie 是什么就用不着我多说了吧，可是有同学会问了，这也算存储？当然算，它也可以存东西不是，而且它会在用户访问服务器的时候被带上。但是，笔者在这里建议，不要使用过量，因为 cookie 在每次请求的时候都会被带上。你总不想每次访问自己网站接口或者文件的时候都带上一堆可能用不到的信息把？这样会增大请求包的大小。</p>
-<h3 id="1-2-访问限制性"><a href="#1-2-访问限制性" class="headerlink" title="1.2 访问限制性"></a>1.2 访问限制性</h3><p>众所周知，cookie 可以设置访问域。即，如果你设置 cookie 的时候，设定了 cookie 的访问域名为一个顶级域名，则可以达到几个子域名共享 cookie 的效果。如：腾讯网与微信网页版共享了 pac_uid<br>访问的限制在种下 cookie 的时候指定。所以，我们可以设定 cookie 的访问域名限制(当然，不能跨域啦)。有些重要信息，如用户的唯一标识，建议给这些 cookie 字段加上 HttpOnly 标识。加上了这个标识的话，我们的客户端 js 是无法读到与写入加了标识的 cookie 字段的，这样非常安全。如果有不了解的读者，建议百度一下 “cookie httpOnly” 。</p>
-<h3 id="1-3-存储时长"><a href="#1-3-存储时长" class="headerlink" title="1.3 存储时长"></a>1.3 存储时长</h3><p>如果设定了 cookie 的超时时间的话，那么 cookie 将在到期的时候失效。如果没有设定，那么 cookie 就是 session 级别的啦。这里请读者们注意一下。cookie 的 session 含义与我们接下来要讲的 session Storage 的 session 含义有区别。cookie的 session 是，在未关闭浏览器的情况下，所有的 tab 级别的页面或新开，或刷新，均属于一个 session ，比如，我们打开 www.qq.com ，在其中种下。test=doctorhou</p>
-<pre><code>document.cookie = &apos;test=doctorhou&apos;;
-</code></pre><p>我们再刷新一下当前页面，发现 cookie 还在<br>关闭种 cookie 的 tab ，我们再新开一个 tab ，发现 cookie 还是存在的<br>退出浏览器，再打开 www.qq.com 发现 test=doctorhou 这一项 cookie 已经不在了。<br>
-        
-          <p class="article-more-link">
-            <a href="/2017/01/25/前端储存/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2017/01/25/前端储存/">
-    <time datetime="2017-01-24T16:00:00.000Z" class="entry-date">
-        2017-01-25
-    </time>
-</a>
+        <span class="nav-next"><a href="/2017/02/07/JavaScript 浏览器兼容问题/" rel="next">JavaScript 中的一些兼容性问题 <span class="meta-nav">→</span></a></span>
     
-    
-    </footer>
-</article>
+</nav><!-- .nav-single -->
 
 
 
 
 
 
-  
-    <article id="post-JavaScript 资料大全" class="post-JavaScript 资料大全 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/11/20/JavaScript 资料大全/">JavaScript 资源大全中文版</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/11/20/JavaScript 资料大全/" data-id="cj53k4zja0002q8u0elwgtac3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>基于 awesome-javascript 列表，我们将对其中的各个资源项进行编译整理。此外还将从其他来源补充好资源。<br>整理后的内容，将收录在<a href="http://hao.jobbole.com/" target="_blank" rel="external">伯乐在线资源频道</a>。可参考已整理的内容：<br><a href="http://hao.jobbole.com/jqwidgets-jquery-html5-ui/" target="_blank" rel="external">《jQWidgets：jQuery HTML5 UI组件框架》</a><br><a href="http://hao.jobbole.com/bootstrap/" target="_blank" rel="external">《Bootstrap：Web前端开发框架》</a><br><a href="http://hao.jobbole.com/yui-compressor/" target="_blank" rel="external">《YUI Compressor：JS/CSS压缩工具》</a></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2>
-        
-          <p class="article-more-link">
-            <a href="/2016/11/20/JavaScript 资料大全/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/11/20/JavaScript 资料大全/">
-    <time datetime="2016-11-19T16:00:00.000Z" class="entry-date">
-        2016-11-20
-    </time>
-</a>
-    
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-JavaScript 闭包" class="post-JavaScript 闭包 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/10/11/JavaScript 闭包/">JavaScript 闭包</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/10/11/JavaScript 闭包/" data-id="cj53k4zjd0003q8u0d7sy7d3a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>闭包（closures），在 MDN 解释为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Closures are <span class="built_in">functions</span> that refer to independent (free) variables (variables that are used locally, but defined <span class="keyword">in</span> an enclosing scope). In other words, these <span class="built_in">functions</span> ‘remember’ the environment <span class="keyword">in</span> <span class="built_in">which</span> they were created.</div></pre></td></tr></table></figure>
-<p>闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。</p>
-<p>闭包是 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 语言的一个特色，当然也是它的一大难点，很多高级应用都要依靠闭包实现，或者我们平常编码过程中，也在有意无意间使用到闭包。<br>
-        
-          <p class="article-more-link">
-            <a href="/2016/10/11/JavaScript 闭包/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/10/11/JavaScript 闭包/">
-    <time datetime="2016-10-10T16:00:00.000Z" class="entry-date">
-        2016-10-11
-    </time>
-</a>
-    
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-  
-    <nav id="pagination">
-      <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-      </nav>
-    </nav>
-  
 
 </div></div>
         <div id="secondary" class="widget-area" role="complementary">
