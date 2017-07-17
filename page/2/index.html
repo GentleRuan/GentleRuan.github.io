@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-JavaScript 面向对象之继承" class="post-JavaScript 面向对象之继承 post type-post status-publish format-standard hentry">
+    <article id="post-前端储存" class="post-前端储存 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,85 +74,36 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/06/01/JavaScript 面向对象之继承/">JavaScript 面向对象之继承</a>
+      <a class="article-title" href="/2017/01/25/前端储存/">前端储存</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/06/01/JavaScript 面向对象之继承/" data-id="cj53k4zjg0004q8u0qr2aotxy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/01/25/前端储存/" data-id="cj582s65o0001v0u0ebwpzhje" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p><a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 是一门非常灵活的语言，对于同一个问题的解决，往往有多种方法来实现。</p>
-<p>继承是面向对象特性之一，它实现了代码的复用性与可维护性，可缩短开发周期，降低开发成本。继承易于维护管理，它避免了在一般类和特殊类之间共同特征的重复描述。</p>
-<p>比如学生（一般类）具有学号、姓名、年龄、性别的特征，小学生、大学生（特殊类）都是学生，也都具备学生的特征，这时，我们就可以让小学生、大学生继承自学生，重用在学生描述部分的信息。</p>
-<p><a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 也可使用继承实现代码复用，在很多资料中对 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 的继承细致的分了许多种类与实现的方式，但无外乎两种方式：对象冒充、原型继承。本文介绍这两种实现继承的方式。<br>
+        <h2 id="1-cookie"><a href="#1-cookie" class="headerlink" title="1. cookie"></a>1. cookie</h2><h3 id="1-1-是什么？"><a href="#1-1-是什么？" class="headerlink" title="1.1 是什么？"></a>1.1 是什么？</h3><p>cookie 是什么就用不着我多说了吧，可是有同学会问了，这也算存储？当然算，它也可以存东西不是，而且它会在用户访问服务器的时候被带上。但是，笔者在这里建议，不要使用过量，因为 cookie 在每次请求的时候都会被带上。你总不想每次访问自己网站接口或者文件的时候都带上一堆可能用不到的信息把？这样会增大请求包的大小。</p>
+<h3 id="1-2-访问限制性"><a href="#1-2-访问限制性" class="headerlink" title="1.2 访问限制性"></a>1.2 访问限制性</h3><p>众所周知，cookie 可以设置访问域。即，如果你设置 cookie 的时候，设定了 cookie 的访问域名为一个顶级域名，则可以达到几个子域名共享 cookie 的效果。如：腾讯网与微信网页版共享了 pac_uid<br>访问的限制在种下 cookie 的时候指定。所以，我们可以设定 cookie 的访问域名限制(当然，不能跨域啦)。有些重要信息，如用户的唯一标识，建议给这些 cookie 字段加上 HttpOnly 标识。加上了这个标识的话，我们的客户端 js 是无法读到与写入加了标识的 cookie 字段的，这样非常安全。如果有不了解的读者，建议百度一下 “cookie httpOnly” 。</p>
+<h3 id="1-3-存储时长"><a href="#1-3-存储时长" class="headerlink" title="1.3 存储时长"></a>1.3 存储时长</h3><p>如果设定了 cookie 的超时时间的话，那么 cookie 将在到期的时候失效。如果没有设定，那么 cookie 就是 session 级别的啦。这里请读者们注意一下。cookie 的 session 含义与我们接下来要讲的 session Storage 的 session 含义有区别。cookie的 session 是，在未关闭浏览器的情况下，所有的 tab 级别的页面或新开，或刷新，均属于一个 session ，比如，我们打开 www.qq.com ，在其中种下。test=doctorhou</p>
+<pre><code>document.cookie = &apos;test=doctorhou&apos;;
+</code></pre><p>我们再刷新一下当前页面，发现 cookie 还在<br>关闭种 cookie 的 tab ，我们再新开一个 tab ，发现 cookie 还是存在的<br>退出浏览器，再打开 www.qq.com 发现 test=doctorhou 这一项 cookie 已经不在了。<br>
         
           <p class="article-more-link">
-            <a href="/2016/06/01/JavaScript 面向对象之继承/#more" class="more-link">More <span class="meta-nav">→</span></a>
+            <a href="/2017/01/25/前端储存/#more" class="more-link">More <span class="meta-nav">→</span></a>
           </p>
         
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/06/01/JavaScript 面向对象之继承/">
-    <time datetime="2016-05-31T16:00:00.000Z" class="entry-date">
-        2016-06-01
-    </time>
-</a>
-    
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-JavaScript 对象初识" class="post-JavaScript 对象初识 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/05/25/JavaScript 对象初识/">JavaScript 对象初识</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/05/25/JavaScript 对象初识/" data-id="cj53mwp7e000008u0d64beg5f" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>在 JavaScript 中，数据类型分为：number、string、boolean、undefined、null、object，其中 number、string、boolean、undefined、null 也称为基本数据类型，而 object 称为引用数据类型。</p>
-<p>之所以 object 和其它数据类型不同，是因为对象是一种复合值，它将若干值以 key-value 键值对的形式聚合在一起。我们可以将对象看作是一系列无序的数据集合，通过 key 关键字可以访问到其关联的 value 值。</p>
-<h2 id="2-对象创建"><a href="#2-对象创建" class="headerlink" title="2. 对象创建"></a>2. 对象创建</h2><p>对象创建有三种方式：对象直接量方式、new 调用构造函数方式与 Object.create() 方式。</p>
-<h3 id="2-1-对象直接量"><a href="#2-1-对象直接量" class="headerlink" title="2.1 对象直接量"></a>2.1 对象直接量</h3>
-        
-          <p class="article-more-link">
-            <a href="/2016/05/25/JavaScript 对象初识/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/05/25/JavaScript 对象初识/">
-    <time datetime="2016-05-24T16:00:00.000Z" class="entry-date">
-        2016-05-25
+    <a href="/2017/01/25/前端储存/">
+    <time datetime="2017-01-24T16:00:00.000Z" class="entry-date">
+        2017-01-25
     </time>
 </a>
     
@@ -169,7 +120,7 @@
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
       </nav>
     </nav>
   
