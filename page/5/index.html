@@ -95,10 +95,13 @@ gulp.task(&apos;default&apos;, function() {
   // 将你的默认的任务代码放在这
 }); 
 </code></pre><h3 id="4-运行-gulp："><a href="#4-运行-gulp：" class="headerlink" title="4. 运行 gulp："></a>4. 运行 gulp：</h3><pre><code>$ gulp
-</code></pre><h2 id="2、Gulp基本介绍"><a href="#2、Gulp基本介绍" class="headerlink" title="2、Gulp基本介绍"></a>2、Gulp基本介绍</h2><h3 id="gulp是什么"><a href="#gulp是什么" class="headerlink" title="gulp是什么"></a>gulp是什么</h3><p>gulp就是用来机械化的完成重复性质（如less-&gt;css；js、css压缩；js混淆）的工作；gulp的机制就是将重复工作抽象成一个个的任务。</p>
-<h3 id="二、gulp使用"><a href="#二、gulp使用" class="headerlink" title="二、gulp使用"></a>二、gulp使用</h3><p>a.首先确保电脑上已经正确安装了node环境；</p>
-<p>b.其次再全局安装gulp，命令行语句：npm install -g gulp；</p>
-<p>c.在项目根目录下添加一个gulpfile.js文件，这个是gulp的主文件，这个文件名是固定的；d.在gulpfile中抽象我们需要做的任务。</p>
+</code></pre><p>默认的名为 default 的任务（task）将会被运行，在这里，这个任务并未做任何事情。</p>
+<p>想要单独执行特定的任务（task），请输入 gulp <task> <othertask>。</othertask></task></p>
+<h2 id="2、Gulp基本介绍"><a href="#2、Gulp基本介绍" class="headerlink" title="2、Gulp基本介绍"></a>2、Gulp基本介绍</h2><h3 id="gulp是什么"><a href="#gulp是什么" class="headerlink" title="gulp是什么"></a>gulp是什么</h3><p>gulp就是用来机械化的完成重复性质（如less-&gt;css；js、css压缩；js混淆）的工作；gulp的机制就是将重复工作抽象成一个个的任务。</p>
+<h3 id="二、gulp使用"><a href="#二、gulp使用" class="headerlink" title="二、gulp使用"></a>二、gulp使用</h3><p>a.首先确保电脑上已经正确安装了 node 环境；</p>
+<p>b.其次再全局安装 gulp </p>
+<p>c.在项目根目录下添加一个 gulpfile.js 文件，这个是gulp的主文件，这个文件名是固定的；</p>
+<p>d.在 gulpfile 中抽象我们需要做的任务。</p>
 <p>小案例：</p>
 <pre><code>&apos;use strict&apos;;
 //在gulpfile中先载入gulp包，因为这个包提供了一些API
@@ -106,6 +109,7 @@ var gulp=require(&apos;gulp&apos;);
 var less=require(&apos;gulp-less&apos;);
 var cssnano=require(&apos;gulp-cssnano&apos;);
 var concat=require(&apos;gulp-concat&apos;);
+
 //1.less编译 压缩 合并:此处没有演示导包，因为一般预处理css(如less sass)都可以导包
 gulp.task(&apos;style&apos;,function(){//style为任务名
   //这里是在执行style任务时自动执行的
@@ -118,7 +122,6 @@ gulp.task(&apos;style&apos;,function(){//style为任务名
       stream: true
     }));//重新刷新;
 })
-
 
 //2.JS合并 压缩  混淆
 var uglify=require(&apos;gulp-uglify&apos;);
@@ -172,8 +175,7 @@ gulp.task(&apos;serve&apos;,function(){
   gulp.watch(&apos;src/images/*.*&apos;,[&apos;image&apos;]);
   gulp.watch(&apos;src/*.html&apos;,[&apos;html&apos;]);
   })
-</code></pre><p>默认的名为 default 的任务（task）将会被运行，在这里，这个任务并未做任何事情。</p>
-<p>想要单独执行特定的任务（task），请输入 gulp <task> <othertask>。 </othertask></task></p>
+</code></pre><p>gulp.task (参1，参2) 中第一个参数为任务名称，第二个参数为具体要执行的任务描述。要运行 gulp 任务，只需切换到存放 gulpfile.js 文件的目录( windows 平台请使用 cmd 或者 Power Shell 等工具)，然后在命令行中执行 gulp 命令就行了，gulp 后面可以加上要执行的任务名，例如 gulp style ，如果没有指定任务名，则会执行任务名为 default 的默认任务。 </p>
 <h2 id="3、Gulp-API"><a href="#3、Gulp-API" class="headerlink" title="3、Gulp API"></a>3、Gulp API</h2><h3 id="gulp-src-globs-options"><a href="#gulp-src-globs-options" class="headerlink" title="gulp.src(globs[, options])"></a>gulp.src(globs[, options])</h3><p>输出（Emits）符合所提供的匹配模式（glob）或者匹配模式的数组（array of globs）的文件。 将返回一个 Vinyl files 的 stream 它可以被 piped 到别的插件中。</p>
 <pre><code>gulp.src(&apos;client/templates/*.jade&apos;)
   .pipe(jade())
