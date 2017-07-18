@@ -95,9 +95,86 @@ gulp.task(&apos;default&apos;, function() {
   // 将你的默认的任务代码放在这
 }); 
 </code></pre><h3 id="4-运行-gulp："><a href="#4-运行-gulp：" class="headerlink" title="4. 运行 gulp："></a>4. 运行 gulp：</h3><pre><code>$ gulp
+</code></pre><h2 id="2、Gulp基本介绍"><a href="#2、Gulp基本介绍" class="headerlink" title="2、Gulp基本介绍"></a>2、Gulp基本介绍</h2><h3 id="gulp是什么"><a href="#gulp是什么" class="headerlink" title="gulp是什么"></a>gulp是什么</h3><p>gulp就是用来机械化的完成重复性质（如less-&gt;css；js、css压缩；js混淆）的工作；gulp的机制就是将重复工作抽象成一个个的任务。</p>
+<h3 id="二、gulp使用"><a href="#二、gulp使用" class="headerlink" title="二、gulp使用"></a>二、gulp使用</h3><p>a.首先确保电脑上已经正确安装了node环境；</p>
+<p>b.其次再全局安装gulp，命令行语句：npm install -g gulp；</p>
+<p>c.在项目根目录下添加一个gulpfile.js文件，这个是gulp的主文件，这个文件名是固定的；d.在gulpfile中抽象我们需要做的任务。</p>
+<p>小案例：</p>
+<pre><code>&apos;use strict&apos;;
+//在gulpfile中先载入gulp包，因为这个包提供了一些API
+var gulp=require(&apos;gulp&apos;);
+var less=require(&apos;gulp-less&apos;);
+var cssnano=require(&apos;gulp-cssnano&apos;);
+var concat=require(&apos;gulp-concat&apos;);
+//1.less编译 压缩 合并:此处没有演示导包，因为一般预处理css(如less sass)都可以导包
+gulp.task(&apos;style&apos;,function(){//style为任务名
+  //这里是在执行style任务时自动执行的
+  gulp.src([&apos;src/styles/*.less&apos;,&apos;!src/styles/_*.less&apos;])//指不获取_*.less
+  .pipe(less())
+  .pipe(cssnano())//压缩
+  //在cmd中执行gult style后会在根目录下自动生成dist/styles/app.css
+  .pipe(gulp.dest(&apos;dist/styles&apos;))
+  .pipe(browserSync.reload({
+      stream: true
+    }));//重新刷新;
+})
+
+
+//2.JS合并 压缩  混淆
+var uglify=require(&apos;gulp-uglify&apos;);
+gulp.task(&apos;script&apos;,function(){
+  gulp.src(&apos;src/scripts/*.js&apos;)
+  .pipe(concat(&apos;all.js&apos;))
+  .pipe(uglify())
+  .pipe(gulp.dest(&apos;dist/scripts&apos;))
+  .pipe(browserSync.reload({
+      stream: true
+    }));//重新刷新
+  })
+
+//3.图片复制,会在根目录下生成dist/images/pipe.png,即把
+//src/images下所有的图片都生成到目录dist/images下
+gulp.task(&apos;image&apos;,function(){
+  gulp.src(&apos;src/images/*.*&apos;)
+  .pipe(gulp.dest(&apos;dist/images&apos;))
+  .pipe(browserSync.reload({
+      stream: true
+    }));//重新刷新;
+})
+
+//4.html
+var htmlmin=require(&apos;gulp-htmlmin&apos;)
+gulp.task(&apos;html&apos;,function(){
+  gulp.src(&apos;src/*.html&apos;)
+  .pipe(htmlmin({
+    collapseWhitespace:true,//压缩
+    removeComments:true//压缩后去掉注释
+    }))
+  .pipe(gulp.dest(&apos;dist&apos;))
+  .pipe(browserSync.reload({
+      stream: true
+    }));//重新刷新
+})
+
+//5.server
+var browserSync=require(&apos;browser-sync&apos;);
+gulp.task(&apos;serve&apos;,function(){
+  browserSync({
+    server:{
+      baseDir:[&apos;dist&apos;]//设置目录
+    },
+    },function(err,bs){
+      console.log(bs.options.getIn([&apos;urls&apos;,&apos;local&apos;]));
+      });
+//监视文件，当参数1有改变时应该执行参数2任务，每个任务里需要加pipe(browserSync.reload())
+  gulp.watch(&apos;src/styles/*.less&apos;,[&apos;style&apos;]);
+  gulp.watch(&apos;src/scripts/*.js&apos;,[&apos;script&apos;]);
+  gulp.watch(&apos;src/images/*.*&apos;,[&apos;image&apos;]);
+  gulp.watch(&apos;src/*.html&apos;,[&apos;html&apos;]);
+  })
 </code></pre><p>默认的名为 default 的任务（task）将会被运行，在这里，这个任务并未做任何事情。</p>
 <p>想要单独执行特定的任务（task），请输入 gulp <task> <othertask>。 </othertask></task></p>
-<h2 id="2、gulp-API"><a href="#2、gulp-API" class="headerlink" title="2、gulp API"></a>2、gulp API</h2><h3 id="gulp-src-globs-options"><a href="#gulp-src-globs-options" class="headerlink" title="gulp.src(globs[, options])"></a>gulp.src(globs[, options])</h3><p>输出（Emits）符合所提供的匹配模式（glob）或者匹配模式的数组（array of globs）的文件。 将返回一个 Vinyl files 的 stream 它可以被 piped 到别的插件中。</p>
+<h2 id="3、Gulp-API"><a href="#3、Gulp-API" class="headerlink" title="3、Gulp API"></a>3、Gulp API</h2><h3 id="gulp-src-globs-options"><a href="#gulp-src-globs-options" class="headerlink" title="gulp.src(globs[, options])"></a>gulp.src(globs[, options])</h3><p>输出（Emits）符合所提供的匹配模式（glob）或者匹配模式的数组（array of globs）的文件。 将返回一个 Vinyl files 的 stream 它可以被 piped 到别的插件中。</p>
 <pre><code>gulp.src(&apos;client/templates/*.jade&apos;)
   .pipe(jade())
   .pipe(minify())
