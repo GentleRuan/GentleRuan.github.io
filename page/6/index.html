@@ -165,10 +165,14 @@ gulp.task(&apos;somename&apos;, function() {
   return deferred.promise;
 });
 </code></pre><p>注意： 默认的，task 将以最大的并发数执行，也就是说，gulp 会一次性运行所有的 task 并且不做任何等待。如果你想要创建一个序列化的 task 队列，并以特定的顺序执行，你需要做两件事：</p>
-<p>·给出一个提示，来告知 task 什么时候执行完毕，<br>·并且再给出一个提示，来告知一个 task 依赖另一个 task 的完成。</p>
+<p>· 给出一个提示，来告知 task 什么时候执行完毕，<br>· 并且再给出一个提示，来告知一个 task 依赖另一个 task 的完成。</p>
 <p>对于这个例子，让我们先假定你有两个 task，”one” 和 “two”，并且你希望它们按照这个顺序执行：</p>
-<p>1.在 “one” 中，你加入一个提示，来告知什么时候它会完成：可以再完成时候返回一个 callback，或者返回一个 promise 或 stream，这样系统会去等待它完成。</p>
-<p>2.在 “two” 中，你需要添加一个提示来告诉系统它需要依赖第一个 task 完成。</p>
+<ol>
+<li><p>在 “one” 中，你加入一个提示，来告知什么时候它会完成：可以再完成时候返回一个 callback，或者返回一个 promise 或 stream，这样系统会去等待它完成。</p>
+</li>
+<li><p>在 “two” 中，你需要添加一个提示来告诉系统它需要依赖第一个 task 完成。</p>
+</li>
+</ol>
 <p>因此，这个例子的实际代码将会是这样：</p>
 <pre><code>var gulp = require(&apos;gulp&apos;);
 
