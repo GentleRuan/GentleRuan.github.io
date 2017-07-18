@@ -90,11 +90,88 @@
         <h3 id="1-获取滚动高度："><a href="#1-获取滚动高度：" class="headerlink" title="1. 获取滚动高度："></a>1. 获取滚动高度：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.documentElement.scrollTop || document.body.scrollTop</div></pre></td></tr></table></figure>
 <h3 id="2-获取样式兼容："><a href="#2-获取样式兼容：" class="headerlink" title="2. 获取样式兼容："></a>2. 获取样式兼容：</h3><pre><code class="bash">window.getComputedStyle(element)[styleName]: 支持IE9及以上版本
 </code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2017/02/07/JavaScript 浏览器兼容问题/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
+<p>解决方法：</p>
+<pre><code class="bash"><span class="keyword">function</span> getStyle(dom, styleName){
+
+<span class="built_in">return</span> dom.currentStyle? 
+    dom.currentStyle[styleName] : getComputedStyle(dom)[styleName];
+}
+</code></pre>
+<h3 id="3-事件对象兼容"><a href="#3-事件对象兼容" class="headerlink" title="3. 事件对象兼容"></a>3. 事件对象兼容</h3><p>window.event 只能在IE下运行，而不能在 Firefox 下运行这是因为 Firefox 的 event 只能在事件发生的现场使用。</p>
+<p>Firefox 必须从源处加入 event 作参数传递。IE忽略该参数，用 window.event 来读取该 event。</p>
+<p>解决方法：</p>
+<pre><code class="bash">event = event || window.event;
+</code></pre>
+<h3 id="4-event-pageX-和-event-pageY-：获取鼠标相对于整个文档的水平及垂直坐标"><a href="#4-event-pageX-和-event-pageY-：获取鼠标相对于整个文档的水平及垂直坐标" class="headerlink" title="4. event.pageX 和 event.pageY ：获取鼠标相对于整个文档的水平及垂直坐标"></a>4. event.pageX 和 event.pageY ：获取鼠标相对于整个文档的水平及垂直坐标</h3><p>event.pageX 和 event.pageY ，IE9 之前的版本不支持</p>
+<p>解决方法：</p>
+<pre><code class="bash">event.clientX+(document.documentElement.scrollLeft || document.body.scrollLeft);
+event.clientY+(document.documentElement.scrollTop || document.body.scrollTop);
+</code></pre>
+<h3 id="5-阻止事件冒泡兼容"><a href="#5-阻止事件冒泡兼容" class="headerlink" title="5. 阻止事件冒泡兼容"></a>5. 阻止事件冒泡兼容</h3><p>stopPropagation() 和 cancelBubble，前者是方法，是标准的写法，后者是属性，赋值 true 表示阻止，是 IE 的写法。</p>
+<p>解决方法：<br>判断 stopPropagation 是否存在，如果存在则用标准写法否则则用 IE 的写法，不可反过来判断。</p>
+<pre><code class="bash">event.stopPropagation ? event.stopPropagation() : event.cancelBubble = <span class="literal">true</span>;
+</code></pre>
+<h3 id="6-阻止默认行为兼容"><a href="#6-阻止默认行为兼容" class="headerlink" title="6. 阻止默认行为兼容"></a>6. 阻止默认行为兼容</h3><p>preventDefault() 和 returnValue() 前者标准写法，后者 IE 写法。 </p>
+<p>解决方法：</p>
+<pre><code class="bash">(常规方法)event.preventDefault ? event.preventDefault() : event.returnValue = <span class="literal">false</span>;
+或者（非常规方法）直接在事件处理程序中 <span class="built_in">return</span> <span class="literal">false</span> ;
+</code></pre>
+<h3 id="7-事件监听兼容"><a href="#7-事件监听兼容" class="headerlink" title="7. 事件监听兼容"></a>7. 事件监听兼容</h3><p>标准浏览器的写法 addEventListener() 和 IE 的写法 attachEvent() 。</p>
+<p>解决方法：<br>判断 addEventListener 是否存在，如果存在则用否则用 IE8 以下的版本（含 IE8 ）的绑定方法 attachEvent ，removeEventListener() 和 detachEvent() 也是一样的用法。</p>
+<pre><code class="bash"><span class="keyword">if</span>(document.all){
+    dom.attactEvent(“onclick”, fn);
+} <span class="keyword">else</span> {
+    dom.addEventListener(“click”, fn);
+}
+</code></pre>
+<h3 id="8-根据类名查找元素"><a href="#8-根据类名查找元素" class="headerlink" title="8. 根据类名查找元素"></a>8. 根据类名查找元素</h3><p>document.getElementByClassName：根据类名查找元素，返回集合（ IE9 及以上版本支持）</p>
+<p>解决方法：</p>
+<pre><code class="bash"><span class="keyword">function</span> getByClassName(className, context) {
+    context = context || document;
+    <span class="keyword">if</span> (document.getElementsByClassName) // 浏览器支持使用 getElementsByClassName
+        <span class="built_in">return</span> context.getElementsByClassName(className);
+
+    /* 不支持使用 getElementsByClassName */
+    // 保存查找到的元素的数组
+    var result = [];
+    // 查找 context 后代的所有元素
+    var allTags = context.getElementsByTagName(<span class="string">"*"</span>);
+    // 遍历所有的元素
+    <span class="keyword">for</span>(var i = 0, len = allTags.length; i &lt; len; i++) {
+        // 获取当前遍历元素使用的所有 class 类名
+        var classNames = allTags[i].className.split(<span class="string">" "</span>);
+        // 遍历当前元素的所有类名，和待查找的类名比较
+        <span class="keyword">for</span> (var j = 0, l = classNames.length; j &lt; l; j++) {
+            <span class="keyword">if</span> (classNames[j] == className) { // 当前所在遍历的元素是要查找出来的其中一个
+                result.push(allTags[i]);
+                <span class="built_in">break</span>;
+            }
+        }
+    }
+    // 返回查找结果
+    <span class="built_in">return</span> result;
+}
+</code></pre>
+<h3 id="9-事件目标对象兼容"><a href="#9-事件目标对象兼容" class="headerlink" title="9. 事件目标对象兼容"></a>9. 事件目标对象兼容</h3><p>IE 下, event 对象有 srcElement 属性,但是没有 target 属性; Firefox 下, event 对象有 target 属性,但是没有 srcElement 属性</p>
+<p>解决方法：</p>
+<pre><code class="bash">var t = event.target || event.srcElement;
+</code></pre>
+<h3 id="10-获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"><a href="#10-获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。" class="headerlink" title="10. 获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。"></a>10. 获取浏览器窗口大小的三种方法（浏览器的视口，不包括工具栏和滚动条）。</h3><pre><code class="bash">对于 Internet Explorer、Chrome、Firefox、Opera 以及 Safari： 
+    window.innerHeight – 浏览器窗口的内部高度 
+    window.innerWidth – 浏览器窗口的内部宽度 
+
+对于 Internet Explorer 8、7、6、5： 
+    document.documentElement.clientHeight 
+    document.documentElement.clientWidth 
+或者 
+    document.body.clientHeight 
+    document.body.clientWidth 
+
+解决方法：
+    window.innerHeight || document.documentElement.clientHeight
+    window.innerWidth || document.documentElement.clientWidth
+</code></pre>
+
       
     </div><!-- .entry-content -->
 

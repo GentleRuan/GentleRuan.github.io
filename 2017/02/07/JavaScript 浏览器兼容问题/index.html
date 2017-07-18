@@ -15,16 +15,16 @@
   
   <title>JavaScript 中的一些兼容性问题 | GentleRuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 获取滚动高度：1document.documentElement.scrollTop || document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]: 支持IE9及以上版本">
+  <meta name="description" content="1. 获取滚动高度：1document.documentElement.scrollTop || document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]: 支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.current">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 中的一些兼容性问题">
 <meta property="og:url" content="http://GentleRuan.github.io/2017/02/07/JavaScript 浏览器兼容问题/index.html">
 <meta property="og:site_name" content="GentleRuan">
-<meta property="og:description" content="1. 获取滚动高度：1document.documentElement.scrollTop || document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]: 支持IE9及以上版本">
-<meta property="og:updated_time" content="2017-07-15T01:55:24.403Z">
+<meta property="og:description" content="1. 获取滚动高度：1document.documentElement.scrollTop || document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]: 支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.current">
+<meta property="og:updated_time" content="2017-07-18T01:58:27.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 中的一些兼容性问题">
-<meta name="twitter:description" content="1. 获取滚动高度：1document.documentElement.scrollTop || document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]: 支持IE9及以上版本">
+<meta name="twitter:description" content="1. 获取滚动高度：1document.documentElement.scrollTop || document.body.scrollTop 2. 获取样式兼容：window.getComputedStyle(element)[styleName]: 支持IE9及以上版本  解决方法： function getStyle(dom, styleName){  return dom.current">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -89,7 +89,6 @@
         <h3 id="1-获取滚动高度："><a href="#1-获取滚动高度：" class="headerlink" title="1. 获取滚动高度："></a>1. 获取滚动高度：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.documentElement.scrollTop || document.body.scrollTop</div></pre></td></tr></table></figure>
 <h3 id="2-获取样式兼容："><a href="#2-获取样式兼容：" class="headerlink" title="2. 获取样式兼容："></a>2. 获取样式兼容：</h3><pre><code class="bash">window.getComputedStyle(element)[styleName]: 支持IE9及以上版本
 </code></pre>
-<a id="more"></a>
 <p>解决方法：</p>
 <pre><code class="bash"><span class="keyword">function</span> getStyle(dom, styleName){
 
