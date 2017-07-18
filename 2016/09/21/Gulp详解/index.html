@@ -15,16 +15,16 @@
   
   <title>Gulp详解 | GentleRuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、Gulp安装1. 全局安装 gulp：$ npm install --global gulp 2. 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 3. 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apos;d">
+  <meta name="description" content="1、Gulp安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gulp详解">
 <meta property="og:url" content="http://GentleRuan.github.io/2016/09/21/Gulp详解/index.html">
 <meta property="og:site_name" content="GentleRuan">
-<meta property="og:description" content="1、Gulp安装1. 全局安装 gulp：$ npm install --global gulp 2. 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 3. 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apos;d">
-<meta property="og:updated_time" content="2017-07-18T03:07:16.628Z">
+<meta property="og:description" content="1、Gulp安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apo">
+<meta property="og:updated_time" content="2017-07-18T03:09:49.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gulp详解">
-<meta name="twitter:description" content="1、Gulp安装1. 全局安装 gulp：$ npm install --global gulp 2. 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 3. 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apos;d">
+<meta name="twitter:description" content="1、Gulp安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apo">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -86,14 +86,14 @@
 
     <div class="entry-content">
       
-        <h2 id="1、Gulp安装"><a href="#1、Gulp安装" class="headerlink" title="1、Gulp安装"></a>1、Gulp安装</h2><h3 id="1-全局安装-gulp："><a href="#1-全局安装-gulp：" class="headerlink" title="1. 全局安装 gulp："></a>1. 全局安装 gulp：</h3><pre><code>$ npm install --global gulp
-</code></pre><h3 id="2-作为项目的开发依赖（devDependencies）安装："><a href="#2-作为项目的开发依赖（devDependencies）安装：" class="headerlink" title="2. 作为项目的开发依赖（devDependencies）安装："></a>2. 作为项目的开发依赖（devDependencies）安装：</h3><pre><code>$ npm install --save-dev gulp
-</code></pre><h3 id="3-在项目根目录下创建一个名为-gulpfile-js-的文件："><a href="#3-在项目根目录下创建一个名为-gulpfile-js-的文件：" class="headerlink" title="3. 在项目根目录下创建一个名为 gulpfile.js 的文件："></a>3. 在项目根目录下创建一个名为 gulpfile.js 的文件：</h3><pre><code>var gulp = require(&apos;gulp&apos;);
+        <h2 id="1、Gulp安装"><a href="#1、Gulp安装" class="headerlink" title="1、Gulp安装"></a>1、Gulp安装</h2><h3 id="1-1-全局安装-gulp："><a href="#1-1-全局安装-gulp：" class="headerlink" title="1.1 全局安装 gulp："></a>1.1 全局安装 gulp：</h3><pre><code>$ npm install --global gulp
+</code></pre><h3 id="1-2-作为项目的开发依赖（devDependencies）安装："><a href="#1-2-作为项目的开发依赖（devDependencies）安装：" class="headerlink" title="1.2 作为项目的开发依赖（devDependencies）安装："></a>1.2 作为项目的开发依赖（devDependencies）安装：</h3><pre><code>$ npm install --save-dev gulp
+</code></pre><h3 id="1-3-在项目根目录下创建一个名为-gulpfile-js-的文件："><a href="#1-3-在项目根目录下创建一个名为-gulpfile-js-的文件：" class="headerlink" title="1.3 在项目根目录下创建一个名为 gulpfile.js 的文件："></a>1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：</h3><pre><code>var gulp = require(&apos;gulp&apos;);
 
 gulp.task(&apos;default&apos;, function() {
   // 将你的默认的任务代码放在这
 }); 
-</code></pre><h3 id="4-运行-gulp："><a href="#4-运行-gulp：" class="headerlink" title="4. 运行 gulp："></a>4. 运行 gulp：</h3><pre><code>$ gulp
+</code></pre><h3 id="1-4-运行-gulp："><a href="#1-4-运行-gulp：" class="headerlink" title="1.4 运行 gulp："></a>1.4 运行 gulp：</h3><pre><code>$ gulp
 </code></pre><p>默认的名为 default 的任务（task）将会被运行，在这里，这个任务并未做任何事情。</p>
 <p>想要单独执行特定的任务（task），请输入 gulp <task> <othertask>。</othertask></task></p>
 <h2 id="2、Gulp基本介绍"><a href="#2、Gulp基本介绍" class="headerlink" title="2、Gulp基本介绍"></a>2、Gulp基本介绍</h2><h3 id="gulp是什么"><a href="#gulp是什么" class="headerlink" title="gulp是什么"></a>gulp是什么</h3><p>gulp就是用来机械化的完成重复性质（如less-&gt;css；js、css压缩；js混淆）的工作；gulp的机制就是将重复工作抽象成一个个的任务。</p>
