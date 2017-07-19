@@ -13,18 +13,18 @@
   
   
   
-  <title>Gulp详解 | GentleRuan</title>
+  <title>Gulp 详解 | GentleRuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、Gulp安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apo">
+  <meta name="description" content="1、Gulp 安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;ap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gulp详解">
+<meta property="og:title" content="Gulp 详解">
 <meta property="og:url" content="http://GentleRuan.github.io/2016/09/21/Gulp详解/index.html">
 <meta property="og:site_name" content="GentleRuan">
-<meta property="og:description" content="1、Gulp安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apo">
-<meta property="og:updated_time" content="2017-07-18T03:09:49.920Z">
+<meta property="og:description" content="1、Gulp 安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;ap">
+<meta property="og:updated_time" content="2017-07-18T03:15:28.188Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gulp详解">
-<meta name="twitter:description" content="1、Gulp安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;apo">
+<meta name="twitter:title" content="Gulp 详解">
+<meta name="twitter:description" content="1、Gulp 安装1.1 全局安装 gulp：$ npm install --global gulp 1.2 作为项目的开发依赖（devDependencies）安装：$ npm install --save-dev gulp 1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：var gulp = require(&amp;apos;gulp&amp;apos;);  gulp.task(&amp;ap">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -73,7 +73,7 @@
         
   
     <h1 class="entry-title article-title">
-      Gulp详解
+      Gulp 详解
     </h1>
   
 
@@ -86,7 +86,7 @@
 
     <div class="entry-content">
       
-        <h2 id="1、Gulp安装"><a href="#1、Gulp安装" class="headerlink" title="1、Gulp安装"></a>1、Gulp安装</h2><h3 id="1-1-全局安装-gulp："><a href="#1-1-全局安装-gulp：" class="headerlink" title="1.1 全局安装 gulp："></a>1.1 全局安装 gulp：</h3><pre><code>$ npm install --global gulp
+        <h2 id="1、Gulp-安装"><a href="#1、Gulp-安装" class="headerlink" title="1、Gulp 安装"></a>1、Gulp 安装</h2><h3 id="1-1-全局安装-gulp："><a href="#1-1-全局安装-gulp：" class="headerlink" title="1.1 全局安装 gulp："></a>1.1 全局安装 gulp：</h3><pre><code>$ npm install --global gulp
 </code></pre><h3 id="1-2-作为项目的开发依赖（devDependencies）安装："><a href="#1-2-作为项目的开发依赖（devDependencies）安装：" class="headerlink" title="1.2 作为项目的开发依赖（devDependencies）安装："></a>1.2 作为项目的开发依赖（devDependencies）安装：</h3><pre><code>$ npm install --save-dev gulp
 </code></pre><h3 id="1-3-在项目根目录下创建一个名为-gulpfile-js-的文件："><a href="#1-3-在项目根目录下创建一个名为-gulpfile-js-的文件：" class="headerlink" title="1.3 在项目根目录下创建一个名为 gulpfile.js 的文件："></a>1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：</h3><pre><code>var gulp = require(&apos;gulp&apos;);
 
@@ -96,26 +96,26 @@ gulp.task(&apos;default&apos;, function() {
 </code></pre><h3 id="1-4-运行-gulp："><a href="#1-4-运行-gulp：" class="headerlink" title="1.4 运行 gulp："></a>1.4 运行 gulp：</h3><pre><code>$ gulp
 </code></pre><p>默认的名为 default 的任务（task）将会被运行，在这里，这个任务并未做任何事情。</p>
 <p>想要单独执行特定的任务（task），请输入 gulp <task> <othertask>。</othertask></task></p>
-<h2 id="2、Gulp基本介绍"><a href="#2、Gulp基本介绍" class="headerlink" title="2、Gulp基本介绍"></a>2、Gulp基本介绍</h2><h3 id="gulp是什么"><a href="#gulp是什么" class="headerlink" title="gulp是什么"></a>gulp是什么</h3><p>gulp就是用来机械化的完成重复性质（如less-&gt;css；js、css压缩；js混淆）的工作；gulp的机制就是将重复工作抽象成一个个的任务。</p>
-<h3 id="二、gulp使用"><a href="#二、gulp使用" class="headerlink" title="二、gulp使用"></a>二、gulp使用</h3><p>a.首先确保电脑上已经正确安装了 node 环境；</p>
+<h2 id="2、Gulp-基本介绍"><a href="#2、Gulp-基本介绍" class="headerlink" title="2、Gulp 基本介绍"></a>2、Gulp 基本介绍</h2><h3 id="gulp-是什么"><a href="#gulp-是什么" class="headerlink" title="gulp 是什么"></a>gulp 是什么</h3><p>gulp 就是用来机械化的完成重复性质（如 less-&gt;css；js、css 压缩；js 混淆）的工作；gulp 的机制就是将重复工作抽象成一个个的任务。</p>
+<h3 id="gulp-使用"><a href="#gulp-使用" class="headerlink" title="gulp 使用"></a>gulp 使用</h3><p>a.首先确保电脑上已经正确安装了 node 环境；</p>
 <p>b.其次再全局安装 gulp </p>
-<p>c.在项目根目录下添加一个 gulpfile.js 文件，这个是gulp的主文件，这个文件名是固定的；</p>
+<p>c.在项目根目录下添加一个 gulpfile.js 文件，这个是 gulp 的主文件，这个文件名是固定的；</p>
 <p>d.在 gulpfile 中抽象我们需要做的任务。</p>
 <p>小案例：</p>
 <pre><code>&apos;use strict&apos;;
-//在gulpfile中先载入gulp包，因为这个包提供了一些API
+//在 gulpfile 中先载入 gulp 包，因为这个包提供了一些 API
 var gulp=require(&apos;gulp&apos;);
 var less=require(&apos;gulp-less&apos;);
 var cssnano=require(&apos;gulp-cssnano&apos;);
 var concat=require(&apos;gulp-concat&apos;);
 
-//1.less编译 压缩 合并:此处没有演示导包，因为一般预处理css(如less sass)都可以导包
-gulp.task(&apos;style&apos;,function(){//style为任务名
-  //这里是在执行style任务时自动执行的
+//1.less 编译 压缩 合并:此处没有演示导包，因为一般预处理 css (如 less sass )都可以导包
+gulp.task(&apos;style&apos;,function(){//style 为任务名
+  //这里是在执行 style 任务时自动执行的
   gulp.src([&apos;src/styles/*.less&apos;,&apos;!src/styles/_*.less&apos;])//指不获取_*.less
   .pipe(less())
   .pipe(cssnano())//压缩
-  //在cmd中执行gult style后会在根目录下自动生成dist/styles/app.css
+  //在 cmd 中执行 gult style 后会在根目录下自动生成 dist/styles/app.css
   .pipe(gulp.dest(&apos;dist/styles&apos;))
   .pipe(browserSync.reload({
       stream: true
@@ -134,8 +134,8 @@ gulp.task(&apos;script&apos;,function(){
     }));//重新刷新
   })
 
-//3.图片复制,会在根目录下生成dist/images/pipe.png,即把
-//src/images下所有的图片都生成到目录dist/images下
+//3.图片复制,会在根目录下生成 dist/images/pipe.png ,即把
+//src/images 下所有的图片都生成到目录 dist/images 下
 gulp.task(&apos;image&apos;,function(){
   gulp.src(&apos;src/images/*.*&apos;)
   .pipe(gulp.dest(&apos;dist/images&apos;))
@@ -168,7 +168,7 @@ gulp.task(&apos;serve&apos;,function(){
     },function(err,bs){
       console.log(bs.options.getIn([&apos;urls&apos;,&apos;local&apos;]));
       });
-//监视文件，当参数1有改变时应该执行参数2任务，每个任务里需要加pipe(browserSync.reload())
+//监视文件，当参数1有改变时应该执行参数2任务，每个任务里需要加 pipe(browserSync.reload())
   gulp.watch(&apos;src/styles/*.less&apos;,[&apos;style&apos;]);
   gulp.watch(&apos;src/scripts/*.js&apos;,[&apos;script&apos;]);
   gulp.watch(&apos;src/images/*.*&apos;,[&apos;image&apos;]);
@@ -345,6 +345,10 @@ watcher.on(&apos;change&apos;, function(event) {
       <ul>
         
           <li>
+            <a href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
+          </li>
+        
+          <li>
             <a href="/2017/02/07/JavaScript 浏览器兼容问题/">JavaScript 中的一些兼容性问题</a>
           </li>
         
@@ -358,10 +362,6 @@ watcher.on(&apos;change&apos;, function(event) {
         
           <li>
             <a href="/2016/10/11/JavaScript 闭包/">JavaScript 闭包</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/21/Gulp详解/">Gulp详解</a>
           </li>
         
       </ul>
