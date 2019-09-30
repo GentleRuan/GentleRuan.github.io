@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-JavaScript call()和apply()方法" class="post-JavaScript call()和apply()方法 post type-post status-publish format-standard hentry">
+    <article id="post-Gulp详解" class="post-Gulp详解 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,36 +74,232 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/08/11/JavaScript call()和apply()方法/">JavaScript 中的 call() 和 apply() 方法</a>
+      <a class="article-title" href="/2016/09/21/Gulp详解/">Gulp 详解</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/08/11/JavaScript call()和apply()方法/" data-id="cjl7abfzu0001v0u676n5ny0y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/09/21/Gulp详解/" data-id="ck164rtm90007b8u6hssb5u9s" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h2 id="1、方法定义"><a href="#1、方法定义" class="headerlink" title="1、方法定义"></a>1、方法定义</h2><h3 id="call方法"><a href="#call方法" class="headerlink" title="call方法:"></a>call方法:</h3><p>语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])<br>定义：调用一个对象的一个方法，以另一个对象替换当前对象。<br>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 </p>
-<h3 id="apply方法："><a href="#apply方法：" class="headerlink" title="apply方法："></a>apply方法：</h3><p>语法：apply([thisObj[,argArray]])<br>定义：应用某一对象的一个方法，用另一个对象替换当前对象。<br>说明：<br>如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
-<h2 id="2、常用实例"><a href="#2、常用实例" class="headerlink" title="2、常用实例"></a>2、常用实例</h2><h3 id="a："><a href="#a：" class="headerlink" title="a："></a>a：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(a,b) &#123;  </div><div class="line">    alert(a+b);  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">function</span> sub(a,b) &#123;  </div><div class="line">    alert(a-b);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">add.call(sub,3,1);</div></pre></td></tr></table></figure>
-<p>这个例子中的意思就是用 add 来替换 sub，add.call(sub,3,1) == add(3,1) ，所以运行结果为：alert(4); // 注意：js 中的函数其实是对象，函数名是对 Function 对象的引用。</p>
-<h3 id="b："><a href="#b：" class="headerlink" title="b："></a>b：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Animal</span></span>()&#123;    </div><div class="line">    this.name = <span class="string">"Animal"</span>;    </div><div class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;    </div><div class="line">        alert(this.name);    </div><div class="line">    &#125;    </div><div class="line">&#125;    </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Cat</span></span>()&#123;    </div><div class="line">    this.name = <span class="string">"Cat"</span>;    </div><div class="line">&#125;    </div><div class="line">   </div><div class="line">var animal = new Animal();    </div><div class="line">var cat = new Cat();    </div><div class="line">    </div><div class="line">//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    </div><div class="line">//输入结果为<span class="string">"Cat"</span>    </div><div class="line">animal.showName.call(cat,<span class="string">","</span>);    </div><div class="line">//animal.showName.apply(cat,[]);</div></pre></td></tr></table></figure>
+        <h2 id="1、Gulp-安装"><a href="#1、Gulp-安装" class="headerlink" title="1、Gulp 安装"></a>1、Gulp 安装</h2><h3 id="1-1-全局安装-gulp："><a href="#1-1-全局安装-gulp：" class="headerlink" title="1.1 全局安装 gulp："></a>1.1 全局安装 gulp：</h3><pre><code>$ npm install --global gulp
+</code></pre><h3 id="1-2-作为项目的开发依赖（devDependencies）安装："><a href="#1-2-作为项目的开发依赖（devDependencies）安装：" class="headerlink" title="1.2 作为项目的开发依赖（devDependencies）安装："></a>1.2 作为项目的开发依赖（devDependencies）安装：</h3><pre><code>$ npm install --save-dev gulp
+</code></pre><h3 id="1-3-在项目根目录下创建一个名为-gulpfile-js-的文件："><a href="#1-3-在项目根目录下创建一个名为-gulpfile-js-的文件：" class="headerlink" title="1.3 在项目根目录下创建一个名为 gulpfile.js 的文件："></a>1.3 在项目根目录下创建一个名为 gulpfile.js 的文件：</h3><pre><code>var gulp = require(&apos;gulp&apos;);
+
+gulp.task(&apos;default&apos;, function() {
+  // 将你的默认的任务代码放在这
+}); 
+</code></pre><h3 id="1-4-运行-gulp："><a href="#1-4-运行-gulp：" class="headerlink" title="1.4 运行 gulp："></a>1.4 运行 gulp：</h3><pre><code>$ gulp
+</code></pre><p>默认的名为 default 的任务（task）将会被运行，在这里，这个任务并未做任何事情。</p>
+<p>想要单独执行特定的任务（task），请输入 gulp <task> <othertask>。</othertask></task></p>
+<h2 id="2、Gulp-基本介绍"><a href="#2、Gulp-基本介绍" class="headerlink" title="2、Gulp 基本介绍"></a>2、Gulp 基本介绍</h2><h3 id="gulp-是什么"><a href="#gulp-是什么" class="headerlink" title="gulp 是什么"></a>gulp 是什么</h3><p>gulp 就是用来机械化的完成重复性质（如 less-&gt;css；js、css 压缩；js 混淆）的工作；gulp 的机制就是将重复工作抽象成一个个的任务。</p>
+<h3 id="gulp-使用"><a href="#gulp-使用" class="headerlink" title="gulp 使用"></a>gulp 使用</h3><p>a.首先确保电脑上已经正确安装了 node 环境；</p>
+<p>b.其次再全局安装 gulp </p>
+<p>c.在项目根目录下添加一个 gulpfile.js 文件，这个是 gulp 的主文件，这个文件名是固定的；</p>
+<p>d.在 gulpfile 中抽象我们需要做的任务。</p>
+<p>小案例：</p>
+<pre><code>&apos;use strict&apos;;
+//在 gulpfile 中先载入 gulp 包，因为这个包提供了一些 API
+var gulp=require(&apos;gulp&apos;);
+var less=require(&apos;gulp-less&apos;);
+var cssnano=require(&apos;gulp-cssnano&apos;);
+var concat=require(&apos;gulp-concat&apos;);
+
+//1.less 编译 压缩 合并:此处没有演示导包，因为一般预处理 css (如 less sass )都可以导包
+gulp.task(&apos;style&apos;,function(){//style 为任务名
+  //这里是在执行 style 任务时自动执行的
+  gulp.src([&apos;src/styles/*.less&apos;,&apos;!src/styles/_*.less&apos;])//指不获取_*.less
+  .pipe(less())
+  .pipe(cssnano())//压缩
+  //在 cmd 中执行 gult style 后会在根目录下自动生成 dist/styles/app.css
+  .pipe(gulp.dest(&apos;dist/styles&apos;))
+  .pipe(browserSync.reload({
+      stream: true
+    }));//重新刷新;
+})
+
+//2.JS合并 压缩  混淆
+var uglify=require(&apos;gulp-uglify&apos;);
+gulp.task(&apos;script&apos;,function(){
+  gulp.src(&apos;src/scripts/*.js&apos;)
+  .pipe(concat(&apos;all.js&apos;))
+  .pipe(uglify())
+  .pipe(gulp.dest(&apos;dist/scripts&apos;))
+  .pipe(browserSync.reload({
+      stream: true
+    }));//重新刷新
+  })
+
+//3.图片复制,会在根目录下生成 dist/images/pipe.png ,即把
+//src/images 下所有的图片都生成到目录 dist/images 下
+gulp.task(&apos;image&apos;,function(){
+  gulp.src(&apos;src/images/*.*&apos;)
+  .pipe(gulp.dest(&apos;dist/images&apos;))
+  .pipe(browserSync.reload({
+      stream: true
+    }));//重新刷新;
+})
+
+//4.html
+var htmlmin=require(&apos;gulp-htmlmin&apos;)
+gulp.task(&apos;html&apos;,function(){
+  gulp.src(&apos;src/*.html&apos;)
+  .pipe(htmlmin({
+    collapseWhitespace:true,//压缩
+    removeComments:true//压缩后去掉注释
+    }))
+  .pipe(gulp.dest(&apos;dist&apos;))
+  .pipe(browserSync.reload({
+      stream: true
+    }));//重新刷新
+})
+
+//5.server
+var browserSync=require(&apos;browser-sync&apos;);
+gulp.task(&apos;serve&apos;,function(){
+  browserSync({
+    server:{
+      baseDir:[&apos;dist&apos;]//设置目录
+    },
+    },function(err,bs){
+      console.log(bs.options.getIn([&apos;urls&apos;,&apos;local&apos;]));
+      });
+//监视文件，当参数1有改变时应该执行参数2任务，每个任务里需要加 pipe(browserSync.reload())
+  gulp.watch(&apos;src/styles/*.less&apos;,[&apos;style&apos;]);
+  gulp.watch(&apos;src/scripts/*.js&apos;,[&apos;script&apos;]);
+  gulp.watch(&apos;src/images/*.*&apos;,[&apos;image&apos;]);
+  gulp.watch(&apos;src/*.html&apos;,[&apos;html&apos;]);
+  })
+</code></pre><p>gulp.task (参1，参2) 中第一个参数为任务名称，第二个参数为具体要执行的任务描述。要运行 gulp 任务，只需切换到存放 gulpfile.js 文件的目录( windows 平台请使用 cmd 或者 Power Shell 等工具)，然后在命令行中执行 gulp 命令就行了，gulp 后面可以加上要执行的任务名，例如 gulp style ，如果没有指定任务名，则会执行任务名为 default 的默认任务。 </p>
+<h2 id="3、Gulp-API"><a href="#3、Gulp-API" class="headerlink" title="3、Gulp API"></a>3、Gulp API</h2><h3 id="gulp-src-globs-options"><a href="#gulp-src-globs-options" class="headerlink" title="gulp.src(globs[, options])"></a>gulp.src(globs[, options])</h3><p>输出（Emits）符合所提供的匹配模式（glob）或者匹配模式的数组（array of globs）的文件。 将返回一个 Vinyl files 的 stream 它可以被 piped 到别的插件中。</p>
+<pre><code>gulp.src(&apos;client/templates/*.jade&apos;)
+  .pipe(jade())
+  .pipe(minify())
+  .pipe(gulp.dest(&apos;build/minified_templates&apos;));
+</code></pre><p>glob 请参考 <a href="https://github.com/isaacs/node-glob" target="_blank" rel="external">node-glob</a> 语法 或者，你也可以直接写文件的路径。</p>
+<h4 id="globs"><a href="#globs" class="headerlink" title="globs"></a>globs</h4><p>类型： String 或 Array</p>
+<p>所要读取的 glob 或者包含 globs 的数组。</p>
+<h4 id="options"><a href="#options" class="headerlink" title="options"></a>options</h4><p>类型： Object</p>
+<p>通过 <a href="https://github.com/gulpjs/glob-stream" target="_blank" rel="external">glob-stream</a> 所传递给 <a href="https://github.com/isaacs/node-glob" target="_blank" rel="external">node-glob</a> 的参数。</p>
+<p>除了 node-glob 和 glob-stream 所支持的参数外，gulp 增加了一些额外的选项参数：</p>
+<h4 id="options-buffer"><a href="#options-buffer" class="headerlink" title="options.buffer"></a>options.buffer</h4><p>类型： Boolean 默认值： true</p>
+<p>如果该项被设置为 false，那么将会以 stream 方式返回 file.contents 而不是文件 buffer 的形式。这在处理一些大文件的时候将会很有用。<strong>注意：</strong>插件可能并不会实现对 stream 的支持。</p>
+<h4 id="options-read"><a href="#options-read" class="headerlink" title="options.read"></a>options.read</h4><p>类型： String 默认值： 将会加在 glob 之前 (请看 glob2base)</p>
+<p>如, 请想像一下在一个路径为 client/js/somedir 的目录中，有一个文件叫 somefile.js ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.src(<span class="string">'client/js/**/*.js'</span>) // 匹配 <span class="string">'client/js/somedir/somefile.js'</span> 并且将 `base` 解析为 `client/js/`</div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'build'</span>));  // 写入 <span class="string">'build/somedir/somefile.js'</span></div><div class="line"></div><div class="line">gulp.src(<span class="string">'client/js/**/*.js'</span>, &#123; base: <span class="string">'client'</span> &#125;)</div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'build'</span>));  // 写入 <span class="string">'build/js/somedir/somefile.js'</span></div></pre></td></tr></table></figure>
 <p>call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat</p>
-<h3 id="c、实现继承"><a href="#c、实现继承" class="headerlink" title="c、实现继承:"></a>c、实现继承:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> Animal(name)&#123;      </div><div class="line">    this.name = name;      </div><div class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;      </div><div class="line">        alert(this.name);      </div><div class="line">    &#125;      </div><div class="line">&#125;      </div><div class="line">    </div><div class="line"><span class="keyword">function</span> Cat(name)&#123;    </div><div class="line">    Animal.call(this, name);    </div><div class="line">&#125;      </div><div class="line">    </div><div class="line">var cat = new Cat(<span class="string">"Black Cat"</span>);     </div><div class="line">cat.showName();</div></pre></td></tr></table></figure>
-<h3 id="d、多重继承"><a href="#d、多重继承" class="headerlink" title="d、多重继承:"></a>d、多重继承:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class10</span></span>() &#123;  </div><div class="line">    this.showSub = <span class="keyword">function</span>(a,b) &#123;  </div><div class="line">        alert(a-b);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class11</span></span>() &#123;  </div><div class="line">    this.showAdd = <span class="keyword">function</span>(a,b) &#123;  </div><div class="line">        alert(a+b);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class2</span></span>() &#123;  </div><div class="line">    Class10.call(this);  </div><div class="line">    Class11.call(this);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>很简单，使用两个 call 就实现多重继承了<br>当然，js的继承还有其他方法，例如使用原型链，这个不属于本文的范畴，只是在此说明call 的用法。说了call ，当然还有 apply，这两个方法基本上是一个意思，区别在于 call 的第二个参数可以是任意类型，而apply的第二个参数必须是数组，也可以是arguments<br>还有 callee，caller..</p>
+<h3 id="gulp-dest-path-options"><a href="#gulp-dest-path-options" class="headerlink" title="gulp.dest(path[, options])"></a>gulp.dest(path[, options])</h3><p>能被 pipe 进来，并且将会写文件。并且重新输出（emits）所有数据，因此你可以将它 pipe 到多个文件夹。如果某文件夹不存在，将会自动创建它。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gulp.src(<span class="string">'./client/templates/*.jade'</span>)</div><div class="line">  .pipe(jade())</div><div class="line">  .pipe(gulp.dest(<span class="string">'./build/templates'</span>))</div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'./build/minified_templates'</span>));</div></pre></td></tr></table></figure>
+<p>文件被写入的路径是以所给的相对路径根据所给的目标目录计算而来。类似的，相对路径也可以根据所给的 base 来计算。 请查看上述的 gulp.src 来了解更多信息。</p>
+<h4 id="path"><a href="#path" class="headerlink" title="path"></a>path</h4><p>类型： String or Function</p>
+<p>文件将被写入的路径（输出目录）。也可以传入一个函数，在函数中返回相应路径，这个函数也可以由 vinyl 文件实例 来提供。</p>
+<h4 id="options-1"><a href="#options-1" class="headerlink" title="options"></a>options</h4><p>类型： Object</p>
+<h4 id="options-cwd"><a href="#options-cwd" class="headerlink" title="options.cwd"></a>options.cwd</h4><p>类型： String 默认值： process.cwd()</p>
+<p>输出目录的 cwd 参数，只在所给的输出目录是相对路径时候有效。</p>
+<h4 id="options-mode"><a href="#options-mode" class="headerlink" title="options.mode"></a>options.mode</h4><p>类型： String 默认值： 0777</p>
+<p>八进制权限字符，用以定义所有在输出目录中所创建的目录的权限。</p>
+<h3 id="gulp-task-name-deps-fn"><a href="#gulp-task-name-deps-fn" class="headerlink" title="gulp.task(name[, deps], fn)"></a>gulp.task(name[, deps], fn)</h3><p>定义一个使用 Orchestrator 实现的任务（task）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'somename'</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  // 做一些事</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="name"><a href="#name" class="headerlink" title="name"></a>name</h4><p>任务的名字，如果你需要在命令行中运行你的某些任务，那么，请不要在名字中使用空格。</p>
+<h4 id="deps"><a href="#deps" class="headerlink" title="deps"></a>deps</h4><p>类型： Array</p>
+<p>一个包含任务列表的数组，这些任务会在你当前任务运行之前完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'mytask'</span>, [<span class="string">'array'</span>, <span class="string">'of'</span>, <span class="string">'task'</span>, <span class="string">'names'</span>], <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  // 做一些事</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>注意： 你的任务是否在这些前置依赖的任务完成之前运行了？请一定要确保你所依赖的任务列表中的任务都使用了正确的异步执行方式：使用一个 callback，或者返回一个 promise 或 stream。</p>
+<h4 id="fn"><a href="#fn" class="headerlink" title="fn"></a>fn</h4><p>该函数定义任务所要执行的一些操作。通常来说，它会是这种形式：gulp.src().pipe(someplugin())。</p>
+<p>异步任务支持</p>
+<p>任务可以异步执行，如果 fn 能做到以下其中一点：</p>
+<p>接受一个 callback</p>
+<pre><code>// 在 shell 中执行一个命令
+var exec = require(&apos;child_process&apos;).exec;
+gulp.task(&apos;jekyll&apos;, function(cb) {
+  // 编译 Jekyll
+  exec(&apos;jekyll build&apos;, function(err) {
+    if (err) return cb(err); // 返回 error
+    cb(); // 完成 task
+  });
+});
+</code></pre><p>返回一个 stream</p>
+<pre><code>gulp.task(&apos;somename&apos;, function() {
+  var stream = gulp.src(&apos;client/**/*.js&apos;)
+    .pipe(minify())
+    .pipe(gulp.dest(&apos;build&apos;));
+  return stream;
+});
+</code></pre><p>返回一个 promise</p>
+<pre><code>var Q = require(&apos;q&apos;);
+
+gulp.task(&apos;somename&apos;, function() {
+  var deferred = Q.defer();
+
+  // 执行异步的操作
+  setTimeout(function() {
+    deferred.resolve();
+  }, 1);
+
+  return deferred.promise;
+});
+</code></pre><p>注意： 默认的，task 将以最大的并发数执行，也就是说，gulp 会一次性运行所有的 task 并且不做任何等待。如果你想要创建一个序列化的 task 队列，并以特定的顺序执行，你需要做两件事：</p>
+<p>· 给出一个提示，来告知 task 什么时候执行完毕，<br>· 并且再给出一个提示，来告知一个 task 依赖另一个 task 的完成。</p>
+<p>对于这个例子，让我们先假定你有两个 task，”one” 和 “two”，并且你希望它们按照这个顺序执行：</p>
+<ol>
+<li><p>在 “one” 中，你加入一个提示，来告知什么时候它会完成：可以再完成时候返回一个 callback，或者返回一个 promise 或 stream，这样系统会去等待它完成。</p>
+</li>
+<li><p>在 “two” 中，你需要添加一个提示来告诉系统它需要依赖第一个 task 完成。</p>
+</li>
+</ol>
+<p>因此，这个例子的实际代码将会是这样：</p>
+<pre><code>var gulp = require(&apos;gulp&apos;);
+
+// 返回一个 callback，因此系统可以知道它什么时候完成
+gulp.task(&apos;one&apos;, function(cb) {
+    // 做一些事 -- 异步的或者其他的
+    cb(err); // 如果 err 不是 null 或 undefined，则会停止执行，且注意，这样代表执行失败了
+});
+
+// 定义一个所依赖的 task 必须在这个 task 执行之前完成
+gulp.task(&apos;two&apos;, [&apos;one&apos;], function() {
+    // &apos;one&apos; 完成后
+});
+
+gulp.task(&apos;default&apos;, [&apos;one&apos;, &apos;two&apos;]);
+</code></pre><h3 id="gulp-watch-glob-opts-tasks-或-gulp-watch-glob-opts-cb"><a href="#gulp-watch-glob-opts-tasks-或-gulp-watch-glob-opts-cb" class="headerlink" title="gulp.watch(glob [, opts], tasks) 或 gulp.watch(glob [, opts, cb])"></a>gulp.watch(glob [, opts], tasks) 或 gulp.watch(glob [, opts, cb])</h3><p>监视文件，并且可以在文件发生改动时候做一些事情。它总会返回一个 EventEmitter 来发射（emit） change 事件。</p>
+<h3 id="gulp-watch-glob-opts-tasks"><a href="#gulp-watch-glob-opts-tasks" class="headerlink" title="gulp.watch(glob[, opts], tasks)"></a>gulp.watch(glob[, opts], tasks)</h3><h4 id="glob"><a href="#glob" class="headerlink" title="glob"></a>glob</h4><p>类型： String or Array</p>
+<p>一个 glob 字符串，或者一个包含多个 glob 字符串的数组，用来指定具体监控哪些文件的变动。</p>
+<h4 id="opts"><a href="#opts" class="headerlink" title="opts"></a>opts</h4><p>类型： Object</p>
+<p>传给 gaze 的参数。</p>
+<h4 id="tasks"><a href="#tasks" class="headerlink" title="tasks"></a>tasks</h4><p>类型： Array</p>
+<p>需要在文件变动后执行的一个或者多个通过 gulp.task() 创建的 task 的名字，</p>
+<pre><code>var watcher = gulp.watch(&apos;js/**/*.js&apos;, [&apos;uglify&apos;,&apos;reload&apos;]);
+watcher.on(&apos;change&apos;, function(event) {
+  console.log(&apos;File &apos; + event.path + &apos; was &apos; + event.type + &apos;, running tasks...&apos;);
+});
+</code></pre><h3 id="gulp-watch-glob-opts-cb"><a href="#gulp-watch-glob-opts-cb" class="headerlink" title="gulp.watch(glob[, opts, cb])"></a>gulp.watch(glob[, opts, cb])</h3><h4 id="glob-1"><a href="#glob-1" class="headerlink" title="glob"></a>glob</h4><p>类型： String or Array</p>
+<p>一个 glob 字符串，或者一个包含多个 glob 字符串的数组，用来指定具体监控哪些文件的变动。</p>
+<h4 id="opts-1"><a href="#opts-1" class="headerlink" title="opts"></a>opts</h4><p>类型： Object</p>
+<p>传给 gaze 的参数。</p>
+<h4 id="cb-event"><a href="#cb-event" class="headerlink" title="cb(event)"></a>cb(event)</h4><p>类型： Function</p>
+<p>每次变动需要执行的 callback。</p>
+<pre><code>gulp.watch(&apos;js/**/*.js&apos;, function(event) {
+   console.log(&apos;File &apos; + event.path + &apos; was &apos; + event.type + &apos;, running tasks...&apos;);
+});
+</code></pre><p>callback 会被传入一个名为 event 的对象。这个对象描述了所监控到的变动：</p>
+<h4 id="event-type"><a href="#event-type" class="headerlink" title="event.type"></a>event.type</h4><p>类型： String</p>
+<p>发生的变动的类型：added, changed 或者 deleted。</p>
+<h4 id="event-path"><a href="#event-path" class="headerlink" title="event.path"></a>event.path</h4><p>类型： String</p>
+<p>触发了该事件的文件的路径。</p>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/08/11/JavaScript call()和apply()方法/">
-    <time datetime="2016-08-10T16:00:00.000Z" class="entry-date">
-        2016-08-11
+    <a href="/2016/09/21/Gulp详解/">
+    <time datetime="2016-09-20T16:00:00.000Z" class="entry-date">
+        2016-09-21
     </time>
 </a>
     
@@ -120,7 +316,7 @@
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -146,11 +342,15 @@
       <ul>
         
           <li>
-            <a href="/2018/07/03/一辈子很长.../">一辈子很长。。。</a>
+            <a href="/2019/09/30/常用正则大全/">常用正则大全</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/育儿的那些事儿/">育儿那些事儿</a>
+            <a href="/2019/04/15/RN-style 详细说明/">RN-style 详细说明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
           </li>
         
           <li>
@@ -159,10 +359,6 @@
         
           <li>
             <a href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/07/JavaScript 浏览器兼容问题/">JavaScript 中的一些兼容性问题</a>
           </li>
         
       </ul>
@@ -177,7 +373,7 @@
 </div>
       </div>
       <footer id="colophon" role="contentinfo">
-    <p>&copy; 2018 GentleRuan
+    <p>&copy; 2019 GentleRuan
     All rights reserved.</p>
     <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
 </footer>

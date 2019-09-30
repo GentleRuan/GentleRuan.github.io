@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-屏幕高度、宽度的获取" class="post-屏幕高度、宽度的获取 post type-post status-publish format-standard hentry">
+    <article id="post-React Native入口文件解析" class="post-React Native入口文件解析 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,162 +74,97 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2017/12/01/屏幕高度、宽度的获取/">屏幕高度、宽度的获取</a>
+      <a class="article-title" href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/12/01/屏幕高度、宽度的获取/" data-id="cjl7abfzy0005v0u6wmg8sopv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2019/04/11/React Native入口文件解析/" data-id="ck164rtm10005b8u6k05zfne3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h2 id="1-基本"><a href="#1-基本" class="headerlink" title="1. 基本"></a>1. 基本</h2><pre><code># 网页可见区域宽：
-    $ document.body.clientWidth 
+        <h2 id="1-第一部分"><a href="#1-第一部分" class="headerlink" title="1.  第一部分"></a>1.  第一部分</h2><p>导入ReactNative包，导入ReactNative组件<br>AppRegistry：JS运行所有ReactNative应用的入口<br>StyleSheet：ReactNative中使用的样式表，类似css样式表<br>各种开发中需要使用的组件</p>
+<p>ES5语法如下：</p>
+<pre><code>let React = require(&quot;react-native&quot;);
+let {
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View
+} = React
+</code></pre><p>require函数，搜索目录加载文件</p>
+<p>ES6语法如下：</p>
+<pre><code>import React, { Component } from &apos;react&apos;;
+import {
+      AppRegistry,
+      StyleSheet,
+      Text,
+      View
+} from &apos;react-native&apos;;
+</code></pre><h2 id="2-第二部分"><a href="#2-第二部分" class="headerlink" title="2. 第二部分"></a>2. 第二部分</h2><p>创建ReactNative组件</p>
+<p>ES5语法如下：</p>
+<pre><code>var HelloWorld = React.createClass({
+    render：function{
+      return {};
+    }
+});
+</code></pre><p>render(){}是ES6的函数简写</p>
+<p>ES6语法如下：</p>
+<pre><code>export default class HelloWorld extends Component {
+render() {
+    return (
+          &lt;View style={styles.container}&gt;
+            &lt;Text style={styles.welcome}&gt;
+              Welcome to React Native!
+            &lt;/Text&gt;
+            &lt;Text style={styles.instructions}&gt;
+              To get started, edit index.ios.js
+            &lt;/Text&gt;
+            &lt;Text style={styles.instructions}&gt;
+              Press Cmd+R to reload,{&apos;\n&apos;}
+              Cmd+D or shake for dev menu
+            &lt;/Text&gt;
+          &lt;/View&gt;
+    );
+  }
+}
+</code></pre><h2 id="2-第三部分"><a href="#2-第三部分" class="headerlink" title="2. 第三部分"></a>2. 第三部分</h2><p>StyleSheet.create创建样式实例<br>在应用中只会贝创建一次，不用每次在渲染周期中重新创建</p>
+<pre><code>const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: &apos;center&apos;,
+        alignItems: &apos;center&apos;,
+        backgroundColor: &apos;#F5FCFF&apos;,
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: &apos;center&apos;,
+        margin: 10,
+    },
+      instructions: {
+        textAlign: &apos;center&apos;,
+        color: &apos;#333333&apos;,
+        marginBottom: 5,
+    },
+});
+</code></pre><h2 id="4-第四部分"><a href="#4-第四部分" class="headerlink" title="4. 第四部分"></a>4. 第四部分</h2><p>注册入口组件<br>AppRegistry：负责注册运行ReactNative应用程序的JavaScript入口<br>registerComponent注册应用程序的入口组件。告知ReactNative哪一个组件<br>被注册为应用的根容器</p>
+<p>第二个参数使用了ES6语法，箭头函数：<br>{} =&gt; HelloWorld<br>返回的必须是定义的组件类的名字</p>
+<p>定价于</p>
+<pre><code>function() {return HelloWorld}
 
-# 网页可见区域高：
-    $ document.body.clientHeight 
-
-# 网页可见区域宽：
-    $ document.body.offsetWidth (包括边线的宽) 
-
-# 网页可见区域高：
-    $ document.body.offsetHeight (包括边线的宽) 
-
-# 网页正文全文宽：
-    $ document.body.scrollWidth 
-
-# 网页正文全文高：
-    $ document.body.scrollHeight 
-
-# 网页被卷去的高：
-    $ document.body.scrollTop 
-
-# 网页被卷去的左：
-    $ document.body.scrollLeft 
-
-# 网页正文部分上：
-    $ window.screenTop 
-
-# 网页正文部分左：
-    $ window.screenLeft 
-
-# 屏幕分辨率的高：
-    $ window.screen.height 
-
-# 屏幕分辨率的宽：
-    $ window.screen.width 
-
-# 屏幕可用工作区高度：
-    $ window.screen.availHeight
-
-# 屏幕可用工作区宽度：
-    $ window.screen.availWidth
-</code></pre><h2 id="2-HTML精确定位"><a href="#2-HTML精确定位" class="headerlink" title="2. HTML精确定位:"></a>2. HTML精确定位:</h2><pre><code>### scrollLeft,scrollWidth,clientWidth,offsetWidth 
-
-# scrollHeight: 获取对象的滚动高度。 
-
-# scrollLeft:设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离 
-
-# scrollTop:设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 
-
-# scrollWidth:获取对象的滚动宽度 
-
-# offsetHeight:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度 
-
-# offsetLeft:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置 
-
-# offsetTop:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置 
-
-# event.clientX 相对文档的水平座标 
-
-# event.clientY 相对文档的垂直座标 
-
-# event.offsetX 相对容器的水平坐标 
-
-# event.offsetY 相对容器的垂直坐标 
-
-# document.documentElement.scrollTop 垂直方向滚动的值 
-
-# event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量 
-</code></pre><h2 id="3-IE，FireFox-差异如下："><a href="#3-IE，FireFox-差异如下：" class="headerlink" title="3. IE，FireFox 差异如下："></a>3. IE，FireFox 差异如下：</h2><pre><code>### IE6.0、FF1.06+： 
-    # clientWidth = width + padding 
-
-    # clientHeight = height + padding 
-
-    # offsetWidth = width + padding + border
-
-    # offsetHeight = height + padding + border 
-
-### IE5.0/5.5：  
-    # clientWidth = width - border
-
-    # clientHeight = height - border 
-
-    # offsetWidth = width 
-
-    # offsetHeight = height 
-
-### (需要提一下：CSS中的margin属性，与clientWidth、offsetWidth、clientHeight、offsetHeight均无关)
-    网页可见区域宽： document.body.clientWidth
-
-    网页可见区域高： document.body.clientHeight
-
-    网页可见区域宽： document.body.offsetWidth (包括边线的宽)
-
-    网页可见区域高： document.body.offsetHeight (包括边线的高)
-
-    网页正文全文宽： document.body.scrollWidth
-
-    网页正文全文高： document.body.scrollHeight
-
-    网页被卷去的高： document.body.scrollTop
-
-    网页被卷去的左： document.body.scrollLeft
-
-    网页正文部分上： window.screenTop
-
-    网页正文部分左： window.screenLeft
-
-    屏幕分辨率的高： window.screen.height
-
-    屏幕分辨率的宽： window.screen.width
-
-    屏幕可用工作区高度： window.screen.availHeight
-
-    屏幕可用工作区宽度： window.screen.availWidth
-</code></pre><h2 id="4-技术要点"><a href="#4-技术要点" class="headerlink" title="4. 技术要点"></a>4. 技术要点</h2><pre><code>本节代码主要使用了Document对象关于窗口的一些属性，这些属性的主要功能和用法如下。
-
-要得到窗口的尺寸，对于不同的浏览器，需要使用不同的属性和方法：若要检测窗口的真实尺寸，在Netscape下需要使用Window的属性；在IE下需要 深入Document内部对body进行检测；在DOM环境下，若要得到窗口的尺寸，需要注意根元素的尺寸，而不是元素。
-
-Window对象的innerWidth属性包含当前窗口的内部宽度。Window对象的innerHeight属性包含当前窗口的内部高度。
-
-Document对象的body属性对应HTML文档的标签。Document对象的documentElement属性则表示HTML文档的根节点。
-
-document.body.clientHeight表示HTML文档所在窗口的当前高度。document.body. clientWidth表示HTML文档所在窗口的当前宽度。
-</code></pre><h2 id="5-实现代码"><a href="#5-实现代码" class="headerlink" title="5. 实现代码"></a>5. 实现代码</h2><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;</div><div class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;title&gt;请调整浏览器窗口&lt;/title&gt;</div><div class="line">	&lt;meta http-equiv=<span class="string">"content-type"</span> content=<span class="string">"text/html; charset=gb2312"</span>&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;h2 align=<span class="string">"center"</span>&gt;请调整浏览器窗口大小&lt;/h2&gt;&lt;hr&gt;</div><div class="line">		&lt;form action=<span class="string">"#"</span> method=<span class="string">"get"</span> name=<span class="string">"form1"</span> id=<span class="string">"form1"</span>&gt;</div><div class="line">			&lt;!--显示浏览器窗口的实际尺寸--&gt;</div><div class="line">			浏览器窗口 的 实际高度: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"availHeight"</span> size=<span class="string">"4"</span>&gt;&lt;br&gt;</div><div class="line">			浏览器窗口 的 实际宽度: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"availWidth"</span> size=<span class="string">"4"</span>&gt;&lt;br&gt;</div><div class="line">		&lt;/form&gt;</div><div class="line">		&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">			&lt;!-- </div><div class="line">			var winWidth = 0;</div><div class="line">			var winHeight = 0;</div><div class="line">			<span class="keyword">function</span> findDimensions() //函数：获取尺寸&#123;</div><div class="line">				//获取窗口宽度</div><div class="line">				<span class="keyword">if</span> (window.innerWidth)</div><div class="line">					winWidth = window.innerWidth;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> ((document.body) &amp;&amp; (document.body.clientWidth))</div><div class="line">					winWidth = document.body.clientWidth;</div><div class="line">				//获取窗口高度</div><div class="line">				<span class="keyword">if</span> (window.innerHeight)</div><div class="line">					winHeight = window.innerHeight;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> ((document.body) &amp;&amp; (document.body.clientHeight))</div><div class="line">					winHeight = document.body.clientHeight;</div><div class="line">				//通过深入Document内部对body进行检测，获取窗口大小</div><div class="line">				<span class="keyword">if</span> (document.documentElement &amp;&amp; document.documentElement.clientHeight &amp;&amp; document.documentElement.clientWidth)&#123;</div><div class="line">					winHeight = document.documentElement.clientHeight;</div><div class="line">					winWidth = document.documentElement.clientWidth;</div><div class="line">				&#125;</div><div class="line">				//结果输出至两个文本框</div><div class="line">				document.form1.availHeight.value= winHeight;</div><div class="line">				document.form1.availWidth.value= winWidth;</div><div class="line">			&#125;</div><div class="line">			findDimensions();</div><div class="line">			//调用函数，获取数值</div><div class="line">			window.onresize=findDimensions;</div><div class="line">			//--&gt;</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-</code></pre><h2 id="6-源程序解读"><a href="#6-源程序解读" class="headerlink" title="6. 源程序解读"></a>6. 源程序解读</h2><pre><code>（1）程序首先建立一个表单，包含两个文本框，用于显示窗口当前的宽度和高度，并且，其数值会随窗口大小的改变而变化。
-
-（2）在随后的JavaScript代码中，首先定义了两个变量winWidth和winHeight，用于保存窗口的高度值和宽度值。
-
-（3）然后，在函数findDimensions ( )中，使用window.innerHeight和window.innerWidth得到窗口的高度和宽度，并将二者保存在前述两个变量中。
-
-（4）再通过深入Document内部对body进行检测，获取窗口大小，并存储在前述两个变量中。
-
-（5）在函数的最后，通过按名称访问表单元素，结果输出至两个文本框。
-
-（6）在JavaScript代码的最后，通过调用findDimensions ( )函数，完成整个操作。
+AppRegistry.registerComponent(&apos;HelloWorld&apos;, () =&gt; HelloWorld);
 </code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2017/12/01/屏幕高度、宽度的获取/">
-    <time datetime="2017-11-30T16:00:00.000Z" class="entry-date">
-        2017-12-01
+    <a href="/2019/04/11/React Native入口文件解析/">
+    <time datetime="2019-04-10T16:00:00.000Z" class="entry-date">
+        2019-04-11
     </time>
 </a>
     
@@ -246,7 +181,7 @@ document.body.clientHeight表示HTML文档所在窗口的当前高度。document
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -272,11 +207,15 @@ document.body.clientHeight表示HTML文档所在窗口的当前高度。document
       <ul>
         
           <li>
-            <a href="/2018/07/03/一辈子很长.../">一辈子很长。。。</a>
+            <a href="/2019/09/30/常用正则大全/">常用正则大全</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/育儿的那些事儿/">育儿那些事儿</a>
+            <a href="/2019/04/15/RN-style 详细说明/">RN-style 详细说明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
           </li>
         
           <li>
@@ -285,10 +224,6 @@ document.body.clientHeight表示HTML文档所在窗口的当前高度。document
         
           <li>
             <a href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/07/JavaScript 浏览器兼容问题/">JavaScript 中的一些兼容性问题</a>
           </li>
         
       </ul>
@@ -303,7 +238,7 @@ document.body.clientHeight表示HTML文档所在窗口的当前高度。document
 </div>
       </div>
       <footer id="colophon" role="contentinfo">
-    <p>&copy; 2018 GentleRuan
+    <p>&copy; 2019 GentleRuan
     All rights reserved.</p>
     <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
 </footer>

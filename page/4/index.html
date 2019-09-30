@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-Git清单" class="post-Git清单 post type-post status-publish format-standard hentry">
+    <article id="post-屏幕高度、宽度的获取" class="post-屏幕高度、宽度的获取 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,276 +74,162 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
+      <a class="article-title" href="/2017/12/01/屏幕高度、宽度的获取/">屏幕高度、宽度的获取</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/03/10/Git清单/" data-id="cjl7abfzq0000v0u6tmylenb2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/12/01/屏幕高度、宽度的获取/" data-id="ck164rtm20006b8u62lvtzap6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p><img src="/img/git.png" alt="Git"></p>
-<pre><code>Workspace：工作区
-Index / Stage：暂存区
-Repository：仓库区（或本地仓库）
-Remote：远程仓库
-</code></pre><h2 id="1-新建代码库"><a href="#1-新建代码库" class="headerlink" title="1. 新建代码库"></a>1. 新建代码库</h2><pre><code># 在当前目录新建一个 Git 代码库
-$ git init
+        <h2 id="1-基本"><a href="#1-基本" class="headerlink" title="1. 基本"></a>1. 基本</h2><pre><code># 网页可见区域宽：
+    $ document.body.clientWidth 
 
-# 新建一个目录，将其初始化为 Git 代码库
-$ git init [project-name]
+# 网页可见区域高：
+    $ document.body.clientHeight 
 
-# 下载一个项目和它的整个代码历史
-$ git clone [url]
-</code></pre><h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2. 配置"></a>2. 配置</h2><p>Git 的设置文件为 .gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</p>
-<pre><code># 显示当前的 Git 配置
-$ git config --list
+# 网页可见区域宽：
+    $ document.body.offsetWidth (包括边线的宽) 
 
-# 编辑 Git 配置文件
-$ git config -e [--global]
+# 网页可见区域高：
+    $ document.body.offsetHeight (包括边线的宽) 
 
-# 设置提交代码时的用户信息
-$ git config [--global] user.name &quot;[name]&quot;
-$ git config [--global] user.email &quot;[email address]&quot;
-</code></pre><h2 id="3-增加-删除文件"><a href="#3-增加-删除文件" class="headerlink" title="3. 增加/删除文件"></a>3. 增加/删除文件</h2><pre><code># 添加指定文件到暂存区
-$ git add [file1] [file2] ...
+# 网页正文全文宽：
+    $ document.body.scrollWidth 
 
-# 添加指定目录到暂存区，包括子目录
-$ git add [dir]
+# 网页正文全文高：
+    $ document.body.scrollHeight 
 
-# 添加当前目录的所有文件到暂存区
-$ git add .
+# 网页被卷去的高：
+    $ document.body.scrollTop 
 
-# 添加每个变化前，都会要求确认
-# 对于同一个文件的多处变化，可以实现分次提交
-$ git add -p
+# 网页被卷去的左：
+    $ document.body.scrollLeft 
 
-# 删除工作区文件，并且将这次删除放入暂存区
-$ git rm [file1] [file2] ...
+# 网页正文部分上：
+    $ window.screenTop 
 
-# 停止追踪指定文件，但该文件会保留在工作区
-$ git rm --cached [file]
+# 网页正文部分左：
+    $ window.screenLeft 
 
-# 改名文件，并且将这个改名放入暂存区
-$ git mv [file-original] [file-renamed]
-</code></pre><h2 id="4-代码提交"><a href="#4-代码提交" class="headerlink" title="4. 代码提交"></a>4. 代码提交</h2><pre><code># 提交暂存区到仓库区
-$ git commit -m [message]
+# 屏幕分辨率的高：
+    $ window.screen.height 
 
-# 提交暂存区的指定文件到仓库区
-$ git commit [file1] [file2] ... -m [message]
+# 屏幕分辨率的宽：
+    $ window.screen.width 
 
-# 提交工作区自上次 commit 之后的变化，直接到仓库区
-$ git commit -a
+# 屏幕可用工作区高度：
+    $ window.screen.availHeight
 
-# 提交时显示所有diff信息
-$ git commit -v
+# 屏幕可用工作区宽度：
+    $ window.screen.availWidth
+</code></pre><h2 id="2-HTML精确定位"><a href="#2-HTML精确定位" class="headerlink" title="2. HTML精确定位:"></a>2. HTML精确定位:</h2><pre><code>### scrollLeft,scrollWidth,clientWidth,offsetWidth 
 
-# 使用一次新的 commit，替代上一次提交
-# 如果代码没有任何新变化，则用来改写上一次 commit 的提交信息
-$ git commit --amend -m [message]
+# scrollHeight: 获取对象的滚动高度。 
 
-# 重做上一次 commit，并包括指定文件的新变化
-$ git commit --amend [file1] [file2] ...
-</code></pre><h2 id="5-分支"><a href="#5-分支" class="headerlink" title="5. 分支"></a>5. 分支</h2><pre><code># 列出所有本地分支
-$ git branch
+# scrollLeft:设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离 
 
-# 列出所有远程分支
-$ git branch -r
+# scrollTop:设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 
 
-# 列出所有本地分支和远程分支
-$ git branch -a
+# scrollWidth:获取对象的滚动宽度 
 
-# 新建一个分支，但依然停留在当前分支
-$ git branch [branch-name]
+# offsetHeight:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度 
 
-# 新建一个分支，并切换到该分支
-$ git checkout -b [branch]
+# offsetLeft:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置 
 
-# 新建一个分支，指向指定 commit
-$ git branch [branch] [commit]
+# offsetTop:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置 
 
-# 新建一个分支，与指定的远程分支建立追踪关系
-$ git branch --track [branch] [remote-branch]
+# event.clientX 相对文档的水平座标 
 
-# 切换到指定分支，并更新工作区
-$ git checkout [branch-name]
+# event.clientY 相对文档的垂直座标 
 
-# 切换到上一个分支
-$ git checkout -
+# event.offsetX 相对容器的水平坐标 
 
-# 建立追踪关系，在现有分支与指定的远程分支之间
-$ git branch --set-upstream [branch] [remote-branch]
+# event.offsetY 相对容器的垂直坐标 
 
-# 合并指定分支到当前分支
-$ git merge [branch]
+# document.documentElement.scrollTop 垂直方向滚动的值 
 
-# 选择一个 commit，合并进当前分支
-$ git cherry-pick [commit]
+# event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量 
+</code></pre><h2 id="3-IE，FireFox-差异如下："><a href="#3-IE，FireFox-差异如下：" class="headerlink" title="3. IE，FireFox 差异如下："></a>3. IE，FireFox 差异如下：</h2><pre><code>### IE6.0、FF1.06+： 
+    # clientWidth = width + padding 
 
-# 删除分支
-$ git branch -d [branch-name]
+    # clientHeight = height + padding 
 
-# 删除远程分支
-$ git push origin --delete [branch-name]
-$ git branch -dr [remote/branch]
-</code></pre><h2 id="6-标签"><a href="#6-标签" class="headerlink" title="6. 标签"></a>6. 标签</h2><pre><code># 列出所有 tag
-$ git tag
+    # offsetWidth = width + padding + border
 
-# 新建一个 tag 在当前 commit
-$ git tag [tag]
+    # offsetHeight = height + padding + border 
 
-# 新建一个 tag 在指定 commit
-$ git tag [tag] [commit]
+### IE5.0/5.5：  
+    # clientWidth = width - border
 
-# 删除本地 tag
-$ git tag -d [tag]
+    # clientHeight = height - border 
 
-# 删除远程 tag
-$ git push origin :refs/tags/[tagName]
+    # offsetWidth = width 
 
-# 查看 tag 信息
-$ git show [tag]
+    # offsetHeight = height 
 
-# 提交指定 tag
-$ git push [remote] [tag]
+### (需要提一下：CSS中的margin属性，与clientWidth、offsetWidth、clientHeight、offsetHeight均无关)
+    网页可见区域宽： document.body.clientWidth
 
-# 提交所有 tag
-$ git push [remote] --tags
+    网页可见区域高： document.body.clientHeight
 
-# 新建一个分支，指向某个 tag
-$ git checkout -b [branch] [tag]
-</code></pre><h2 id="7-查看信息"><a href="#7-查看信息" class="headerlink" title="7. 查看信息"></a>7. 查看信息</h2><pre><code># 显示有变更的文件
-$ git status
+    网页可见区域宽： document.body.offsetWidth (包括边线的宽)
 
-# 显示当前分支的版本历史
-$ git log
+    网页可见区域高： document.body.offsetHeight (包括边线的高)
 
-# 显示 commit 历史，以及每次 commit 发生变更的文件
-$ git log --stat
+    网页正文全文宽： document.body.scrollWidth
 
-# 搜索提交历史，根据关键词
-$ git log -S [keyword]
+    网页正文全文高： document.body.scrollHeight
 
-# 显示某个 commit 之后的所有变动，每个commit占据一行
-$ git log [tag] HEAD --pretty=format:%s
+    网页被卷去的高： document.body.scrollTop
 
-# 显示某个 commit 之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件
-$ git log [tag] HEAD --grep feature
+    网页被卷去的左： document.body.scrollLeft
 
-# 显示某个文件的版本历史，包括文件改名
-$ git log --follow [file]
-$ git whatchanged [file]
+    网页正文部分上： window.screenTop
 
-# 显示指定文件相关的每一次diff
-$ git log -p [file]
+    网页正文部分左： window.screenLeft
 
-# 显示过去5次提交
-$ git log -5 --pretty --oneline
+    屏幕分辨率的高： window.screen.height
 
-# 显示所有提交过的用户，按提交次数排序
-$ git shortlog -sn
+    屏幕分辨率的宽： window.screen.width
 
-# 显示指定文件是什么人在什么时间修改过
-$ git blame [file]
+    屏幕可用工作区高度： window.screen.availHeight
 
-# 显示暂存区和工作区的差异
-$ git diff
+    屏幕可用工作区宽度： window.screen.availWidth
+</code></pre><h2 id="4-技术要点"><a href="#4-技术要点" class="headerlink" title="4. 技术要点"></a>4. 技术要点</h2><pre><code>本节代码主要使用了Document对象关于窗口的一些属性，这些属性的主要功能和用法如下。
 
-# 显示暂存区和上一个 commit 的差异
-$ git diff --cached [file]
+要得到窗口的尺寸，对于不同的浏览器，需要使用不同的属性和方法：若要检测窗口的真实尺寸，在Netscape下需要使用Window的属性；在IE下需要 深入Document内部对body进行检测；在DOM环境下，若要得到窗口的尺寸，需要注意根元素的尺寸，而不是元素。
 
-# 显示工作区与当前分支最新commit之间的差异
-$ git diff HEAD
+Window对象的innerWidth属性包含当前窗口的内部宽度。Window对象的innerHeight属性包含当前窗口的内部高度。
 
-# 显示两次提交之间的差异
-$ git diff [first-branch]...[second-branch]
+Document对象的body属性对应HTML文档的标签。Document对象的documentElement属性则表示HTML文档的根节点。
 
-# 显示今天你写了多少行代码
-$ git diff --shortstat &quot;@{0 day ago}&quot;
+document.body.clientHeight表示HTML文档所在窗口的当前高度。document.body. clientWidth表示HTML文档所在窗口的当前宽度。
+</code></pre><h2 id="5-实现代码"><a href="#5-实现代码" class="headerlink" title="5. 实现代码"></a>5. 实现代码</h2><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;</div><div class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;title&gt;请调整浏览器窗口&lt;/title&gt;</div><div class="line">	&lt;meta http-equiv=<span class="string">"content-type"</span> content=<span class="string">"text/html; charset=gb2312"</span>&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;h2 align=<span class="string">"center"</span>&gt;请调整浏览器窗口大小&lt;/h2&gt;&lt;hr&gt;</div><div class="line">		&lt;form action=<span class="string">"#"</span> method=<span class="string">"get"</span> name=<span class="string">"form1"</span> id=<span class="string">"form1"</span>&gt;</div><div class="line">			&lt;!--显示浏览器窗口的实际尺寸--&gt;</div><div class="line">			浏览器窗口 的 实际高度: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"availHeight"</span> size=<span class="string">"4"</span>&gt;&lt;br&gt;</div><div class="line">			浏览器窗口 的 实际宽度: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"availWidth"</span> size=<span class="string">"4"</span>&gt;&lt;br&gt;</div><div class="line">		&lt;/form&gt;</div><div class="line">		&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">			&lt;!-- </div><div class="line">			var winWidth = 0;</div><div class="line">			var winHeight = 0;</div><div class="line">			<span class="keyword">function</span> findDimensions() //函数：获取尺寸&#123;</div><div class="line">				//获取窗口宽度</div><div class="line">				<span class="keyword">if</span> (window.innerWidth)</div><div class="line">					winWidth = window.innerWidth;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> ((document.body) &amp;&amp; (document.body.clientWidth))</div><div class="line">					winWidth = document.body.clientWidth;</div><div class="line">				//获取窗口高度</div><div class="line">				<span class="keyword">if</span> (window.innerHeight)</div><div class="line">					winHeight = window.innerHeight;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> ((document.body) &amp;&amp; (document.body.clientHeight))</div><div class="line">					winHeight = document.body.clientHeight;</div><div class="line">				//通过深入Document内部对body进行检测，获取窗口大小</div><div class="line">				<span class="keyword">if</span> (document.documentElement &amp;&amp; document.documentElement.clientHeight &amp;&amp; document.documentElement.clientWidth)&#123;</div><div class="line">					winHeight = document.documentElement.clientHeight;</div><div class="line">					winWidth = document.documentElement.clientWidth;</div><div class="line">				&#125;</div><div class="line">				//结果输出至两个文本框</div><div class="line">				document.form1.availHeight.value= winHeight;</div><div class="line">				document.form1.availWidth.value= winWidth;</div><div class="line">			&#125;</div><div class="line">			findDimensions();</div><div class="line">			//调用函数，获取数值</div><div class="line">			window.onresize=findDimensions;</div><div class="line">			//--&gt;</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</code></pre><h2 id="6-源程序解读"><a href="#6-源程序解读" class="headerlink" title="6. 源程序解读"></a>6. 源程序解读</h2><pre><code>（1）程序首先建立一个表单，包含两个文本框，用于显示窗口当前的宽度和高度，并且，其数值会随窗口大小的改变而变化。
 
-# 显示某次提交的元数据和内容变化
-$ git show [commit]
+（2）在随后的JavaScript代码中，首先定义了两个变量winWidth和winHeight，用于保存窗口的高度值和宽度值。
 
-# 显示某次提交发生变化的文件
-$ git show --name-only [commit]
+（3）然后，在函数findDimensions ( )中，使用window.innerHeight和window.innerWidth得到窗口的高度和宽度，并将二者保存在前述两个变量中。
 
-# 显示某次提交时，某个文件的内容
-$ git show [commit]:[filename]
+（4）再通过深入Document内部对body进行检测，获取窗口大小，并存储在前述两个变量中。
 
-# 显示当前分支的最近几次提交
-$ git reflog
-</code></pre><h2 id="8-远程同步"><a href="#8-远程同步" class="headerlink" title="8. 远程同步"></a>8. 远程同步</h2><pre><code># 下载远程仓库的所有变动
-$ git fetch [remote]
+（5）在函数的最后，通过按名称访问表单元素，结果输出至两个文本框。
 
-# 显示所有远程仓库
-$ git remote -v
-
-# 显示某个远程仓库的信息
-$ git remote show [remote]
-
-# 增加一个新的远程仓库，并命名
-$ git remote add [shortname] [url]
-
-# 取回远程仓库的变化，并与本地分支合并
-$ git pull [remote] [branch]
-
-# 上传本地指定分支到远程仓库
-$ git push [remote] [branch]
-
-# 强行推送当前分支到远程仓库，即使有冲突
-$ git push [remote] --force
-
-# 推送所有分支到远程仓库
-$ git push [remote] --all
-</code></pre><h2 id="9-撤销"><a href="#9-撤销" class="headerlink" title="9. 撤销"></a>9. 撤销</h2><pre><code># 恢复暂存区的指定文件到工作区
-$ git checkout [file]
-
-# 恢复某个 commit 的指定文件到暂存区和工作区
-$ git checkout [commit] [file]
-
-# 恢复暂存区的所有文件到工作区
-$ git checkout .
-
-# 重置暂存区的指定文件，与上一次 commit 保持一致，但工作区不变
-$ git reset [file]
-
-# 重置暂存区与工作区，与上一次 commit 保持一致
-$ git reset --hard
-
-# 重置当前分支的指针为指定 commit，同时重置暂存区，但工作区不变
-$ git reset [commit]
-
-# 重置当前分支的HEAD为指定 commit，同时重置暂存区和工作区，与指定 commit 一致
-$ git reset --hard [commit]
-
-# 重置当前HEAD为指定 commit，但保持暂存区和工作区不变
-$ git reset --keep [commit]
-
-# 新建一个 commit，用来撤销指定 commit
-# 后者的所有变化都将被前者抵消，并且应用到当前分支
-$ git revert [commit]
-
-# 暂时将未提交的变化移除，稍后再移入
-$ git stash
-$ git stash pop
-</code></pre><h2 id="10-其他"><a href="#10-其他" class="headerlink" title="10. 其他"></a>10. 其他</h2><pre><code># 生成一个可供发布的压缩包
-$ git archive
-</code></pre><h3 id="提交到远程仓库："><a href="#提交到远程仓库：" class="headerlink" title="提交到远程仓库："></a>提交到远程仓库：</h3><pre><code>git remote add origin https://github.com.(github名)/(github仓库名).git
-git push -u origin master
-</code></pre><p>###cmd 关闭端口<br>    netstat -ano | findstr 8080<br>    taskkill -pid 进程pid -f</p>
-
+（6）在JavaScript代码的最后，通过调用findDimensions ( )函数，完成整个操作。
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2017/03/10/Git清单/">
-    <time datetime="2017-03-09T16:00:00.000Z" class="entry-date">
-        2017-03-10
+    <a href="/2017/12/01/屏幕高度、宽度的获取/">
+    <time datetime="2017-11-30T16:00:00.000Z" class="entry-date">
+        2017-12-01
     </time>
 </a>
     
@@ -360,7 +246,7 @@ git push -u origin master
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -386,11 +272,15 @@ git push -u origin master
       <ul>
         
           <li>
-            <a href="/2018/07/03/一辈子很长.../">一辈子很长。。。</a>
+            <a href="/2019/09/30/常用正则大全/">常用正则大全</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/育儿的那些事儿/">育儿那些事儿</a>
+            <a href="/2019/04/15/RN-style 详细说明/">RN-style 详细说明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
           </li>
         
           <li>
@@ -399,10 +289,6 @@ git push -u origin master
         
           <li>
             <a href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/07/JavaScript 浏览器兼容问题/">JavaScript 中的一些兼容性问题</a>
           </li>
         
       </ul>
@@ -417,7 +303,7 @@ git push -u origin master
 </div>
       </div>
       <footer id="colophon" role="contentinfo">
-    <p>&copy; 2018 GentleRuan
+    <p>&copy; 2019 GentleRuan
     All rights reserved.</p>
     <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
 </footer>
