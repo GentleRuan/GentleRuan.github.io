@@ -15,16 +15,16 @@
   
   <title>屏幕高度、宽度的获取 | GentleRuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 基本# 网页可见区域宽：     $ document.body.clientWidth   # 网页可见区域高：     $ document.body.clientHeight   # 网页可见区域宽：     $ document.body.offsetWidth (包括边线的宽)   # 网页可见区域高：     $ document.body.offsetHeight (包括边线的">
+  <meta name="description" content="1. 基本1234567891011121314151617181920212223242526272829303132333435363738394041# 网页可见区域宽：	$ document.body.clientWidth 	# 网页可见区域高：	$ document.body.clientHeight 	# 网页可见区域宽：	$ document.body.offsetWidth (包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="屏幕高度、宽度的获取">
 <meta property="og:url" content="http://GentleRuan.github.io/2017/12/01/屏幕高度、宽度的获取/index.html">
 <meta property="og:site_name" content="GentleRuan">
-<meta property="og:description" content="1. 基本# 网页可见区域宽：     $ document.body.clientWidth   # 网页可见区域高：     $ document.body.clientHeight   # 网页可见区域宽：     $ document.body.offsetWidth (包括边线的宽)   # 网页可见区域高：     $ document.body.offsetHeight (包括边线的">
-<meta property="og:updated_time" content="2017-12-01T02:31:43.130Z">
+<meta property="og:description" content="1. 基本1234567891011121314151617181920212223242526272829303132333435363738394041# 网页可见区域宽：	$ document.body.clientWidth 	# 网页可见区域高：	$ document.body.clientHeight 	# 网页可见区域宽：	$ document.body.offsetWidth (包">
+<meta property="og:updated_time" content="2019-10-10T07:54:24.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="屏幕高度、宽度的获取">
-<meta name="twitter:description" content="1. 基本# 网页可见区域宽：     $ document.body.clientWidth   # 网页可见区域高：     $ document.body.clientHeight   # 网页可见区域宽：     $ document.body.offsetWidth (包括边线的宽)   # 网页可见区域高：     $ document.body.offsetHeight (包括边线的">
+<meta name="twitter:description" content="1. 基本1234567891011121314151617181920212223242526272829303132333435363738394041# 网页可见区域宽：	$ document.body.clientWidth 	# 网页可见区域高：	$ document.body.clientHeight 	# 网页可见区域宽：	$ document.body.offsetWidth (包">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -80,137 +80,19 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/12/01/屏幕高度、宽度的获取/" data-id="ck164rtm20006b8u62lvtzap6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2017/12/01/屏幕高度、宽度的获取/" data-id="ck1hjcw0s0005wku6blrzyomi" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h2 id="1-基本"><a href="#1-基本" class="headerlink" title="1. 基本"></a>1. 基本</h2><pre><code># 网页可见区域宽：
-    $ document.body.clientWidth 
-
-# 网页可见区域高：
-    $ document.body.clientHeight 
-
-# 网页可见区域宽：
-    $ document.body.offsetWidth (包括边线的宽) 
-
-# 网页可见区域高：
-    $ document.body.offsetHeight (包括边线的宽) 
-
-# 网页正文全文宽：
-    $ document.body.scrollWidth 
-
-# 网页正文全文高：
-    $ document.body.scrollHeight 
-
-# 网页被卷去的高：
-    $ document.body.scrollTop 
-
-# 网页被卷去的左：
-    $ document.body.scrollLeft 
-
-# 网页正文部分上：
-    $ window.screenTop 
-
-# 网页正文部分左：
-    $ window.screenLeft 
-
-# 屏幕分辨率的高：
-    $ window.screen.height 
-
-# 屏幕分辨率的宽：
-    $ window.screen.width 
-
-# 屏幕可用工作区高度：
-    $ window.screen.availHeight
-
-# 屏幕可用工作区宽度：
-    $ window.screen.availWidth
-</code></pre><h2 id="2-HTML精确定位"><a href="#2-HTML精确定位" class="headerlink" title="2. HTML精确定位:"></a>2. HTML精确定位:</h2><pre><code>### scrollLeft,scrollWidth,clientWidth,offsetWidth 
-
-# scrollHeight: 获取对象的滚动高度。 
-
-# scrollLeft:设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离 
-
-# scrollTop:设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 
-
-# scrollWidth:获取对象的滚动宽度 
-
-# offsetHeight:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度 
-
-# offsetLeft:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置 
-
-# offsetTop:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置 
-
-# event.clientX 相对文档的水平座标 
-
-# event.clientY 相对文档的垂直座标 
-
-# event.offsetX 相对容器的水平坐标 
-
-# event.offsetY 相对容器的垂直坐标 
-
-# document.documentElement.scrollTop 垂直方向滚动的值 
-
-# event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量 
-</code></pre><h2 id="3-IE，FireFox-差异如下："><a href="#3-IE，FireFox-差异如下：" class="headerlink" title="3. IE，FireFox 差异如下："></a>3. IE，FireFox 差异如下：</h2><pre><code>### IE6.0、FF1.06+： 
-    # clientWidth = width + padding 
-
-    # clientHeight = height + padding 
-
-    # offsetWidth = width + padding + border
-
-    # offsetHeight = height + padding + border 
-
-### IE5.0/5.5：  
-    # clientWidth = width - border
-
-    # clientHeight = height - border 
-
-    # offsetWidth = width 
-
-    # offsetHeight = height 
-
-### (需要提一下：CSS中的margin属性，与clientWidth、offsetWidth、clientHeight、offsetHeight均无关)
-    网页可见区域宽： document.body.clientWidth
-
-    网页可见区域高： document.body.clientHeight
-
-    网页可见区域宽： document.body.offsetWidth (包括边线的宽)
-
-    网页可见区域高： document.body.offsetHeight (包括边线的高)
-
-    网页正文全文宽： document.body.scrollWidth
-
-    网页正文全文高： document.body.scrollHeight
-
-    网页被卷去的高： document.body.scrollTop
-
-    网页被卷去的左： document.body.scrollLeft
-
-    网页正文部分上： window.screenTop
-
-    网页正文部分左： window.screenLeft
-
-    屏幕分辨率的高： window.screen.height
-
-    屏幕分辨率的宽： window.screen.width
-
-    屏幕可用工作区高度： window.screen.availHeight
-
-    屏幕可用工作区宽度： window.screen.availWidth
-</code></pre><h2 id="4-技术要点"><a href="#4-技术要点" class="headerlink" title="4. 技术要点"></a>4. 技术要点</h2><pre><code>本节代码主要使用了Document对象关于窗口的一些属性，这些属性的主要功能和用法如下。
-
-要得到窗口的尺寸，对于不同的浏览器，需要使用不同的属性和方法：若要检测窗口的真实尺寸，在Netscape下需要使用Window的属性；在IE下需要 深入Document内部对body进行检测；在DOM环境下，若要得到窗口的尺寸，需要注意根元素的尺寸，而不是元素。
-
-Window对象的innerWidth属性包含当前窗口的内部宽度。Window对象的innerHeight属性包含当前窗口的内部高度。
-
-Document对象的body属性对应HTML文档的标签。Document对象的documentElement属性则表示HTML文档的根节点。
-
-document.body.clientHeight表示HTML文档所在窗口的当前高度。document.body. clientWidth表示HTML文档所在窗口的当前宽度。
-</code></pre><h2 id="5-实现代码"><a href="#5-实现代码" class="headerlink" title="5. 实现代码"></a>5. 实现代码</h2><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;</div><div class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;title&gt;请调整浏览器窗口&lt;/title&gt;</div><div class="line">	&lt;meta http-equiv=<span class="string">"content-type"</span> content=<span class="string">"text/html; charset=gb2312"</span>&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;h2 align=<span class="string">"center"</span>&gt;请调整浏览器窗口大小&lt;/h2&gt;&lt;hr&gt;</div><div class="line">		&lt;form action=<span class="string">"#"</span> method=<span class="string">"get"</span> name=<span class="string">"form1"</span> id=<span class="string">"form1"</span>&gt;</div><div class="line">			&lt;!--显示浏览器窗口的实际尺寸--&gt;</div><div class="line">			浏览器窗口 的 实际高度: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"availHeight"</span> size=<span class="string">"4"</span>&gt;&lt;br&gt;</div><div class="line">			浏览器窗口 的 实际宽度: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"availWidth"</span> size=<span class="string">"4"</span>&gt;&lt;br&gt;</div><div class="line">		&lt;/form&gt;</div><div class="line">		&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">			&lt;!-- </div><div class="line">			var winWidth = 0;</div><div class="line">			var winHeight = 0;</div><div class="line">			<span class="keyword">function</span> findDimensions() //函数：获取尺寸&#123;</div><div class="line">				//获取窗口宽度</div><div class="line">				<span class="keyword">if</span> (window.innerWidth)</div><div class="line">					winWidth = window.innerWidth;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> ((document.body) &amp;&amp; (document.body.clientWidth))</div><div class="line">					winWidth = document.body.clientWidth;</div><div class="line">				//获取窗口高度</div><div class="line">				<span class="keyword">if</span> (window.innerHeight)</div><div class="line">					winHeight = window.innerHeight;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> ((document.body) &amp;&amp; (document.body.clientHeight))</div><div class="line">					winHeight = document.body.clientHeight;</div><div class="line">				//通过深入Document内部对body进行检测，获取窗口大小</div><div class="line">				<span class="keyword">if</span> (document.documentElement &amp;&amp; document.documentElement.clientHeight &amp;&amp; document.documentElement.clientWidth)&#123;</div><div class="line">					winHeight = document.documentElement.clientHeight;</div><div class="line">					winWidth = document.documentElement.clientWidth;</div><div class="line">				&#125;</div><div class="line">				//结果输出至两个文本框</div><div class="line">				document.form1.availHeight.value= winHeight;</div><div class="line">				document.form1.availWidth.value= winWidth;</div><div class="line">			&#125;</div><div class="line">			findDimensions();</div><div class="line">			//调用函数，获取数值</div><div class="line">			window.onresize=findDimensions;</div><div class="line">			//--&gt;</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-</code></pre><h2 id="6-源程序解读"><a href="#6-源程序解读" class="headerlink" title="6. 源程序解读"></a>6. 源程序解读</h2><pre><code>（1）程序首先建立一个表单，包含两个文本框，用于显示窗口当前的宽度和高度，并且，其数值会随窗口大小的改变而变化。
+        <h2 id="1-基本"><a href="#1-基本" class="headerlink" title="1. 基本"></a>1. 基本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 网页可见区域宽：</span></div><div class="line">	$ document.body.clientWidth </div><div class="line">	</div><div class="line"><span class="comment"># 网页可见区域高：</span></div><div class="line">	$ document.body.clientHeight </div><div class="line">	</div><div class="line"><span class="comment"># 网页可见区域宽：</span></div><div class="line">	$ document.body.offsetWidth (包括边线的宽) </div><div class="line">	</div><div class="line"><span class="comment"># 网页可见区域高：</span></div><div class="line">	$ document.body.offsetHeight (包括边线的宽) </div><div class="line">	</div><div class="line"><span class="comment"># 网页正文全文宽：</span></div><div class="line">	$ document.body.scrollWidth </div><div class="line">	</div><div class="line"><span class="comment"># 网页正文全文高：</span></div><div class="line">	$ document.body.scrollHeight </div><div class="line">	</div><div class="line"><span class="comment"># 网页被卷去的高：</span></div><div class="line">	$ document.body.scrollTop </div><div class="line">	</div><div class="line"><span class="comment"># 网页被卷去的左：</span></div><div class="line">	$ document.body.scrollLeft </div><div class="line">	</div><div class="line"><span class="comment"># 网页正文部分上：</span></div><div class="line">	$ window.screenTop </div><div class="line">	</div><div class="line"><span class="comment"># 网页正文部分左：</span></div><div class="line">	$ window.screenLeft </div><div class="line">	</div><div class="line"><span class="comment"># 屏幕分辨率的高：</span></div><div class="line">	$ window.screen.height </div><div class="line">	</div><div class="line"><span class="comment"># 屏幕分辨率的宽：</span></div><div class="line">	$ window.screen.width </div><div class="line">	</div><div class="line"><span class="comment"># 屏幕可用工作区高度：</span></div><div class="line">	$ window.screen.availHeight</div><div class="line">	</div><div class="line"><span class="comment"># 屏幕可用工作区宽度：</span></div><div class="line">	$ window.screen.availWidth</div></pre></td></tr></table></figure>
+<h2 id="2-HTML精确定位"><a href="#2-HTML精确定位" class="headerlink" title="2. HTML精确定位:"></a>2. HTML精确定位:</h2><h3 id="scrollLeft-scrollWidth-clientWidth-offsetWidth"><a href="#scrollLeft-scrollWidth-clientWidth-offsetWidth" class="headerlink" title="scrollLeft, scrollWidth, clientWidth, offsetWidth"></a>scrollLeft, scrollWidth, clientWidth, offsetWidth</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">scrollHeight: 获取对象的滚动高度。 </div><div class="line"></div><div class="line">scrollLeft: 设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离 </div><div class="line"></div><div class="line">scrollTop: 设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 </div><div class="line"></div><div class="line">scrollWidth: 获取对象的滚动宽度 </div><div class="line"></div><div class="line">offsetHeight: 获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度 </div><div class="line"></div><div class="line">offsetLeft: 获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置 </div><div class="line"></div><div class="line">offsetTop: 获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置 </div><div class="line"></div><div class="line">event.clientX 相对文档的水平座标 </div><div class="line"></div><div class="line">event.clientY 相对文档的垂直座标 </div><div class="line"></div><div class="line">event.offsetX 相对容器的水平坐标 </div><div class="line"></div><div class="line">event.offsetY 相对容器的垂直坐标 </div><div class="line"></div><div class="line">document.documentElement.scrollTop 垂直方向滚动的值 </div><div class="line"></div><div class="line">event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量</div></pre></td></tr></table></figure>
+<h2 id="3-IE，FireFox-差异如下："><a href="#3-IE，FireFox-差异如下：" class="headerlink" title="3. IE，FireFox 差异如下："></a>3. IE，FireFox 差异如下：</h2><h3 id="IE6-0、FF1-06-："><a href="#IE6-0、FF1-06-：" class="headerlink" title="IE6.0、FF1.06+ ："></a>IE6.0、FF1.06+ ：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># clientWidth = width + padding </span></div><div class="line"></div><div class="line"><span class="comment"># clientHeight = height + padding </span></div><div class="line"></div><div class="line"><span class="comment"># offsetWidth = width + padding + border</span></div><div class="line"></div><div class="line"><span class="comment"># offsetHeight = height + padding + border</span></div></pre></td></tr></table></figure>
+<h3 id="IE5-0-5-5-："><a href="#IE5-0-5-5-：" class="headerlink" title="IE5.0/5.5 ："></a>IE5.0/5.5 ：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># clientWidth = width - border</span></div><div class="line"></div><div class="line"><span class="comment"># clientHeight = height - border </span></div><div class="line"></div><div class="line"><span class="comment"># offsetWidth = width </span></div><div class="line"></div><div class="line"><span class="comment"># offsetHeight = height</span></div></pre></td></tr></table></figure>
+<h3 id="需要提一下：CSS-中的-margin-属性，与-clientWidth、offsetWidth、clientHeight、offsetHeight-均无关"><a href="#需要提一下：CSS-中的-margin-属性，与-clientWidth、offsetWidth、clientHeight、offsetHeight-均无关" class="headerlink" title="需要提一下：CSS 中的 margin 属性，与 clientWidth、offsetWidth、clientHeight、offsetHeight 均无关"></a>需要提一下：CSS 中的 margin 属性，与 clientWidth、offsetWidth、clientHeight、offsetHeight 均无关</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">	网页可见区域宽： document.body.clientWidth</div><div class="line">	</div><div class="line">	网页可见区域高： document.body.clientHeight</div><div class="line">	</div><div class="line">	网页可见区域宽： document.body.offsetWidth (包括边线的宽)</div><div class="line">	</div><div class="line">	网页可见区域高： document.body.offsetHeight (包括边线的高)</div><div class="line">	</div><div class="line">	网页正文全文宽： document.body.scrollWidth</div><div class="line">	</div><div class="line">	网页正文全文高： document.body.scrollHeight</div><div class="line">	</div><div class="line">	网页被卷去的高： document.body.scrollTop</div><div class="line">	</div><div class="line">	网页被卷去的左： document.body.scrollLeft</div><div class="line">	</div><div class="line">	网页正文部分上： window.screenTop</div><div class="line">	</div><div class="line">	网页正文部分左： window.screenLeft</div><div class="line">	</div><div class="line">	屏幕分辨率的高： window.screen.height</div><div class="line">	</div><div class="line">	屏幕分辨率的宽： window.screen.width</div><div class="line">	</div><div class="line">	屏幕可用工作区高度： window.screen.availHeight</div><div class="line">	</div><div class="line">	屏幕可用工作区宽度： window.screen.availWidth</div><div class="line">``` </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">## 4. 技术要点</span></div><div class="line"></div><div class="line">``` bash</div><div class="line">	本节代码主要使用了Document对象关于窗口的一些属性，这些属性的主要功能和用法如下。</div><div class="line">	</div><div class="line">	要得到窗口的尺寸，对于不同的浏览器，需要使用不同的属性和方法：</div><div class="line"></div><div class="line">	若要检测窗口的真实尺寸，在Netscape下需要使用Window的属性；</div><div class="line">	</div><div class="line">	在IE下需要 深入Document内部对body进行检测；在DOM环境下，若要得到窗口的尺寸，需要注意根元素的尺寸，而不是元素。</div><div class="line">	</div><div class="line">	Window对象的innerWidth属性包含当前窗口的内部宽度。Window对象的innerHeight属性包含当前窗口的内部高度。</div><div class="line">	</div><div class="line">	Document对象的body属性对应HTML文档的标签。Document对象的documentElement属性则表示HTML文档的根节点。</div><div class="line">	</div><div class="line">	document.body.clientHeight表示HTML文档所在窗口的当前高度。document.body. clientWidth表示HTML文档所在窗口的当前宽度。</div></pre></td></tr></table></figure>
+<h2 id="5-实现代码"><a href="#5-实现代码" class="headerlink" title="5. 实现代码"></a>5. 实现代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;</div><div class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;title&gt;请调整浏览器窗口&lt;/title&gt;</div><div class="line">	&lt;meta http-equiv=<span class="string">"content-type"</span> content=<span class="string">"text/html; charset=gb2312"</span>&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;h2 align=<span class="string">"center"</span>&gt;请调整浏览器窗口大小&lt;/h2&gt;&lt;hr&gt;</div><div class="line">		&lt;form action=<span class="string">"#"</span> method=<span class="string">"get"</span> name=<span class="string">"form1"</span> id=<span class="string">"form1"</span>&gt;</div><div class="line">			&lt;!--显示浏览器窗口的实际尺寸--&gt;</div><div class="line">			浏览器窗口 的 实际高度: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"availHeight"</span> size=<span class="string">"4"</span>&gt;&lt;br&gt;</div><div class="line">			浏览器窗口 的 实际宽度: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"availWidth"</span> size=<span class="string">"4"</span>&gt;&lt;br&gt;</div><div class="line">		&lt;/form&gt;</div><div class="line">		&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">			&lt;!-- </div><div class="line">			var winWidth = 0;</div><div class="line">			var winHeight = 0;</div><div class="line">			<span class="keyword">function</span> findDimensions() //函数：获取尺寸&#123;</div><div class="line">				//获取窗口宽度</div><div class="line">				<span class="keyword">if</span> (window.innerWidth)</div><div class="line">					winWidth = window.innerWidth;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> ((document.body) &amp;&amp; (document.body.clientWidth))</div><div class="line">					winWidth = document.body.clientWidth;</div><div class="line">				//获取窗口高度</div><div class="line">				<span class="keyword">if</span> (window.innerHeight)</div><div class="line">					winHeight = window.innerHeight;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> ((document.body) &amp;&amp; (document.body.clientHeight))</div><div class="line">					winHeight = document.body.clientHeight;</div><div class="line">				//通过深入Document内部对body进行检测，获取窗口大小</div><div class="line">				<span class="keyword">if</span> (document.documentElement &amp;&amp; document.documentElement.clientHeight &amp;&amp; document.documentElement.clientWidth)&#123;</div><div class="line">					winHeight = document.documentElement.clientHeight;</div><div class="line">					winWidth = document.documentElement.clientWidth;</div><div class="line">				&#125;</div><div class="line">				//结果输出至两个文本框</div><div class="line">				document.form1.availHeight.value= winHeight;</div><div class="line">				document.form1.availWidth.value= winWidth;</div><div class="line">			&#125;</div><div class="line">			findDimensions();</div><div class="line">			//调用函数，获取数值</div><div class="line">			window.onresize=findDimensions;</div><div class="line">			//--&gt;</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h2 id="6-源程序解读"><a href="#6-源程序解读" class="headerlink" title="6. 源程序解读"></a>6. 源程序解读</h2><pre><code class="bash">（1）程序首先建立一个表单，包含两个文本框，用于显示窗口当前的宽度和高度，并且，其数值会随窗口大小的改变而变化。
 
 （2）在随后的JavaScript代码中，首先定义了两个变量winWidth和winHeight，用于保存窗口的高度值和宽度值。
 
@@ -222,6 +104,7 @@ document.body.clientHeight表示HTML文档所在窗口的当前高度。document
 
 （6）在JavaScript代码的最后，通过调用findDimensions ( )函数，完成整个操作。
 </code></pre>
+
       
     </div><!-- .entry-content -->
 
@@ -275,6 +158,14 @@ document.body.clientHeight表示HTML文档所在窗口的当前高度。document
       <ul>
         
           <li>
+            <a href="/2019/10/10/Web前端基础知识汇总（1）/">Web 前端基础知识汇总（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/08/HTML 总结/">HTML 总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/30/常用正则大全/">常用正则大全</a>
           </li>
         
@@ -284,14 +175,6 @@ document.body.clientHeight表示HTML文档所在窗口的当前高度。document
         
           <li>
             <a href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
-          </li>
-        
-          <li>
-            <a href="/2017/12/01/屏幕高度、宽度的获取/">屏幕高度、宽度的获取</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
           </li>
         
       </ul>

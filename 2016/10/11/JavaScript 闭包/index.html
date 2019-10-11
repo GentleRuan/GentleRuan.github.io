@@ -15,16 +15,16 @@
   
   <title>JavaScript 闭包 | GentleRuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 概述闭包（closures），在 MDN 解释为： 1Closures are functions that refer to independent (free) variables (variables that are used locally, but defined in an enclosing scope). In other words, these functions ‘r">
+  <meta name="description" content="1. 概述闭包（closures），在 MDN 解释为： 闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。 闭包是 JavaScript 语言的一个特色，当然也是它的一大难点，很多高级应用都要依靠闭包实现，或者我们平常编码过程中，也在有意无意间使用到闭包。 2. 作用域链在理解闭包，首先就要理解 Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 闭包">
 <meta property="og:url" content="http://GentleRuan.github.io/2016/10/11/JavaScript 闭包/index.html">
 <meta property="og:site_name" content="GentleRuan">
-<meta property="og:description" content="1. 概述闭包（closures），在 MDN 解释为： 1Closures are functions that refer to independent (free) variables (variables that are used locally, but defined in an enclosing scope). In other words, these functions ‘r">
-<meta property="og:updated_time" content="2017-07-18T01:58:45.915Z">
+<meta property="og:description" content="1. 概述闭包（closures），在 MDN 解释为： 闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。 闭包是 JavaScript 语言的一个特色，当然也是它的一大难点，很多高级应用都要依靠闭包实现，或者我们平常编码过程中，也在有意无意间使用到闭包。 2. 作用域链在理解闭包，首先就要理解 Java">
+<meta property="og:updated_time" content="2019-10-08T07:48:22.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 闭包">
-<meta name="twitter:description" content="1. 概述闭包（closures），在 MDN 解释为： 1Closures are functions that refer to independent (free) variables (variables that are used locally, but defined in an enclosing scope). In other words, these functions ‘r">
+<meta name="twitter:description" content="1. 概述闭包（closures），在 MDN 解释为： 闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。 闭包是 JavaScript 语言的一个特色，当然也是它的一大难点，很多高级应用都要依靠闭包实现，或者我们平常编码过程中，也在有意无意间使用到闭包。 2. 作用域链在理解闭包，首先就要理解 Java">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -80,14 +80,13 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/10/11/JavaScript 闭包/" data-id="ck164rtmb0009b8u6ix4e9m48" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/10/11/JavaScript 闭包/" data-id="ck1hjcw140007wku6j7wj6rqc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
         <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>闭包（closures），在 MDN 解释为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Closures are <span class="built_in">functions</span> that refer to independent (free) variables (variables that are used locally, but defined <span class="keyword">in</span> an enclosing scope). In other words, these <span class="built_in">functions</span> ‘remember’ the environment <span class="keyword">in</span> <span class="built_in">which</span> they were created.</div></pre></td></tr></table></figure>
 <p>闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。</p>
 <p>闭包是 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 语言的一个特色，当然也是它的一大难点，很多高级应用都要依靠闭包实现，或者我们平常编码过程中，也在有意无意间使用到闭包。</p>
 <h2 id="2-作用域链"><a href="#2-作用域链" class="headerlink" title="2. 作用域链"></a>2. 作用域链</h2><p>在理解闭包，首先就要理解 <a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="external">JavaScript</a> 中的作用域链。</p>
@@ -128,7 +127,8 @@
 <p>让每个 div 元素被点击时，都能正确弹出当前被点击的 div 的索引：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt; div-1 &lt;/div&gt;</div><div class="line">&lt;div&gt; div-2 &lt;/div&gt;</div><div class="line">&lt;div&gt; div-3 &lt;/div&gt;</div><div class="line">&lt;div&gt; div-4 &lt;/div&gt;</div><div class="line">&lt;div&gt; div-5 &lt;/div&gt;</div></pre></td></tr></table></figure>
 <p>如果使用如下写法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">handle</span></span>()&#123;</div><div class="line">		var divs = document.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line">		<span class="keyword">for</span> (var i = 0, len = divs.length; i &lt; len; i++)&#123;</div><div class="line">			divs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				alert(<span class="string">"你点击的 div 索引为："</span> + i);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	handle();</div><div class="line">&lt;/script&gt;</div><div class="line">这时，在每个 div 上点击时弹出的结果都是`你点击的 div 索引为：5`。这是因为事件处理是异步的，但事件绑定是同步的，会先执行完循环体的 5 次操作，为每个 div 绑定上 onclick 事件。</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">handle</span></span>()&#123;</div><div class="line">		var divs = document.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line">		<span class="keyword">for</span> (var i = 0, len = divs.length; i &lt; len; i++)&#123;</div><div class="line">			divs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				alert(<span class="string">"你点击的 div 索引为："</span> + i);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	handle();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>这时，在每个 div 上点击时弹出的结果都是<code>你点击的 div 索引为：5</code>。这是因为事件处理是异步的，但事件绑定是同步的，会先执行完循环体的 5 次操作，为每个 div 绑定上 onclick 事件。</p>
 <p>这个过程中，变量 i 的值一直在递增变化，当所有 div 元素都被遍历后，i 的值自增到 5 退出循环结构。函数 handle 调用结束后，由于在事件响应程序中仍然存在变量 i 的引用，如果释放变量 i 的资源，会导致事件响应程序执行错误，所以为了保证事件响应程序中仍然能正确使用到变量 i，会将变量 i 的值一直保留在内存中，但保留的 i 的值为 5。</p>
 <p>如果要正确输出索引值，可使用闭包修改如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">handle</span></span>()&#123;</div><div class="line">		var divs = document.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line">		<span class="keyword">for</span> (var i = 0, len = divs.length; i &lt; len; i++)&#123;</div><div class="line">			divs[i].onclick = clk(i);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">function</span> clk(index)&#123;</div><div class="line">		<span class="built_in">return</span> <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">			alert(<span class="string">"你点击的 div 索引为："</span> + index);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	handle();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
@@ -201,6 +201,14 @@
       <ul>
         
           <li>
+            <a href="/2019/10/10/Web前端基础知识汇总（1）/">Web 前端基础知识汇总（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/08/HTML 总结/">HTML 总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/30/常用正则大全/">常用正则大全</a>
           </li>
         
@@ -210,14 +218,6 @@
         
           <li>
             <a href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
-          </li>
-        
-          <li>
-            <a href="/2017/12/01/屏幕高度、宽度的获取/">屏幕高度、宽度的获取</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
           </li>
         
       </ul>

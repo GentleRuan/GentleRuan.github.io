@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-常用正则大全" class="post-常用正则大全 post type-post status-publish format-standard hentry">
+    <article id="post-Web前端基础知识汇总（1）" class="post-Web前端基础知识汇总（1） post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,375 +74,311 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2019/09/30/常用正则大全/">常用正则大全</a>
+      <a class="article-title" href="/2019/10/10/Web前端基础知识汇总（1）/">Web 前端基础知识汇总（1）</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2019/09/30/常用正则大全/" data-id="ck164vjzg000024u6jnqkflk3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2019/10/10/Web前端基础知识汇总（1）/" data-id="ck1lvdxy80000rwu66r2hdufy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h2 id="正则基本概念"><a href="#正则基本概念" class="headerlink" title="正则基本概念"></a>正则基本概念</h2><h3 id="1-元字符-w-W-d-D-s-S"><a href="#1-元字符-w-W-d-D-s-S" class="headerlink" title="1. 元字符 ( ., \w, \W, \d, \D, \s, /S, ^, $, )"></a>1. 元字符 ( ., \w, \W, \d, \D, \s, /S, ^, $, )</h3><pre><code>. 匹配除了换行符以外的任意字符。
-
-\s 代表任意空白符( 换行符，制表符，空格 )
-
-\S 匹配任意非空字符串
-
-\b 匹配单词边界，匹配单词的开头和结尾。
-
-\B 匹配一个非单词边界
-
-\d 匹配一个数字,等价于[0-9]
-
-\D 匹配一个数字,等价于[^0-9]
-
-\w 匹配一个单字字符( 字母、数字或者下划线 )等价于 [A-Za-z0-9_],
-   例如: /\w/ 匹配 &quot;apple, &quot; 中的 &apos;a&apos;: &quot;$5.28, &quot;中的 &apos;5&apos; 和 &quot;3D.&quot; 中的 &apos;3&apos;。 
-
-\W 匹配一个非单字字符。等价于 [^A-Za-z0-9_],
-   例如: /\W/ 或者 /[^A-Za-z0-9_]/ 匹配 &quot;50%.&quot; 中的 &apos;%&apos;。
-
-^ 匹配字符串的开始用在 [] 括号里面表示排除,
-  /^A/ 并不会匹配 &quot;an A&quot; 中的 &apos;A&apos;，但是会匹配 &quot;An E&quot; 中的 &apos;A&apos;。
-
-$ 匹配字符串的结束。
-  例如: /t$/ 并不会匹配 &quot;eater&quot; 中的 &apos;t&apos;，但是会匹配 &quot;eat&quot; 中的 &apos;t&apos;。 
-  QQ 号必须为 5 位到 12 位数字时，可以使用: ^\d{5,12}$
-</code></pre><h3 id="2-分组符"><a href="#2-分组符" class="headerlink" title="2. 分组符 ( [], (), {} );"></a>2. 分组符 ( [], (), {} );</h3><pre><code>() 如果想要重复多个字符该怎么办 ?
-   你可以用小括号来指定子表达式(也叫做分组)，然后你就可以指定这个子表达式的重复次数了。
-   eg: (\d{1,3}\.){3}\d{1,3} 是一个简单的 IP 地址匹配表达式。
-   要理解这个表达式，请按下列顺序分析它: \d{1,3} 匹配 1 到 3 位的数字，
-   (\d{1,3}\.){3} 匹配三位数字加上一个英文句号( 这个整体也就是这个分组 )重复 3 次，
-   最后再加上一个一到三位的数字 (\d{1,3})。
-
-[] 代表一个字符集合。
-   匹配方括号的中任意字符，包括转义序列。
-   你可以使用破折号 (-) 来指定一个字符范围。
-   对于点 (.) 和星号 (*) 这样的特殊符号在一个字符集中没有特殊的意义。
-   他们不必进行转义，不过转义也是起作用的。
-   例如: [abcd] 和 [a-d] 是一样的。
-   他们都匹配 &quot;brisket&quot; 中得 &apos;b&apos;,也都匹配 &quot;city&quot; 中的 &apos;c&apos;。
-   /[a-z.]+/ 和/[\w.]+/ 都匹配 &quot;test.i.ng&quot; 中得所有字符。
-
-{} 表示量词的范围的。
-</code></pre><h3 id="3-修饰符-i-g-m"><a href="#3-修饰符-i-g-m" class="headerlink" title="3. 修饰符 ( i, g, m );"></a>3. 修饰符 ( i, g, m );</h3><pre><code>i 忽略大小写
-
-g 执行全局匹配
-
-m 执行多行匹配
-</code></pre><h3 id="4-量词-n-m-n-n"><a href="#4-量词-n-m-n-n" class="headerlink" title="4. 量词 ( *, ?, +, -, {n, m}, ?=n, ?!=n);"></a>4. 量词 ( *, ?, +, -, {n, m}, ?=n, ?!=n);</h3><pre><code>* 匹配任意次, .* 连在一起就意味着任意数量的不包含换行的字符。等价于 {0,}
-
-+ 匹配前面一个表达式 1 次或者多次。等价于 {1,}。
-
-? 匹配前面一个表达式 0 次或者 1 次。等价于 {0,1}。
-
-{n,m} 匹配 n 到 m 次
-
-x(?=y) 匹配 &apos;x&apos; 仅仅当 &apos;x&apos; 后面跟着 &apos;y&apos;.这种叫做正向肯定查找。 
-       例如: /Jack(?=Sprat)/ 会匹配到 &apos;Jack&apos; 仅仅当它后面跟着 &apos;Sprat&apos;。
-       /Jack(?=Sprat|Frost)/ 匹配 &apos;Jack&apos; 仅仅当它后面跟着 &apos;Sprat&apos; 或者是 &apos;Frost&apos;。
-       但是 &apos;Sprat&apos; 和 &apos;Frost&apos; 都不是匹配结果的一部分。
-
-x(?!y) 匹配 &apos;x&apos; 仅仅当 &apos;x&apos; 后面不跟着 &apos;y&apos; ,这个叫做正向否定查找。 
-       例如: /\d+(?!\.)/ 匹配一个数字仅仅当这个数字后面没有跟小数点的时候。
-       正则表达式 /\d+(?!\.)/.exec(&quot;3.141&quot;) 匹配 &apos;141&apos; 但是不是 &apos;3.141&apos;
-</code></pre><h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><pre><code>如：匹配一个邮箱
-
-var eReg = /\S*@\S*\.\S*/;
-
-console.log( eReg.test(&apos;873619879@qq.com&apos;) ) //true
-</code></pre><h2 id="1-有关数字的正则"><a href="#1-有关数字的正则" class="headerlink" title="1. 有关数字的正则"></a>1. 有关数字的正则</h2><pre><code>intege: &quot;^-?[1-9]\\d*$&quot;, //整数  
-
-intege1: &quot;^[1-9]\\d*$&quot;, //正整数   
-
-intege2: &quot;^-[1-9]\\d*$&quot;, //负整数   
-
-num: &quot;^([+-]?)\\d*\\.?\\d+$&quot;, //数字   
-
-num1: &quot;^[1-9]\\d*|0$&quot;, //正数（正整数 + 0）  
-
-num2: &quot;^-[1-9]\\d*|0$&quot;, //负数（负整数 + 0） 
-
-decmal: &quot;^([+-]?)\\d*\\.\\d+$&quot;, //浮点数   
-
-decmal1: &quot;^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$&quot;, //正浮点数  
-
-decmal2: &quot;^-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*)$&quot;, //负浮点数  
-
-decmal3: &quot;^-?([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*|0?.0+|0)$&quot;, //浮点数   
-
-decmal4: &quot;^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*|0?.0+|0$&quot;, 
-         //非负浮点数（正浮点数 + 0）   
-
-decmal5: &quot;^(-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*))|0?.0+|0$&quot;, 
-         //非正浮点数（负浮点数 + 0）   
-</code></pre><h2 id="2-有关字母的正则"><a href="#2-有关字母的正则" class="headerlink" title="2. 有关字母的正则"></a>2. 有关字母的正则</h2><pre><code>letter: &quot;^[A-Za-z]+$&quot;, //字母   
-
-letter_u: &quot;^[A-Z]+$&quot;, //大写字母 
-
-letter_l: &quot;^[a-z]+$&quot;, //小写字母    
-
-^[A-Za-z0-9]+$　　//匹配由数字和26个英文字母组成的字符串 
-
-^\w+$　　//匹配由数字、26个英文字母或者下划线组成的字符串 
-</code></pre><h2 id="3-有关表单基本信息的正则"><a href="#3-有关表单基本信息的正则" class="headerlink" title="3. 有关表单基本信息的正则"></a>3. 有关表单基本信息的正则</h2><pre><code>notempty: &quot;^\\S+$&quot;, //非空   
-
-username: &quot;^\\w+$&quot;, //用来用户注册。
-          匹配由数字、26个英文字母或者下划线组成的字符串 
-
-tel: &quot;^(([0\\+]\\d{2,3}-)?(0\\d{2,3})-)?(\\d{7,8})
-     (-(\\d{3,}))?$&quot;, //电话号码的函数(包括验证国内区号,国际区号,分机号)   
-
-mobile: &quot;^(13|15)[0-9]{9}$&quot;, //手机  
-
-email: &quot;^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+
-       ((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$&quot;, //邮箱 
-
-idcard: &quot;^[1-9]([0-9]{14}|[0-9]{17})$&quot;, //身份证
-
-zipcode: &quot;^\\d{6}$&quot;, //邮编  
-
-date: &quot;^\\d{4}(\\-|\\/|\.)\\d{1,2}\\1\\d{1,2}$&quot;, //日期 
-
-qq: &quot;^[1-9]*[1-9][0-9]*$&quot;, //QQ号码   
-
-color: &quot;^[a-fA-F0-9]{6}$&quot;, //颜色   
-
-url: &quot;^http[s]?:\\/\\/([\\w-]+\\.)+[\\w-]+([\\w-./?%&amp;=]*)?$&quot;, //url   
-
-IPV4: &quot;^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.)
-      {3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$&quot;, //IPV4   
-
-chinese: &quot;^[\\u4E00-\\u9FA5\\uF900-\\uFA2D]+$&quot;, //仅中文  
-
-ascii: &quot;^[\\x00-\\xFF]+$&quot;, //仅ACSII字符    
-
-picture: &quot;(.*)\\.(jpg|bmp|gif|ico|pcx|jpeg|tif|png|raw|tga)$&quot;, //图片  
-
-rar: &quot;(.*)\\.(rar|zip|7zip|tgz)$&quot;, //压缩文件   
-
-licenseplate: &quot;^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵
-              粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|
-              ([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z]
-              [A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$&quot;, //车牌号
-</code></pre><h2 id="4-函数调用方式"><a href="#4-函数调用方式" class="headerlink" title="4. 函数调用方式"></a>4. 函数调用方式</h2><h3 id="HTML-代码："><a href="#HTML-代码：" class="headerlink" title="HTML 代码："></a>HTML 代码：</h3><pre><code>&lt;input type = &quot;text&quot; name = &quot;textfield&quot; id = &quot;txt_id&quot; /&gt;   
-&lt;input type = &quot;submit&quot; name = &quot;Submit&quot; value = &quot;提交&quot; οnclick = &quot;check()&quot; /&gt;   
-</code></pre><h3 id="JS-代码"><a href="#JS-代码" class="headerlink" title="JS 代码"></a>JS 代码</h3><h4 id="a-判断输入是否是一个由-0-9-A-Z-a-z-组成的字符串"><a href="#a-判断输入是否是一个由-0-9-A-Z-a-z-组成的字符串" class="headerlink" title="a. 判断输入是否是一个由 (0-9 / A-Z / a-z) 组成的字符串"></a>a. 判断输入是否是一个由 (0-9 / A-Z / a-z) 组成的字符串</h4><pre><code>function isalphanumber( str ) {   
-    var result = str.match(/^[a-zA-Z0-9]+$/);   
-    if(result == null) return false;   
-    return true;   
-}    
-</code></pre><h4 id="b-判断输入是否是一个数字-数字包含小数"><a href="#b-判断输入是否是一个数字-数字包含小数" class="headerlink" title="b. 判断输入是否是一个数字 ( 数字包含小数 )"></a>b. 判断输入是否是一个数字 ( 数字包含小数 )</h4><pre><code>function isnumber( str ) {   
-    return !isNaN( str );   
-}   
-</code></pre><h4 id="c-判断输入是否是一个整数"><a href="#c-判断输入是否是一个整数" class="headerlink" title="c. 判断输入是否是一个整数"></a>c. 判断输入是否是一个整数</h4><pre><code>function isint( str ) {   
-    var result = str.match(/^(-|\+)?\d+$/);   
-    if(result == null) return false;   
-    return true;   
-} 
-</code></pre><h4 id="d-“YYYY-MM-DD-HH-MM-SS”-“YYYY-MM-DD-HH-MM-SS”"><a href="#d-“YYYY-MM-DD-HH-MM-SS”-“YYYY-MM-DD-HH-MM-SS”" class="headerlink" title="d. (“YYYY-MM-DD HH:MM:SS” || “YYYY/MM/DD HH:MM:SS”)"></a>d. (“YYYY-MM-DD HH:MM:SS” || “YYYY/MM/DD HH:MM:SS”)</h4><pre><code>function isdatetime( str ) {   
-    var zz = /^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/;
-    var result = str.match(zz);   
-    if(result == null) return false;   
-    var d = new Date(
-        result[1], 
-        result[3]-1, 
-        result[4], 
-        result[5], 
-        result[6], 
-        result[7]
-    );   
-    return (
-        d.getFullYear() == result[1]
-        &amp;&amp; (d.getMonth()+1) == result[3]
-        &amp;&amp; d.getDate() == result[4]
-        &amp;&amp; d.getHours() == result[5]
-        &amp;&amp; d.getMinutes() == result[6]
-        &amp;&amp; d.getSeconds() == result[7]
-    );   
-}   
-</code></pre><h4 id="e-检查是否为-YYYY-MM-DD-YYYY-MM-DD-的日期格式"><a href="#e-检查是否为-YYYY-MM-DD-YYYY-MM-DD-的日期格式" class="headerlink" title="e. 检查是否为 (YYYY-MM-DD || YYYY/MM/DD) 的日期格式"></a>e. 检查是否为 (YYYY-MM-DD || YYYY/MM/DD) 的日期格式</h4><pre><code>function isdate( str ) {   
-    var result = str.match(/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2})$/);   
-    if(result == null) return false;   
-    var d=new Date(result[1], result[3]-1, result[4]);   
-    return (
-        d.getFullYear() == result[1] 
-        &amp;&amp; d.getMonth()+1 == result[3] 
-        &amp;&amp; d.getDate() == result[4]
-    );   
-}    
-</code></pre><h4 id="f-判断输入是否是有效的电子邮件"><a href="#f-判断输入是否是有效的电子邮件" class="headerlink" title="f. 判断输入是否是有效的电子邮件"></a>f. 判断输入是否是有效的电子邮件</h4><pre><code>function isemail( str ) {   
-  var zz = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
-  var result = str.match(zz);   
-  if(result == null) return false;   
-  return true;   
-}    
-</code></pre><h4 id="g-去除字符串的首尾的空格"><a href="#g-去除字符串的首尾的空格" class="headerlink" title="g. 去除字符串的首尾的空格"></a>g. 去除字符串的首尾的空格</h4><pre><code>function trim( str ){   
-    return str.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);   
-}       
-</code></pre><h4 id="h-返回字符串的实际长度-一个汉字算2个长度"><a href="#h-返回字符串的实际长度-一个汉字算2个长度" class="headerlink" title="h. 返回字符串的实际长度, 一个汉字算2个长度"></a>h. 返回字符串的实际长度, 一个汉字算2个长度</h4><pre><code>function strlen( str ){   
-    return str.replace( /[^\x00-\xff]/g, &quot;**&quot; ).length;   
-}     
-</code></pre><h4 id="i-匹配中国邮政编码-6位"><a href="#i-匹配中国邮政编码-6位" class="headerlink" title="i. 匹配中国邮政编码(6位)"></a>i. 匹配中国邮政编码(6位)</h4><pre><code>function ispostcode( str ) {   
-    var result = str.match(/[1-9]\d{5}(?!\d)/);   
-    if(result == null) return false;   
-    return true;   
-}   
-</code></pre><h4 id="j-匹配国内电话号码-0511-4405222-或-021-87888822"><a href="#j-匹配国内电话号码-0511-4405222-或-021-87888822" class="headerlink" title="j. 匹配国内电话号码(0511-4405222 或 021-87888822)"></a>j. 匹配国内电话号码(0511-4405222 或 021-87888822)</h4><pre><code>function istell( str ) {   
-    var result = str.match(/\d{3}-\d{8}|\d{4}-\d{7}/);   
-    if(result == null) return false;   
-    return true;   
-}   
-</code></pre><h4 id="k-校验是否为-0-10000-的整数"><a href="#k-校验是否为-0-10000-的整数" class="headerlink" title="k. 校验是否为(0-10000)的整数"></a>k. 校验是否为(0-10000)的整数</h4><pre><code>function isint1( str ) {   
-    var result = str.match(/^[0-9]$|^([1-9])([0-9]){0,3}$|^10000$/);   
-    if(result == null) return false;   
-    return true;   
-}   
-</code></pre><h4 id="l-匹配腾讯QQ号"><a href="#l-匹配腾讯QQ号" class="headerlink" title="l. 匹配腾讯QQ号"></a>l. 匹配腾讯QQ号</h4><pre><code>function isqq( str ) {   
-    var result = str.match(/[1-9][0-9]{4,}/);   
-    if(result == null) return false;   
-    return true;   
-}   
-</code></pre><h4 id="m-匹配身份证-15位或18位"><a href="#m-匹配身份证-15位或18位" class="headerlink" title="m. 匹配身份证(15位或18位)"></a>m. 匹配身份证(15位或18位)</h4><pre><code>function isidcard( str ) {   
-    var result = str.match(/\d{15}|\d{18}/);   
-    if(result == null) return false;   
-    return true;   
-}     
-</code></pre><h4 id="n-校验文本是否为空"><a href="#n-校验文本是否为空" class="headerlink" title="n. 校验文本是否为空"></a>n. 校验文本是否为空</h4><pre><code>function checknull( field,sval ) {   
-    if (field.value  == &quot;&quot;) {   
-        alert(&quot; 请填写 &quot; + sval + &quot; ！&quot;);   
-        field.focus();   
-        return false;   
-    }   
-    return true;   
-}   
-</code></pre><h4 id="o-屏蔽输入字符"><a href="#o-屏蔽输入字符" class="headerlink" title="o. 屏蔽输入字符"></a>o. 屏蔽输入字符</h4><pre><code>在文本框中加上 οnkeypress = &quot;return checkChar()&quot;  
-
-function checkChar() {      
-    var keycode = event.keyCode;   
-    if( !( keycode &gt;= 48 &amp;&amp; keycode &lt;= 57 ))   
-    {   
-        return false;   
-    }   
-}   
-</code></pre><h2 id="5-举例匹配正则"><a href="#5-举例匹配正则" class="headerlink" title="5. 举例匹配正则"></a>5. 举例匹配正则</h2><pre><code>// 中国电话号码验证  匹配形式如: 0511-4405222 或者 021-87888822 
-   或者 021-44055520-555 或者 (0511)4405222    
-   正则表达式 &quot;((d{3,4})|d{3,4}-)?d{7,8}(-d{3})*&quot;  
-
-// 中国邮政编码验证  匹配形式如: 215421    
-   正则表达式 &quot;d{6}&quot;  
-
-// 电子邮件验证  匹配形式如: justali@justdn.com    
-   正则表达式 &quot;w+([-+.]w+)*@w+([-.]w+)*.w+([-.]w+)*&quot;  
-
-// 身份证验证  匹配形式如: 15位或者18位身份证    
-   正则表达式 &quot;d{18}|d{15}&quot;  
-
-// 常用数字验证 正则表达式    
-   &quot;d{n}&quot; n 为规定长度    
-   &quot;d{n,m}&quot; n 到 m 的长度范围  
-
-// 非法字符验证  匹配非法字符如: &lt; &gt; &amp; / &apos; |   
-   正则表达式 &quot;[^&lt;&gt;&amp;/|&apos;\]+ &quot;
-
-// 日期验证  匹配形式如: 20030718,030718    
-   范围: 1900--2099    
-   正则表达式((((19){1}|(20){1})d{2})|d{2})[01]{1}d{1}[0-3]{1}d{1} 
-
-// 匹配中文字符的正则表达式：[\u4e00-\u9fa5]   
-   评注：匹配中文还真是个头疼的事，有了这个表达式就好办了 
-
-// 匹配双字节字符(包括汉字在内)：[^\x00-\xff]   
-   评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1） 
-
-// 匹配空白行的正则表达式：\n\s*\r   
-   评注：可以用来删除空白行   
-
-// 匹配HTML标记的正则表达式：&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;   
-   评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力  
-
-// 匹配首尾空白字符的正则表达式：^\s*|\s*$   
-   评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式   
-
-// 匹配Email地址的正则表达式：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*   
-   评注：表单验证时很实用   
-
-// 匹配网址URL的正则表达式：[a-zA-z]+://[^\s]*   
-   评注：网上流传的版本功能很有限，上面这个基本可以满足需求   
-
-// 匹配帐号是否合法：^[a-zA-Z][a-zA-Z0-9_]{4,15}$   
-   评注：表单验证时很实用( 字母开头，允许 5-16 字节，允许字母数字下划线 )
-
-// 匹配国内电话号码：\d{3}-\d{8}|\d{4}-\d{7}   
-   评注：匹配形式如 0511-4405222 或 021-87888822 
-
-// 匹配腾讯 QQ 号：[1-9][0-9]{4,}   
-   评注：腾讯 QQ 号从 10000 开始   
-
-// 匹配中国邮政编码：[1-9]\d{5}(?!\d)   
-   评注：中国邮政编码为 6 位数字   
-
-// 匹配身份证：\d{15}|\d{18}   
-   评注：中国的身份证为 15 位或 18 位 
-
-// 匹配ip地址：\d+\.\d+\.\d+\.\d+   
-   评注：提取 ip 地址时有用  
-
-// 提取信息中的 ip 地址:    
-   (\d+)\.(\d+)\.(\d+)\.(\d+) 
-
-// 提取信息中的中国手机号码:   
-   (86)*0*13\d{9}      
-
-// 提取信息中的中国固定电话号码:   
-   (\(\d{3,4}\)|\d{3,4}-|\s)?\d{8}  
-
-// 提取信息中的中国电话号码（ 包括移动和固定电话 ）:   
-   (\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}   
-
-// 提取信息中的中国邮政编码:   
-   [1-9]{1}(\d+){5}      
-
-// 提取信息中的中国身份证号码:   
-   \d{18}|\d{15}      
-
-// 提取信息中的整数：\d+      
-
-// 提取信息中的浮点数（ 即小数 ）：   
-   (-?\d*)\.?\d+      
-
-// 提取信息中的任何数字 ：   
-   (-?\d*)(\.\d+)?    
-
-// 提取信息中的中文字符串：   
-   [\u4e00-\u9fa5]*    
-
-// 提取信息中的双字节字符串 ( 汉字 )：   
-   [^\x00-\xff]*    
-
-// 提取信息中的英文字符串：\w*   
-
-// 提取信息中的网络链接:   
-   (h|H)(r|R)(e|E)(f|F) *= *(&apos;|&quot;)?(\w|\\|\/|\.)+(&apos;|&quot;| *|&gt;)?  
-
-// 提取信息中的邮件地址:   
-   \w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*  
-
-// 提取信息中的图片链接:   
-   (s|S)(r|R)(c|C) *= *(&apos;|&quot;)?(\w|\\|\/|\.)+(&apos;|&quot;| *|&gt;)?   
+        <h2 id="A：-HTML、CSS-部分"><a href="#A：-HTML、CSS-部分" class="headerlink" title="A： HTML、CSS 部分"></a>A： HTML、CSS 部分</h2><h3 id="1-什么是盒子模型？"><a href="#1-什么是盒子模型？" class="headerlink" title="1. 什么是盒子模型？"></a>1. 什么是盒子模型？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">在网页中，一个元素占有空间的大小由几个部分构成：</div><div class="line"></div><div class="line">   其中包括元素的内容( content )，</div><div class="line"></div><div class="line">   元素的内边距( padding )，</div><div class="line"></div><div class="line">   元素的边框( border )，</div><div class="line"></div><div class="line">   元素的外边距( margin )四个部分。</div><div class="line"></div><div class="line">   这四个部分占有的空间中，</div><div class="line"></div><div class="line">   有的部分可以显示相应的内容，</div><div class="line"></div><div class="line">   而有的部分只用来分隔相邻的区域或区域。</div><div class="line"></div><div class="line">   4 个部分一起构成了 css 中元素的盒模型。</div></pre></td></tr></table></figure>
+<h3 id="2-行内元素有哪些？-块级元素有哪些？-空-void-元素有那些？"><a href="#2-行内元素有哪些？-块级元素有哪些？-空-void-元素有那些？" class="headerlink" title="2. 行内元素有哪些？ 块级元素有哪些？ 空( void )元素有那些？"></a>2. 行内元素有哪些？ 块级元素有哪些？ 空( void )元素有那些？</h3><p>行内元素：</p>
+<pre><code class="bash">a. b. span. img. input. strong. select. label. em. button. textarea
 </code></pre>
+<p>块级元素：</p>
+<pre><code class="bash">div. ul. li. dl. dt. dd. p. h1-h6. blockquote
+</code></pre>
+<p>空元素：（ 即系没有内容的 HTML 元素 ）</p>
+<pre><code class="bash">br. meta. hr. link. input. img
+</code></pre>
+<h3 id="3-CSS-实现垂直水平居中"><a href="#3-CSS-实现垂直水平居中" class="headerlink" title="3. CSS 实现垂直水平居中"></a>3. CSS 实现垂直水平居中</h3><p>一个经典的问题，实现方法有很多种，以下是其中一种实现：</p>
+<p>HTML 结构：</p>
+<pre><code class="bash">&lt;div class=<span class="string">"wrapper"</span>&gt;
+    &lt;div class=<span class="string">"content"</span>&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>CSS：</p>
+<pre><code class="bash">.wrapper{position:relative;}
+.content{
+    background-color:<span class="comment">#6699FF;</span>
+    width:200px;
+    height:200px;
+    position: absolute;  //父元素需要相对定位
+    top: 50%;
+    left: 50%;
+    margin-top:-100px ;  //二分之一的 height，width
+    margin-left: -100px;
+}
+</code></pre>
+<h3 id="4-简述一下-href-与-src-的区别"><a href="#4-简述一下-href-与-src-的区别" class="headerlink" title="4. 简述一下 href 与 src 的区别"></a>4. 简述一下 href 与 src 的区别</h3><p>href：</p>
+<pre><code class="bash">是指向网络资源所在位置，
+
+建立和当前元素( 锚点 )或当前文档( 链接 )之间的链接，用于超链接。
+</code></pre>
+<p>src：</p>
+<pre><code class="bash">是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置;
+
+在请求 src 资源时会将其指向的资源下载并应用到文档内，
+
+例如 js 脚本，img 图片和 frame 等元素。
+
+当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，
+
+图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。
+
+这也是为什么将 js 脚本放在底部而不是头部
+</code></pre>
+<h3 id="5-什么是-CSS-Hack"><a href="#5-什么是-CSS-Hack" class="headerlink" title="5. 什么是 CSS Hack?"></a>5. 什么是 CSS Hack?</h3><p>一般来说是针对不同的浏览器写不同的 CSS ,就是 CSS Hack。</p>
+<p>IE 浏览器 Hack 一般又分为三种，条件 Hack 、属性级 Hack 、选择符 Hack 。</p>
+<p>例如：<br>1、条件Hack</p>
+<pre><code class="bash">&lt;!--[<span class="keyword">if</span> IE]&gt;
+    &lt;style&gt;
+            .<span class="built_in">test</span>{color:red;}
+    &lt;/style&gt;
+&lt;![endif]--&gt;
+</code></pre>
+<p>2、属性Hack</p>
+<pre><code class="bash">.<span class="built_in">test</span>{
+    color:<span class="comment">#0909;    /* For IE8+ */</span>
+    *color:<span class="comment">#f00;    /* For IE7 and earlier */</span>
+    _color:<span class="comment">#ff0;    /* For IE6 and earlier */</span>
+}
+</code></pre>
+<p>3、选择符Hack</p>
+<pre><code class="bash">* html .<span class="built_in">test</span>{color:<span class="comment">#090;}    /* For IE6 and earlier */</span>
+* + html .<span class="built_in">test</span>{color:<span class="comment">#ff0;}    /* For IE7 */</span>
+</code></pre>
+<h3 id="6-简述-同步-和-异步-的区别"><a href="#6-简述-同步-和-异步-的区别" class="headerlink" title="6. 简述 同步 和 异步 的区别"></a>6. 简述 同步 和 异步 的区别</h3><p>同步是阻塞模式，异步是非阻塞模式。</p>
+<p>同步：</p>
+<pre><code class="bash">同步就是指一个进程在执行某个请求的时候，
+
+若该请求需要一段时间才能返回信息，
+
+那么这个进程将会一直等待下去，
+
+直到收到返回信息才继续执行下去;
+</code></pre>
+<p>异步：</p>
+<pre><code class="bash">异步是指进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。
+
+当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率。
+</code></pre>
+<h3 id="7-px-和-em-的区别"><a href="#7-px-和-em-的区别" class="headerlink" title="7. px 和 em 的区别"></a>7. px 和 em 的区别</h3><p>px 和 em 都是长度单位，区别是，px 的值是固定的，指定是多少就是多少，计算比较容易。</p>
+<p>em 得值不是固定的，并且 em 会继承父级元素的字体大小。</p>
+<p>浏览器的默认字体高都是 16px。所以未经调整的浏览器都符合: 1em = 16px。</p>
+<p>那么 12px = 0.75em, 10px = 0.625em</p>
+<h3 id="8-什么叫-渐进增强-和-优雅降级-？"><a href="#8-什么叫-渐进增强-和-优雅降级-？" class="headerlink" title="8. 什么叫 渐进增强 和 优雅降级 ？"></a>8. 什么叫 渐进增强 和 优雅降级 ？</h3><p>渐进增强 progressive enhancement：</p>
+<p>针对低版本浏览器进行构建页面，保证最基本的功能，</p>
+<p>然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
+<p>优雅降级 graceful degradation：</p>
+<p>一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。</p>
+<p>区别：</p>
+<pre><code class="bash">a. 优雅降级是从复杂的现状开始，并试图减少用户体验的供给
+
+b. 渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要
+
+c. 降级( 功能衰减 )意味着往回看; 而渐进增强则意味着朝前看，同时保证其根基处于安全地带
+</code></pre>
+<h3 id="9-浏览器的-内核-分别是什么？"><a href="#9-浏览器的-内核-分别是什么？" class="headerlink" title="9. 浏览器的 内核 分别是什么？"></a>9. 浏览器的 内核 分别是什么？</h3><pre><code class="bash">IE:  trident 内核
+
+Firefox： gecko 内核
+
+Safari： webkit 内核
+
+Opera： 以前是 presto 内核，Opera 现已改用 Google Chrome 的 Blink 内核
+
+Chrome： Blink( 基于 webkit，Google 与 Opera Software 共同开发 )
+</code></pre>
+<h2 id="B：-JavaScript-部分"><a href="#B：-JavaScript-部分" class="headerlink" title="B： JavaScript 部分"></a>B： JavaScript 部分</h2><h3 id="1-怎样添加、移除、移动、复制、创建和查找-节点-？"><a href="#1-怎样添加、移除、移动、复制、创建和查找-节点-？" class="headerlink" title="1. 怎样添加、移除、移动、复制、创建和查找 节点 ？"></a>1. 怎样添加、移除、移动、复制、创建和查找 节点 ？</h3><p>1 ) 创建新节点</p>
+<pre><code class="bash">createDocumentFragment() //创建一个 DOM 片段
+
+createElement() //创建一个具体的元素
+
+createTextNode() //创建一个文本节点
+</code></pre>
+<p>2 ) 添加、移除、替换、插入</p>
+<pre><code class="bash">appendChild() //添加
+
+removeChild() //移除
+
+replaceChild() //替换
+
+insertBefore() //插入
+</code></pre>
+<p>3 ) 查找</p>
+<pre><code class="bash">getElementsByTagName() //通过标签名称
+
+getElementsByName() //通过元素的 Name 属性的值
+
+getElementById() //通过元素 Id，唯一性
+</code></pre>
+<h3 id="2-实现一个函数-clone"><a href="#2-实现一个函数-clone" class="headerlink" title="2. 实现一个函数 clone"></a>2. 实现一个函数 clone</h3><p>实现一个函数 clone，可以对 JavaScript 中的 5 种主要的数据类型( 包括 Number、String、Object、Array、Boolean )进行值复制。</p>
+<pre><code class="bash">/**
+* 对象克隆
+* 支持基本数据类型及对象
+* 递归方法
+*/
+<span class="keyword">function</span> <span class="built_in">clone</span>(obj) {
+    var o;
+    switch (typeof obj) {
+        <span class="keyword">case</span> <span class="string">"undefined"</span>:
+            <span class="built_in">break</span>;
+        <span class="keyword">case</span> <span class="string">"string"</span>:
+            o = obj + <span class="string">""</span>;
+            <span class="built_in">break</span>;
+        <span class="keyword">case</span> <span class="string">"number"</span>:
+            o = obj - 0;
+            <span class="built_in">break</span>;
+        <span class="keyword">case</span> <span class="string">"boolean"</span>:
+            o = obj;
+            <span class="built_in">break</span>;
+        <span class="keyword">case</span> <span class="string">"object"</span>: // object 分为两种情况 对象（Object）或数组（Array）
+            <span class="keyword">if</span> (obj === null) {
+                o = null;
+            } <span class="keyword">else</span> {
+                <span class="keyword">if</span> (Object.prototype.toString.call(obj).slice(8, -1) === <span class="string">"Array"</span>) {
+                    o = [];
+                    <span class="keyword">for</span> (var i = 0; i  obj.length; i++) {
+                        o.push(<span class="built_in">clone</span>(obj[i]));
+                    }
+                } <span class="keyword">else</span> {
+                    o = {};
+                    <span class="keyword">for</span> (var k <span class="keyword">in</span> obj) {
+                        o[k] = <span class="built_in">clone</span>(obj[k]);
+                    }
+                }
+            }
+            <span class="built_in">break</span>;
+        default:
+            o = obj;
+            <span class="built_in">break</span>;
+    }
+    <span class="built_in">return</span> o;
+}
+</code></pre>
+<h3 id="3-如何消除一个数组里面重复的元素？"><a href="#3-如何消除一个数组里面重复的元素？" class="headerlink" title="3. 如何消除一个数组里面重复的元素？"></a>3. 如何消除一个数组里面重复的元素？</h3><p>indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。</p>
+<pre><code class="bash">var arr1 = [1,2,2,2,3,3,3,4,5,6],
+arr2 = [];
+<span class="keyword">for</span>( var i = 0, len = arr1.length; i &lt; len; i++) {
+    <span class="keyword">if</span>( arr2.indexOf( arr1[i] ) &lt; 0 ) {
+        arr2.push( arr1[i] );
+    }
+}
+document.write( arr2 ); // 1,2,3,4,5,6
+</code></pre>
+<h3 id="4-想实现一个对页面某个节点的拖曳？如何做？"><a href="#4-想实现一个对页面某个节点的拖曳？如何做？" class="headerlink" title="4. 想实现一个对页面某个节点的拖曳？如何做？"></a>4. 想实现一个对页面某个节点的拖曳？如何做？</h3><p>使用原生JS</p>
+<pre><code class="bash">JS
+</code></pre>
+<h3 id="5-在-Javascript-中什么是伪数组？如何将伪数组转化为标准数组？"><a href="#5-在-Javascript-中什么是伪数组？如何将伪数组转化为标准数组？" class="headerlink" title="5. 在 Javascript 中什么是伪数组？如何将伪数组转化为标准数组？"></a>5. 在 Javascript 中什么是伪数组？如何将伪数组转化为标准数组？</h3><p>伪数组( 类数组 )：</p>
+<p>无法直接调用数组方法或期望length属性有什么特殊的行为，但仍可以对真正数组遍历方法来遍历它们。</p>
+<p>典型的是函数的 argument 参数，还有像调用 getElementsByTagName, document.childNodes 之类的,</p>
+<p>它们都返回 NodeList 对象都属于伪数组。</p>
+<p>可以使用 Array.prototype.slice.call( fakeArray ) 将数组转化为真正的 Array 对象。</p>
+<pre><code class="bash"><span class="keyword">function</span> <span class="function"><span class="title">log</span></span>(){
+  var args = Array.prototype.slice.call( arguments );  
+    // 为了使用 unshift 数组方法，将 argument 转化为真正的数组
+    args.unshift(<span class="string">'(app)'</span>);
+
+    console.log.apply( console, args );
+};
+</code></pre>
+<h3 id="6-Javascript-中-caller-和-callee-的作用？"><a href="#6-Javascript-中-caller-和-callee-的作用？" class="headerlink" title="6. Javascript 中 caller 和 callee 的作用？"></a>6. Javascript 中 caller 和 callee 的作用？</h3><p>caller 是返回一个对函数的引用，该函数调用了当前函数;</p>
+<p>callee 是返回正在被执行的 function 函数，也就是所指定的 function 对象的正文。</p>
+<h3 id="7-请描述一下-sessionStorage，cookies-和-localStorage-的区别"><a href="#7-请描述一下-sessionStorage，cookies-和-localStorage-的区别" class="headerlink" title="7. 请描述一下 sessionStorage，cookies 和 localStorage 的区别"></a>7. 请描述一下 sessionStorage，cookies 和 localStorage 的区别</h3><p>sessionStorage：</p>
+<pre><code class="bash">sessionStorage 用于本地存储一个会话( session )中的数据，
+
+这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。
+
+因此 sessionStorage 不是一种持久化的本地存储，仅仅是会话级别的存储。
+</code></pre>
+<p>localStorage：</p>
+<pre><code class="bash">而 localStorage 用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。
+</code></pre>
+<p>web storage 和 cookie 的区别：</p>
+<pre><code class="bash">Web Storage 的概念和 cookie 相似，区别是它是为了更大容量存储设计的。
+
+Cookie 的大小是受限的，并且每次你请求一个新的页面的时候 Cookie 都会被发送过去，
+
+这样无形中浪费了带宽，另外 cookie 还需要指定作用域，不可以跨域调用。
+
+除此之外，Web Storage 拥有 setItem, getItem, removeItem, clear等方法，
+
+不像 cookie 需要前端开发者自己封装 setCookie，getCookie。
+
+但是 Cookie 也是不可以或缺的：
+
+Cookie 的作用是与服务器进行交互，作为 HTTP 规范的一部分而存在 ，
+
+而 Web Storage 仅仅是为了在本地 “ 存储 ” 数据而生。
+</code></pre>
+<h3 id="8-手写数组快速排序"><a href="#8-手写数组快速排序" class="headerlink" title="8. 手写数组快速排序"></a>8. 手写数组快速排序</h3><p>“ 快速排序 ” 的思想很简单，整个排序过程只需要三步：</p>
+<pre><code class="bash">(1) 在数据集之中，选择一个元素作为 “ 基准 ” ( pivot )。
+
+(2) 所有小于 “ 基准 ” 的元素，都移到 “ 基准 ” 的左边; 
+    所有大于 “ 基准 ” 的元素，都移到 “ 基准 ” 的右边。
+
+(3) 对 “ 基准 ” 左边和右边的两个子集，不断重复第一步和第二步，
+    直到所有子集只剩下一个元素为止。
+</code></pre>
+<h3 id="9-统计字符串-“-aaaabbbccccddfgh-”-中字母个数或统计最多字母数。"><a href="#9-统计字符串-“-aaaabbbccccddfgh-”-中字母个数或统计最多字母数。" class="headerlink" title="9. 统计字符串 “ aaaabbbccccddfgh ” 中字母个数或统计最多字母数。"></a>9. 统计字符串 “ aaaabbbccccddfgh ” 中字母个数或统计最多字母数。</h3><pre><code class="bash">var str = <span class="string">"aaaabbbccccddfgh"</span>;
+<span class="keyword">function</span> count(str) {
+    var obj = {};
+    str.replace(/\S/g,<span class="keyword">function</span>(s){
+        !obj[s]?obj[s]=1:obj[s]++;
+    })
+    <span class="built_in">return</span> obj;
+}
+<span class="keyword">for</span>(key <span class="keyword">in</span> obj){
+    document.write(obj[key].value + <span class="string">'='</span> + obj[key].count + <span class="string">' '</span>); 
+    // a=4  b=3  c=4  d=2  f=1  g=1  h=1 
+}
+</code></pre>
+<h3 id="10-写一个-function，清除字符串前后的空格。-兼容所有浏览器"><a href="#10-写一个-function，清除字符串前后的空格。-兼容所有浏览器" class="headerlink" title="10. 写一个 function，清除字符串前后的空格。( 兼容所有浏览器 )"></a>10. 写一个 function，清除字符串前后的空格。( 兼容所有浏览器 )</h3><pre><code class="bash"><span class="keyword">function</span> trim(str) {
+    <span class="keyword">if</span> (str &amp; typeof str === <span class="string">"string"</span>) {
+        <span class="built_in">return</span> str.replace(/(^s*)|(s*)$/g, <span class="string">""</span>); //去除前后空白符
+    }
+}
+</code></pre>
+<h2 id="B：-其他部分"><a href="#B：-其他部分" class="headerlink" title="B： 其他部分"></a>B： 其他部分</h2><h3 id="1-一次完整的-HTTP-事务是怎样的一个过程？"><a href="#1-一次完整的-HTTP-事务是怎样的一个过程？" class="headerlink" title="1. 一次完整的 HTTP 事务是怎样的一个过程？"></a>1. 一次完整的 HTTP 事务是怎样的一个过程？</h3><p>基本流程：</p>
+<pre><code class="bash">a. 域名解析
+
+b. 发起 TCP 的 3 次握手
+
+c. 建立 TCP 连接后发起 http 请求
+
+d. 服务器端响应 http 请求，浏览器得到 html 代码
+
+e. 浏览器解析 html 代码，并请求 html 代码中的资源
+
+f. 浏览器对页面进行渲染呈现给用户
+</code></pre>
+<h3 id="2-一次完整的-HTTP-事务是怎样的一个过程？"><a href="#2-一次完整的-HTTP-事务是怎样的一个过程？" class="headerlink" title="2. 一次完整的 HTTP 事务是怎样的一个过程？"></a>2. 一次完整的 HTTP 事务是怎样的一个过程？</h3><p>基本流程：</p>
+<pre><code class="bash">a. 域名解析
+
+b. 发起 TCP 的 3 次握手
+
+c. 建立 TCP 连接后发起 http 请求
+
+d. 服务器端响应 http 请求，浏览器得到 html 代码
+
+e. 浏览器解析 html 代码，并请求 html 代码中的资源
+
+f. 浏览器对页面进行渲染呈现给用户
+</code></pre>
+
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2019/09/30/常用正则大全/">
-    <time datetime="2019-09-29T16:00:00.000Z" class="entry-date">
-        2019-09-30
+    <a href="/2019/10/10/Web前端基础知识汇总（1）/">
+    <time datetime="2019-10-10T07:40:40.487Z" class="entry-date">
+        2019-10-10
     </time>
 </a>
     
@@ -459,7 +395,7 @@ function checkChar() {
   
     <nav id="pagination">
       <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -485,6 +421,14 @@ function checkChar() {
       <ul>
         
           <li>
+            <a href="/2019/10/10/Web前端基础知识汇总（1）/">Web 前端基础知识汇总（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/08/HTML 总结/">HTML 总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/30/常用正则大全/">常用正则大全</a>
           </li>
         
@@ -494,14 +438,6 @@ function checkChar() {
         
           <li>
             <a href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
-          </li>
-        
-          <li>
-            <a href="/2017/12/01/屏幕高度、宽度的获取/">屏幕高度、宽度的获取</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
           </li>
         
       </ul>

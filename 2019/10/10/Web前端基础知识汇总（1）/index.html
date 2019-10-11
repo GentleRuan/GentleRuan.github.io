@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="Recorded living tips, Record life bit by bit, Record life" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Web 前端基础知识汇总（1） | GentleRuan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A： HTML、CSS 部分1. 什么是盒子模型？1234567891011121314151617在网页中，一个元素占有空间的大小由几个部分构成：   其中包括元素的内容( content )，   元素的内边距( padding )，   元素的边框( border )，   元素的外边距( margin )四个部分。   这四个部分占有的空间中，   有的部分可以显示相应的内容，   而有的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web 前端基础知识汇总（1）">
+<meta property="og:url" content="http://GentleRuan.github.io/2019/10/10/Web前端基础知识汇总（1）/index.html">
+<meta property="og:site_name" content="GentleRuan">
+<meta property="og:description" content="A： HTML、CSS 部分1. 什么是盒子模型？1234567891011121314151617在网页中，一个元素占有空间的大小由几个部分构成：   其中包括元素的内容( content )，   元素的内边距( padding )，   元素的边框( border )，   元素的外边距( margin )四个部分。   这四个部分占有的空间中，   有的部分可以显示相应的内容，   而有的">
+<meta property="og:updated_time" content="2019-10-11T08:23:14.424Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web 前端基础知识汇总（1）">
+<meta name="twitter:description" content="A： HTML、CSS 部分1. 什么是盒子模型？1234567891011121314151617在网页中，一个元素占有空间的大小由几个部分构成：   其中包括元素的内容( content )，   元素的内边距( padding )，   元素的边框( border )，   元素的外边距( margin )四个部分。   这四个部分占有的空间中，   有的部分可以显示相应的内容，   而有的">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="GentleRuan" rel="home">GentleRuan</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">One day a little progress</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Web前端基础知识汇总（1）" class="post-Web前端基础知识汇总（1） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Web 前端基础知识汇总（1）
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2019/10/10/Web前端基础知识汇总（1）/" data-id="ck1lvdxy80000rwu66r2hdufy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h2 id="A：-HTML、CSS-部分"><a href="#A：-HTML、CSS-部分" class="headerlink" title="A： HTML、CSS 部分"></a>A： HTML、CSS 部分</h2><h3 id="1-什么是盒子模型？"><a href="#1-什么是盒子模型？" class="headerlink" title="1. 什么是盒子模型？"></a>1. 什么是盒子模型？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">在网页中，一个元素占有空间的大小由几个部分构成：</div><div class="line"></div><div class="line">   其中包括元素的内容( content )，</div><div class="line"></div><div class="line">   元素的内边距( padding )，</div><div class="line"></div><div class="line">   元素的边框( border )，</div><div class="line"></div><div class="line">   元素的外边距( margin )四个部分。</div><div class="line"></div><div class="line">   这四个部分占有的空间中，</div><div class="line"></div><div class="line">   有的部分可以显示相应的内容，</div><div class="line"></div><div class="line">   而有的部分只用来分隔相邻的区域或区域。</div><div class="line"></div><div class="line">   4 个部分一起构成了 css 中元素的盒模型。</div></pre></td></tr></table></figure>
+<h3 id="2-行内元素有哪些？-块级元素有哪些？-空-void-元素有那些？"><a href="#2-行内元素有哪些？-块级元素有哪些？-空-void-元素有那些？" class="headerlink" title="2. 行内元素有哪些？ 块级元素有哪些？ 空( void )元素有那些？"></a>2. 行内元素有哪些？ 块级元素有哪些？ 空( void )元素有那些？</h3><p>行内元素：</p>
+<pre><code class="bash">a. b. span. img. input. strong. select. label. em. button. textarea
+</code></pre>
+<p>块级元素：</p>
+<pre><code class="bash">div. ul. li. dl. dt. dd. p. h1-h6. blockquote
+</code></pre>
+<p>空元素：（ 即系没有内容的 HTML 元素 ）</p>
+<pre><code class="bash">br. meta. hr. link. input. img
+</code></pre>
+<h3 id="3-CSS-实现垂直水平居中"><a href="#3-CSS-实现垂直水平居中" class="headerlink" title="3. CSS 实现垂直水平居中"></a>3. CSS 实现垂直水平居中</h3><p>一个经典的问题，实现方法有很多种，以下是其中一种实现：</p>
+<p>HTML 结构：</p>
+<pre><code class="bash">&lt;div class=<span class="string">"wrapper"</span>&gt;
+    &lt;div class=<span class="string">"content"</span>&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>CSS：</p>
+<pre><code class="bash">.wrapper{position:relative;}
+.content{
+    background-color:<span class="comment">#6699FF;</span>
+    width:200px;
+    height:200px;
+    position: absolute;  //父元素需要相对定位
+    top: 50%;
+    left: 50%;
+    margin-top:-100px ;  //二分之一的 height，width
+    margin-left: -100px;
+}
+</code></pre>
+<h3 id="4-简述一下-href-与-src-的区别"><a href="#4-简述一下-href-与-src-的区别" class="headerlink" title="4. 简述一下 href 与 src 的区别"></a>4. 简述一下 href 与 src 的区别</h3><p>href：</p>
+<pre><code class="bash">是指向网络资源所在位置，
+
+建立和当前元素( 锚点 )或当前文档( 链接 )之间的链接，用于超链接。
+</code></pre>
+<p>src：</p>
+<pre><code class="bash">是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置;
+
+在请求 src 资源时会将其指向的资源下载并应用到文档内，
+
+例如 js 脚本，img 图片和 frame 等元素。
+
+当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，
+
+图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。
+
+这也是为什么将 js 脚本放在底部而不是头部
+</code></pre>
+<h3 id="5-什么是-CSS-Hack"><a href="#5-什么是-CSS-Hack" class="headerlink" title="5. 什么是 CSS Hack?"></a>5. 什么是 CSS Hack?</h3><p>一般来说是针对不同的浏览器写不同的 CSS ,就是 CSS Hack。</p>
+<p>IE 浏览器 Hack 一般又分为三种，条件 Hack 、属性级 Hack 、选择符 Hack 。</p>
+<p>例如：<br>1、条件Hack</p>
+<pre><code class="bash">&lt;!--[<span class="keyword">if</span> IE]&gt;
+    &lt;style&gt;
+            .<span class="built_in">test</span>{color:red;}
+    &lt;/style&gt;
+&lt;![endif]--&gt;
+</code></pre>
+<p>2、属性Hack</p>
+<pre><code class="bash">.<span class="built_in">test</span>{
+    color:<span class="comment">#0909;    /* For IE8+ */</span>
+    *color:<span class="comment">#f00;    /* For IE7 and earlier */</span>
+    _color:<span class="comment">#ff0;    /* For IE6 and earlier */</span>
+}
+</code></pre>
+<p>3、选择符Hack</p>
+<pre><code class="bash">* html .<span class="built_in">test</span>{color:<span class="comment">#090;}    /* For IE6 and earlier */</span>
+* + html .<span class="built_in">test</span>{color:<span class="comment">#ff0;}    /* For IE7 */</span>
+</code></pre>
+<h3 id="6-简述-同步-和-异步-的区别"><a href="#6-简述-同步-和-异步-的区别" class="headerlink" title="6. 简述 同步 和 异步 的区别"></a>6. 简述 同步 和 异步 的区别</h3><p>同步是阻塞模式，异步是非阻塞模式。</p>
+<p>同步：</p>
+<pre><code class="bash">同步就是指一个进程在执行某个请求的时候，
+
+若该请求需要一段时间才能返回信息，
+
+那么这个进程将会一直等待下去，
+
+直到收到返回信息才继续执行下去;
+</code></pre>
+<p>异步：</p>
+<pre><code class="bash">异步是指进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。
+
+当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率。
+</code></pre>
+<h3 id="7-px-和-em-的区别"><a href="#7-px-和-em-的区别" class="headerlink" title="7. px 和 em 的区别"></a>7. px 和 em 的区别</h3><p>px 和 em 都是长度单位，区别是，px 的值是固定的，指定是多少就是多少，计算比较容易。</p>
+<p>em 得值不是固定的，并且 em 会继承父级元素的字体大小。</p>
+<p>浏览器的默认字体高都是 16px。所以未经调整的浏览器都符合: 1em = 16px。</p>
+<p>那么 12px = 0.75em, 10px = 0.625em</p>
+<h3 id="8-什么叫-渐进增强-和-优雅降级-？"><a href="#8-什么叫-渐进增强-和-优雅降级-？" class="headerlink" title="8. 什么叫 渐进增强 和 优雅降级 ？"></a>8. 什么叫 渐进增强 和 优雅降级 ？</h3><p>渐进增强 progressive enhancement：</p>
+<p>针对低版本浏览器进行构建页面，保证最基本的功能，</p>
+<p>然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
+<p>优雅降级 graceful degradation：</p>
+<p>一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。</p>
+<p>区别：</p>
+<pre><code class="bash">a. 优雅降级是从复杂的现状开始，并试图减少用户体验的供给
+
+b. 渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要
+
+c. 降级( 功能衰减 )意味着往回看; 而渐进增强则意味着朝前看，同时保证其根基处于安全地带
+</code></pre>
+<h3 id="9-浏览器的-内核-分别是什么？"><a href="#9-浏览器的-内核-分别是什么？" class="headerlink" title="9. 浏览器的 内核 分别是什么？"></a>9. 浏览器的 内核 分别是什么？</h3><pre><code class="bash">IE:  trident 内核
+
+Firefox： gecko 内核
+
+Safari： webkit 内核
+
+Opera： 以前是 presto 内核，Opera 现已改用 Google Chrome 的 Blink 内核
+
+Chrome： Blink( 基于 webkit，Google 与 Opera Software 共同开发 )
+</code></pre>
+<h2 id="B：-JavaScript-部分"><a href="#B：-JavaScript-部分" class="headerlink" title="B： JavaScript 部分"></a>B： JavaScript 部分</h2><h3 id="1-怎样添加、移除、移动、复制、创建和查找-节点-？"><a href="#1-怎样添加、移除、移动、复制、创建和查找-节点-？" class="headerlink" title="1. 怎样添加、移除、移动、复制、创建和查找 节点 ？"></a>1. 怎样添加、移除、移动、复制、创建和查找 节点 ？</h3><p>1 ) 创建新节点</p>
+<pre><code class="bash">createDocumentFragment() //创建一个 DOM 片段
+
+createElement() //创建一个具体的元素
+
+createTextNode() //创建一个文本节点
+</code></pre>
+<p>2 ) 添加、移除、替换、插入</p>
+<pre><code class="bash">appendChild() //添加
+
+removeChild() //移除
+
+replaceChild() //替换
+
+insertBefore() //插入
+</code></pre>
+<p>3 ) 查找</p>
+<pre><code class="bash">getElementsByTagName() //通过标签名称
+
+getElementsByName() //通过元素的 Name 属性的值
+
+getElementById() //通过元素 Id，唯一性
+</code></pre>
+<h3 id="2-实现一个函数-clone"><a href="#2-实现一个函数-clone" class="headerlink" title="2. 实现一个函数 clone"></a>2. 实现一个函数 clone</h3><p>实现一个函数 clone，可以对 JavaScript 中的 5 种主要的数据类型( 包括 Number、String、Object、Array、Boolean )进行值复制。</p>
+<pre><code class="bash">/**
+* 对象克隆
+* 支持基本数据类型及对象
+* 递归方法
+*/
+<span class="keyword">function</span> <span class="built_in">clone</span>(obj) {
+    var o;
+    switch (typeof obj) {
+        <span class="keyword">case</span> <span class="string">"undefined"</span>:
+            <span class="built_in">break</span>;
+        <span class="keyword">case</span> <span class="string">"string"</span>:
+            o = obj + <span class="string">""</span>;
+            <span class="built_in">break</span>;
+        <span class="keyword">case</span> <span class="string">"number"</span>:
+            o = obj - 0;
+            <span class="built_in">break</span>;
+        <span class="keyword">case</span> <span class="string">"boolean"</span>:
+            o = obj;
+            <span class="built_in">break</span>;
+        <span class="keyword">case</span> <span class="string">"object"</span>: // object 分为两种情况 对象（Object）或数组（Array）
+            <span class="keyword">if</span> (obj === null) {
+                o = null;
+            } <span class="keyword">else</span> {
+                <span class="keyword">if</span> (Object.prototype.toString.call(obj).slice(8, -1) === <span class="string">"Array"</span>) {
+                    o = [];
+                    <span class="keyword">for</span> (var i = 0; i  obj.length; i++) {
+                        o.push(<span class="built_in">clone</span>(obj[i]));
+                    }
+                } <span class="keyword">else</span> {
+                    o = {};
+                    <span class="keyword">for</span> (var k <span class="keyword">in</span> obj) {
+                        o[k] = <span class="built_in">clone</span>(obj[k]);
+                    }
+                }
+            }
+            <span class="built_in">break</span>;
+        default:
+            o = obj;
+            <span class="built_in">break</span>;
+    }
+    <span class="built_in">return</span> o;
+}
+</code></pre>
+<h3 id="3-如何消除一个数组里面重复的元素？"><a href="#3-如何消除一个数组里面重复的元素？" class="headerlink" title="3. 如何消除一个数组里面重复的元素？"></a>3. 如何消除一个数组里面重复的元素？</h3><p>indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。</p>
+<pre><code class="bash">var arr1 = [1,2,2,2,3,3,3,4,5,6],
+arr2 = [];
+<span class="keyword">for</span>( var i = 0, len = arr1.length; i &lt; len; i++) {
+    <span class="keyword">if</span>( arr2.indexOf( arr1[i] ) &lt; 0 ) {
+        arr2.push( arr1[i] );
+    }
+}
+document.write( arr2 ); // 1,2,3,4,5,6
+</code></pre>
+<h3 id="4-想实现一个对页面某个节点的拖曳？如何做？"><a href="#4-想实现一个对页面某个节点的拖曳？如何做？" class="headerlink" title="4. 想实现一个对页面某个节点的拖曳？如何做？"></a>4. 想实现一个对页面某个节点的拖曳？如何做？</h3><p>使用原生JS</p>
+<pre><code class="bash">JS
+</code></pre>
+<h3 id="5-在-Javascript-中什么是伪数组？如何将伪数组转化为标准数组？"><a href="#5-在-Javascript-中什么是伪数组？如何将伪数组转化为标准数组？" class="headerlink" title="5. 在 Javascript 中什么是伪数组？如何将伪数组转化为标准数组？"></a>5. 在 Javascript 中什么是伪数组？如何将伪数组转化为标准数组？</h3><p>伪数组( 类数组 )：</p>
+<p>无法直接调用数组方法或期望length属性有什么特殊的行为，但仍可以对真正数组遍历方法来遍历它们。</p>
+<p>典型的是函数的 argument 参数，还有像调用 getElementsByTagName, document.childNodes 之类的,</p>
+<p>它们都返回 NodeList 对象都属于伪数组。</p>
+<p>可以使用 Array.prototype.slice.call( fakeArray ) 将数组转化为真正的 Array 对象。</p>
+<pre><code class="bash"><span class="keyword">function</span> <span class="function"><span class="title">log</span></span>(){
+  var args = Array.prototype.slice.call( arguments );  
+    // 为了使用 unshift 数组方法，将 argument 转化为真正的数组
+    args.unshift(<span class="string">'(app)'</span>);
+
+    console.log.apply( console, args );
+};
+</code></pre>
+<h3 id="6-Javascript-中-caller-和-callee-的作用？"><a href="#6-Javascript-中-caller-和-callee-的作用？" class="headerlink" title="6. Javascript 中 caller 和 callee 的作用？"></a>6. Javascript 中 caller 和 callee 的作用？</h3><p>caller 是返回一个对函数的引用，该函数调用了当前函数;</p>
+<p>callee 是返回正在被执行的 function 函数，也就是所指定的 function 对象的正文。</p>
+<h3 id="7-请描述一下-sessionStorage，cookies-和-localStorage-的区别"><a href="#7-请描述一下-sessionStorage，cookies-和-localStorage-的区别" class="headerlink" title="7. 请描述一下 sessionStorage，cookies 和 localStorage 的区别"></a>7. 请描述一下 sessionStorage，cookies 和 localStorage 的区别</h3><p>sessionStorage：</p>
+<pre><code class="bash">sessionStorage 用于本地存储一个会话( session )中的数据，
+
+这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。
+
+因此 sessionStorage 不是一种持久化的本地存储，仅仅是会话级别的存储。
+</code></pre>
+<p>localStorage：</p>
+<pre><code class="bash">而 localStorage 用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。
+</code></pre>
+<p>web storage 和 cookie 的区别：</p>
+<pre><code class="bash">Web Storage 的概念和 cookie 相似，区别是它是为了更大容量存储设计的。
+
+Cookie 的大小是受限的，并且每次你请求一个新的页面的时候 Cookie 都会被发送过去，
+
+这样无形中浪费了带宽，另外 cookie 还需要指定作用域，不可以跨域调用。
+
+除此之外，Web Storage 拥有 setItem, getItem, removeItem, clear等方法，
+
+不像 cookie 需要前端开发者自己封装 setCookie，getCookie。
+
+但是 Cookie 也是不可以或缺的：
+
+Cookie 的作用是与服务器进行交互，作为 HTTP 规范的一部分而存在 ，
+
+而 Web Storage 仅仅是为了在本地 “ 存储 ” 数据而生。
+</code></pre>
+<h3 id="8-手写数组快速排序"><a href="#8-手写数组快速排序" class="headerlink" title="8. 手写数组快速排序"></a>8. 手写数组快速排序</h3><p>“ 快速排序 ” 的思想很简单，整个排序过程只需要三步：</p>
+<pre><code class="bash">(1) 在数据集之中，选择一个元素作为 “ 基准 ” ( pivot )。
+
+(2) 所有小于 “ 基准 ” 的元素，都移到 “ 基准 ” 的左边; 
+    所有大于 “ 基准 ” 的元素，都移到 “ 基准 ” 的右边。
+
+(3) 对 “ 基准 ” 左边和右边的两个子集，不断重复第一步和第二步，
+    直到所有子集只剩下一个元素为止。
+</code></pre>
+<h3 id="9-统计字符串-“-aaaabbbccccddfgh-”-中字母个数或统计最多字母数。"><a href="#9-统计字符串-“-aaaabbbccccddfgh-”-中字母个数或统计最多字母数。" class="headerlink" title="9. 统计字符串 “ aaaabbbccccddfgh ” 中字母个数或统计最多字母数。"></a>9. 统计字符串 “ aaaabbbccccddfgh ” 中字母个数或统计最多字母数。</h3><pre><code class="bash">var str = <span class="string">"aaaabbbccccddfgh"</span>;
+<span class="keyword">function</span> count(str) {
+    var obj = {};
+    str.replace(/\S/g,<span class="keyword">function</span>(s){
+        !obj[s]?obj[s]=1:obj[s]++;
+    })
+    <span class="built_in">return</span> obj;
+}
+<span class="keyword">for</span>(key <span class="keyword">in</span> obj){
+    document.write(obj[key].value + <span class="string">'='</span> + obj[key].count + <span class="string">' '</span>); 
+    // a=4  b=3  c=4  d=2  f=1  g=1  h=1 
+}
+</code></pre>
+<h3 id="10-写一个-function，清除字符串前后的空格。-兼容所有浏览器"><a href="#10-写一个-function，清除字符串前后的空格。-兼容所有浏览器" class="headerlink" title="10. 写一个 function，清除字符串前后的空格。( 兼容所有浏览器 )"></a>10. 写一个 function，清除字符串前后的空格。( 兼容所有浏览器 )</h3><pre><code class="bash"><span class="keyword">function</span> trim(str) {
+    <span class="keyword">if</span> (str &amp; typeof str === <span class="string">"string"</span>) {
+        <span class="built_in">return</span> str.replace(/(^s*)|(s*)$/g, <span class="string">""</span>); //去除前后空白符
+    }
+}
+</code></pre>
+<h2 id="B：-其他部分"><a href="#B：-其他部分" class="headerlink" title="B： 其他部分"></a>B： 其他部分</h2><h3 id="1-一次完整的-HTTP-事务是怎样的一个过程？"><a href="#1-一次完整的-HTTP-事务是怎样的一个过程？" class="headerlink" title="1. 一次完整的 HTTP 事务是怎样的一个过程？"></a>1. 一次完整的 HTTP 事务是怎样的一个过程？</h3><p>基本流程：</p>
+<pre><code class="bash">a. 域名解析
+
+b. 发起 TCP 的 3 次握手
+
+c. 建立 TCP 连接后发起 http 请求
+
+d. 服务器端响应 http 请求，浏览器得到 html 代码
+
+e. 浏览器解析 html 代码，并请求 html 代码中的资源
+
+f. 浏览器对页面进行渲染呈现给用户
+</code></pre>
+<h3 id="2-一次完整的-HTTP-事务是怎样的一个过程？"><a href="#2-一次完整的-HTTP-事务是怎样的一个过程？" class="headerlink" title="2. 一次完整的 HTTP 事务是怎样的一个过程？"></a>2. 一次完整的 HTTP 事务是怎样的一个过程？</h3><p>基本流程：</p>
+<pre><code class="bash">a. 域名解析
+
+b. 发起 TCP 的 3 次握手
+
+c. 建立 TCP 连接后发起 http 请求
+
+d. 服务器端响应 http 请求，浏览器得到 html 代码
+
+e. 浏览器解析 html 代码，并请求 html 代码中的资源
+
+f. 浏览器对页面进行渲染呈现给用户
+</code></pre>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2019/10/10/Web前端基础知识汇总（1）/">
+    <time datetime="2019-10-10T07:40:40.487Z" class="entry-date">
+        2019-10-10
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2019/10/08/HTML 总结/" rel="next">HTML 总结 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/10/Web前端基础知识汇总（1）/">Web 前端基础知识汇总（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/08/HTML 总结/">HTML 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/30/常用正则大全/">常用正则大全</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/15/RN-style 详细说明/">RN-style 详细说明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2019 GentleRuan
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

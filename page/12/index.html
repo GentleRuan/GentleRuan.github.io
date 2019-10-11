@@ -66,7 +66,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-JavaScript 对象初识" class="post-JavaScript 对象初识 post type-post status-publish format-standard hentry">
+    <article id="post-JavaScript call()和apply()方法" class="post-JavaScript call()和apply()方法 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -74,166 +74,36 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/05/25/JavaScript 对象初识/">JavaScript 对象初识</a>
+      <a class="article-title" href="/2016/08/11/JavaScript call()和apply()方法/">JavaScript 中的 call() 和 apply() 方法</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/05/25/JavaScript 对象初识/" data-id="ck164rtlk0000b8u6eznblasm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://GentleRuan.github.io/2016/08/11/JavaScript call()和apply()方法/" data-id="ck1hjcw0i0000wku6ly4s2wgv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>在 JavaScript 中，数据类型分为：number、string、boolean、undefined、null、object，其中 number、string、boolean、undefined、null 也称为基本数据类型，而 object 称为引用数据类型。</p>
-<p>之所以 object 和其它数据类型不同，是因为对象是一种复合值，它将若干值以 key-value 键值对的形式聚合在一起。我们可以将对象看作是一系列无序的数据集合，通过 key 关键字可以访问到其关联的 value 值。</p>
-<h2 id="2-对象创建"><a href="#2-对象创建" class="headerlink" title="2. 对象创建"></a>2. 对象创建</h2><p>对象创建有三种方式：对象直接量方式、new 调用构造函数方式与 Object.create() 方式。</p>
-<h3 id="2-1-对象直接量"><a href="#2-1-对象直接量" class="headerlink" title="2.1 对象直接量"></a>2.1 对象直接量</h3><p>直接量也称为字面量，对象直接量由若干 key-value 键值对组成映射表，key 与 value 间使用冒号（:）分隔，键值对间会用逗号（,）分隔，将所有 key-value 键值对包裹在花括号（{}）之间：</p>
-<pre><code>var student = {
-    name : &quot;张三&quot;,
-    age : 18,
-    sex : &quot;男&quot;
-};
-</code></pre><p>对象的所有键名都是字符串，所以在 JavaScript 中，键名可使用引号（单引号、双引号均可），也可不使用引号，不使用引号会自动转为字符串。上边的对象也等价于：</p>
-<pre><code>var student = {
-    &quot;name&quot; : &quot;张三&quot;,
-    &quot;age&quot; : 18,
-    &quot;sex&quot; : &quot;男&quot;
-};
-</code></pre><p>对象的所有键值对也叫做属性，键名就是属性名，键值就是属性值。键值可以是任意数据类型，即键值也可以是函数（function），当键值为函数时，我们通常就将这个属性称为“方法”。</p>
-<pre><code>var student = {
-    name : &quot;张三&quot;,
-    age : 18,
-    sex : &quot;男&quot;,
-    show : function(){
-        console.log(&quot;这是一个学生对象...&quot;);
-    }
-};
-</code></pre><p>ES5 标准中，允许对象直接量最后一个属性后有一个逗号，但如果是旧版本的浏览器，不支持 ES5 标准，则会提示错误。</p>
-<h3 id="2-2-new-构造函数"><a href="#2-2-new-构造函数" class="headerlink" title="2.2 new 构造函数"></a>2.2 new 构造函数</h3><p>我们可以像创建数组对象、日期时间对象一样，通过 new 调用构造函数来创建普通的对象：</p>
-<pre><code>var student = new Object();
-</code></pre><p>对象创建后，通过点运算符或索引方式为对象添加属性：</p>
-<pre><code>student.name = &quot;张三&quot;;
-student[&quot;age&quot;] = 18;
-</code></pre><p>通过 new Object() 创建的一个空对象，也可直接写成：new Object 省略小括号的编写。</p>
-<p>也可以在 new 创建对象时传递参数，如果传递参数是一个对象，则直接返回参数对象：</p>
-<pre><code>var obj = {name:&quot;张三&quot;, age:18};
-var stu = new Object(obj);
-console.log(obj === stu); // true
-</code></pre><p>如果传递参数是基本类型的值，则返回包装对象：</p>
-<pre><code>var obj1 = new Object(1.3); // Number {}
-var obj2 = new Object(&quot;test&quot;); // String {0: &quot;t&quot;, 1: &quot;e&quot;, 2: &quot;s&quot;, 3: &quot;t&quot;, length: 4}
-var obj3 = new Object(true); // Boolean {}
-var obj4 = new Object(undefined); // {}
-var obj5 = new Object(null); // {}
-</code></pre><p>注意，传递 undefined 与 null 会返回空对象。</p>
-<p>当以非构造函数形式被调用时，Object 等同于 new Object()，即我们通常使用 Object() 来实现数据类型的转换，将其它类型转换为对象类型：</p>
-<pre><code>var obj1 = Object(1);
-var obj2 = Object(true);
-</code></pre><h3 id="2-3-Object-create"><a href="#2-3-Object-create" class="headerlink" title="2.3 Object.create()"></a>2.3 Object.create()</h3><p>ES5 新特性中定义了名为 Object.create() 的方法，用来创建对象。</p>
-<p>语法：</p>
-<pre><code>Object.create(proto, [ propertiesObject ])
-</code></pre><p>proto 参数是作为新创建对象的原型，propertiesObject 是可选参数，用来对对象的属性进行描述：</p>
-<pre><code>var sexValue;
-var stu = Object.create(Object.prototype, {
-    name : {
-        value: &quot;张三&quot;,
-        writable: true,
-        configurable:true,
-        enumerable: true
-    },
-    age : {
-        get : function(){return 18},
-        configurable:true,
-        enumerable: true
-    },
-    sex : {
-        get : function(){return sexValue},
-        set : function(newSexValue){sexValue = newSexValue;},
-        configurable:true,
-        enumerable: false
-    }
-});
-</code></pre><p>有关对象属性描述，可见<a href="">《ES5 新特性》</a>说明。</p>
-<h2 id="3-删除对象属性"><a href="#3-删除对象属性" class="headerlink" title="3. 删除对象属性"></a>3. 删除对象属性</h2><p>delete 命令可用于删除对象属性，返回是否删除成功：</p>
-<pre><code>var obj = {name:&quot;lily&quot;, age:18, sex:&quot;female&quot;};
-console.log(Object.keys(obj)); // [&quot;name&quot;, &quot;age&quot;, &quot;sex&quot;]
-console.log(delete obj.sex); // true
-console.log(Object.keys(obj)); // [&quot;name&quot;, &quot;age&quot;]
-console.log(obj.sex); // undefined
-</code></pre><p>注意，删除一个不存在的属性也会返回 true ：</p>
-<pre><code>console.log(delete obj.address); // true
-</code></pre><p>所以不能仅通过返回值的 true 或 false 就判断对象属性存在与不存在，只能保证删除后再次读取该属性值返回 undefined。</p>
-<p>但下边的情况 delete 会返回 false：</p>
-<pre><code>var stu = Object.create(Object.prototype, {
-    name : {
-        value: &quot;张三&quot;,
-        writable: true,
-        configurable:false,
-        enumerable: true
-    }
-});
-console.log(delete stu.name); // false
-console.log(stu.name); // 张三
-</code></pre><h2 id="4-in-运算符"><a href="#4-in-运算符" class="headerlink" title="4. in 运算符"></a>4. in 运算符</h2><p>in 运算符用于检查对象是否包含某个属性（注意：检查的是键名，不是键值），如果包含就返回 true，否则返回 false</p>
-<pre><code>var obj = {name:&quot;lily&quot;, age:18, sex:&quot;female&quot;};
-console.log(&quot;age&quot; in obj); // true
-console.log(&quot;address&quot; in obj); // false
-</code></pre><p>in 运算符的一个问题是，它不能识别对象继承的属性：</p>
-<pre><code>console.log(&quot;toString&quot; in obj); // true
-</code></pre><p>toString 方法不是对象 obj 自身的属性，而是继承的属性，如果要判断是否 obj 自身的属性，可以使用hasOwnProperty 方法：</p>
-<pre><code>console.log(obj.hasOwnProperty(&quot;toString&quot;)); // false
-</code></pre><h2 id="5-for-in"><a href="#5-for-in" class="headerlink" title="5. for .. in"></a>5. for .. in</h2><p>for…in 循环可用来遍历一个对象的全部属性：</p>
-<pre><code>var obj = {name:&quot;lily&quot;, age:18, sex:&quot;female&quot;};
-for (var attr in obj) {
-    console.log(attr, obj[attr]);
-}
-</code></pre><p>打印结果：</p>
-<pre><code>name – &quot;lily&quot;
-age – 18
-sex – &quot;female&quot;
-</code></pre><p>for…in 循环有两个使用注意点：</p>
-<p>· 遍历的是对象所有可遍历（enumerable）的属性，会跳过不可遍历的属性<br>· 不仅遍历对象自身的属性，还遍历继承的属性</p>
-<p>示例：</p>
-<pre><code>function Student(name, age){
-    this.name = name;
-    this.age = age;
-}
+        <h2 id="1、方法定义"><a href="#1、方法定义" class="headerlink" title="1、方法定义"></a>1、方法定义</h2><h3 id="call方法"><a href="#call方法" class="headerlink" title="call方法:"></a>call方法:</h3><p>语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])<br>定义：调用一个对象的一个方法，以另一个对象替换当前对象。<br>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 </p>
+<h3 id="apply方法："><a href="#apply方法：" class="headerlink" title="apply方法："></a>apply方法：</h3><p>语法：apply([thisObj[,argArray]])<br>定义：应用某一对象的一个方法，用另一个对象替换当前对象。<br>说明：<br>如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
+<h2 id="2、常用实例"><a href="#2、常用实例" class="headerlink" title="2、常用实例"></a>2、常用实例</h2><h3 id="a："><a href="#a：" class="headerlink" title="a："></a>a：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(a,b) &#123;  </div><div class="line">    alert(a+b);  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">function</span> sub(a,b) &#123;  </div><div class="line">    alert(a-b);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">add.call(sub,3,1);</div></pre></td></tr></table></figure>
+<p>这个例子中的意思就是用 add 来替换 sub，add.call(sub,3,1) == add(3,1) ，所以运行结果为：alert(4); // 注意：js 中的函数其实是对象，函数名是对 Function 对象的引用。</p>
+<h3 id="b："><a href="#b：" class="headerlink" title="b："></a>b：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Animal</span></span>()&#123;    </div><div class="line">    this.name = <span class="string">"Animal"</span>;    </div><div class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;    </div><div class="line">        alert(this.name);    </div><div class="line">    &#125;    </div><div class="line">&#125;    </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Cat</span></span>()&#123;    </div><div class="line">    this.name = <span class="string">"Cat"</span>;    </div><div class="line">&#125;    </div><div class="line">   </div><div class="line">var animal = new Animal();    </div><div class="line">var cat = new Cat();    </div><div class="line">    </div><div class="line">//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    </div><div class="line">//输入结果为<span class="string">"Cat"</span>    </div><div class="line">animal.showName.call(cat,<span class="string">","</span>);    </div><div class="line">//animal.showName.apply(cat,[]);</div></pre></td></tr></table></figure>
+<p>call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat</p>
+<h3 id="c、实现继承"><a href="#c、实现继承" class="headerlink" title="c、实现继承:"></a>c、实现继承:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> Animal(name)&#123;      </div><div class="line">    this.name = name;      </div><div class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;      </div><div class="line">        alert(this.name);      </div><div class="line">    &#125;      </div><div class="line">&#125;      </div><div class="line">    </div><div class="line"><span class="keyword">function</span> Cat(name)&#123;    </div><div class="line">    Animal.call(this, name);    </div><div class="line">&#125;      </div><div class="line">    </div><div class="line">var cat = new Cat(<span class="string">"Black Cat"</span>);     </div><div class="line">cat.showName();</div></pre></td></tr></table></figure>
+<h3 id="d、多重继承"><a href="#d、多重继承" class="headerlink" title="d、多重继承:"></a>d、多重继承:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class10</span></span>() &#123;  </div><div class="line">    this.showSub = <span class="keyword">function</span>(a,b) &#123;  </div><div class="line">        alert(a-b);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class11</span></span>() &#123;  </div><div class="line">    this.showAdd = <span class="keyword">function</span>(a,b) &#123;  </div><div class="line">        alert(a+b);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Class2</span></span>() &#123;  </div><div class="line">    Class10.call(this);  </div><div class="line">    Class11.call(this);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>很简单，使用两个 call 就实现多重继承了<br>当然，js的继承还有其他方法，例如使用原型链，这个不属于本文的范畴，只是在此说明call 的用法。说了call ，当然还有 apply，这两个方法基本上是一个意思，区别在于 call 的第二个参数可以是任意类型，而apply的第二个参数必须是数组，也可以是arguments<br>还有 callee，caller..</p>
 
-Student.prototype.show = function(){
-    console.log(&quot;学生信息...&quot;);
-}
-
-var obj = new Student(&quot;lily&quot;, 18);
-var stu = Object.create(obj, {
-    address : {
-        value : &quot;成都&quot;,
-        enumerable : true
-    },
-    sex : {
-        value : &quot;女&quot;
-    }
-});
-for (var attr in stu) {
-    console.log(attr, stu[attr]);
-}
-</code></pre><p>打印结果：</p>
-<pre><code>address – &quot;成都&quot;
-name – &quot;lily&quot;
-age – 18
-show – function (){
-    console.log(&quot;学生信息...&quot;);
-}
-</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/05/25/JavaScript 对象初识/">
-    <time datetime="2016-05-24T16:00:00.000Z" class="entry-date">
-        2016-05-25
+    <a href="/2016/08/11/JavaScript call()和apply()方法/">
+    <time datetime="2016-08-10T16:00:00.000Z" class="entry-date">
+        2016-08-11
     </time>
 </a>
     
@@ -250,7 +120,7 @@ show – function (){
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span>
+        <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -276,6 +146,14 @@ show – function (){
       <ul>
         
           <li>
+            <a href="/2019/10/10/Web前端基础知识汇总（1）/">Web 前端基础知识汇总（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/08/HTML 总结/">HTML 总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/30/常用正则大全/">常用正则大全</a>
           </li>
         
@@ -285,14 +163,6 @@ show – function (){
         
           <li>
             <a href="/2019/04/11/React Native入口文件解析/">React Native入口文件解析</a>
-          </li>
-        
-          <li>
-            <a href="/2017/12/01/屏幕高度、宽度的获取/">屏幕高度、宽度的获取</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/10/Git清单/">常用 Git 命令清单</a>
           </li>
         
       </ul>
